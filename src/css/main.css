@@ -18,6 +18,11 @@ body {
   background-color: var(--main-bg-color);
 }
 
+a {
+  color: currentColor;
+  text-decoration: none;
+}
+
 h1 {
   font-weight: 500;
   font-size: 80px;
@@ -41,6 +46,7 @@ ol {
 }
 img {
   display: block;
+  /* max-width: 100%; */
 }
 button {
   font-family: inherit;
