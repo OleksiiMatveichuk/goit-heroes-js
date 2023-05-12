@@ -1,0 +1,28 @@
+.random {
+  width: 700px;
+  margin: 0 auto;
+  background-color: rgb(219, 203, 203);
+}
+
+@media screen and (max-width: 375px) {
+  .random {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 375px) {
+  .random {
+    width: 375px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .random {
+    width: 768px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .random {
+    width: 1440px;
+  }
+}

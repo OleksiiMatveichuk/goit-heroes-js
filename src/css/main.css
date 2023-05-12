@@ -1,0 +1,88 @@
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --main-bg-color: #000000;
+  --main-color: #fafafa;
+  --main-hover: #34387f;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  color: var(--main-color);
+  background-color: var(--main-bg-color);
+}
+
+a {
+  color: currentColor;
+  text-decoration: none;
+}
+
+h1 {
+  font-weight: 500;
+  font-size: 80px;
+  line-height: 1;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+img {
+  display: block;
+  /* max-width: 100%; */
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media screen and (max-width: 375px) {
+  .container {
+    max-width: 375px;
+  }
+}
+/* mobile */
+@media screen and (min-width: 375px) {
+  .container {
+    width: 375px;
+  }
+}
+
+/* tablet */
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 768px;
+    padding: 0 32px;
+  }
+}
+/* десктоп */
+
+@media screen and (min-width: 1200px) {
+  .container {
+    width: 1440px;
+  }
+}
