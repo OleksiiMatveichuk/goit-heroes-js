@@ -15,6 +15,8 @@ body {
   line-height: 1.25;
   letter-spacing: 0.02em;
   color: var(--main-color);
+}
+section {
   background-color: var(--main-bg-color);
 }
 
@@ -52,6 +54,14 @@ button {
   font-family: inherit;
   cursor: pointer;
 }
+.list {
+  list-style: none;
+}
+.hero-name {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33;
+}
 
 .container {
   max-width: 100%;
@@ -77,6 +87,10 @@ button {
   .container {
     width: 768px;
     padding: 0 32px;
+  }
+  .hero-name {
+    font-size: 24px;
+    line-height: 1;
   }
 }
 /* десктоп */
