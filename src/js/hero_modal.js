@@ -1,6 +1,5 @@
 export function getHeroModal(data){
     const {/* Деструктуризація всіх необхідних данних */} = data;
-    
 
     /* Функція створення списку додаткових картинок */
     function createImgList(imgArr){
