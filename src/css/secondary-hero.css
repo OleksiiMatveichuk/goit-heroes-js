@@ -1,0 +1,90 @@
+/* mobile */
+@media screen and (min-width: 375px) {
+  /* .container {
+    max-width: 335px;
+  } */
+  .hero-secondary-text {
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-top: 172px;
+    margin-bottom: 14px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .hero-secondary-title {
+    font-size: 60px;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+  .hero-secondary-subtitle {
+    margin-bottom: 65px;
+  }
+  .back-home-btn {
+    width: 111px;
+    height: 36px;
+    font-size: 12px;
+    line-height: 1.3;
+    text-transform: uppercase;
+    color: rgba(250, 250, 250, 1);
+    background-color: transparent;
+    border: 1px solid rgba(250, 250, 250, 0.5);
+    border-radius: 1000px;
+  }
+}
+
+/* tablet */
+
+@media screen and (min-width: 768px) {
+  /* .container {
+    max-width: 704px;
+  } */
+  .hero-secondary-text {
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-top: 212px;
+    margin-bottom: 27px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .hero-secondary-title {
+    font-size: 128px;
+    margin-bottom: 16px;
+  }
+  .hero-secondary-subtitle {
+    margin-right: auto;
+    margin-left: 88px;
+    margin-bottom: 188px;
+  }
+  .back-home-btn {
+    width: 131px;
+    height: 42px;
+    font-size: 14px;
+    line-height: 1.28;
+    text-transform: uppercase;
+    color: rgba(250, 250, 250, 1);
+    background-color: transparent;
+    border: 1px solid rgba(250, 250, 250, 0.5);
+    border-radius: 1000px;
+
+    position: absolute;
+    right: 32px;
+  }
+}
+/* десктоп */
+
+@media screen and (min-width: 1200px) {
+  /* .container {
+    max-width: 1376px;
+  } */
+  .hero-secondary-text {
+    margin-bottom: 16px;
+  }
+  .hero-secondary-title {
+    font-size: 150px;
+    line-height: 150px;
+    margin-bottom: 16px;
+  }
+  .hero-secondary-subtitle {
+    margin-right: 789px;
+    margin-left: 88px;
+    margin-bottom: 145px;
+  }
+}
