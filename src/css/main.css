@@ -68,16 +68,27 @@ button {
   margin: 0 auto;
   padding: 0 20px;
 }
+.container-modal {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
 @media screen and (max-width: 375px) {
   .container {
     max-width: 375px;
+  }
+  .container-modal {
+    max-width: 295px;
   }
 }
 /* mobile */
 @media screen and (min-width: 375px) {
   .container {
     width: 375px;
+  }
+  .container-modal {
+    width: 295px;
   }
 }
 
@@ -87,6 +98,8 @@ button {
   .container {
     width: 768px;
     padding: 0 32px;
+  }
+  .container-modal {
   }
   .hero-name {
     font-size: 24px;
