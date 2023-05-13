@@ -13,6 +13,9 @@
 .random-img {
   border-radius: 8px;
 }
+.random-item {
+  cursor: pointer;
+}
 
 .random-item:not(:last-child) {
   margin-bottom: 32px;
@@ -28,10 +31,15 @@
 .random-value-name {
   margin-bottom: 14px;
 }
+.active {
+  color: var(--main-hover);
+}
 .random-value-text {
   font-size: 14px;
   line-height: 1.3;
+  color: rgba(250, 250, 250, 0.5);
 }
+
 .allCharactersBtn {
   padding: 10px 20px;
   border: 1px solid rgba(250, 250, 250, 0.3);
