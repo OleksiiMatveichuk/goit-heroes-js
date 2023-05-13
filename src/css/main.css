@@ -15,9 +15,10 @@ body {
   line-height: 1.25;
   letter-spacing: 0.02em;
   color: var(--main-color);
+  background-color: var(--main-bg-color);
 }
 section {
-  background-color: var(--main-bg-color);
+  /* background-color: var(--main-bg-color); */
 }
 
 a {
@@ -45,6 +46,7 @@ ol {
   margin-top: 0;
   margin-bottom: 0;
   padding-left: 0;
+  list-style: none;
 }
 img {
   display: block;
@@ -54,9 +56,7 @@ button {
   font-family: inherit;
   cursor: pointer;
 }
-.list {
-  list-style: none;
-}
+
 .hero-name {
   font-weight: 500;
   font-size: 18px;
