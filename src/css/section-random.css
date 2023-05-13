@@ -1,12 +1,60 @@
 .random {
-  width: 700px;
   margin: 0 auto;
-  background-color: rgb(219, 203, 203);
+  position: relative;
+  padding-bottom: 138px;
+}
+.random-text {
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1.14;
+  text-transform: uppercase;
+  margin-bottom: 44px;
+}
+.random-img {
+  border-radius: 8px;
+}
+
+.random-item:not(:last-child) {
+  margin-bottom: 32px;
+}
+
+.random-item::after {
+  content: ' ';
+  display: block;
+  width: 100%;
+  margin-top: 32px;
+  border-bottom: 1px solid rgba(250, 250, 250, 0.2);
+}
+.random-value-name {
+  margin-bottom: 14px;
+}
+.random-value-text {
+  font-size: 14px;
+  line-height: 1.3;
+}
+.allCharactersBtn {
+  padding: 10px 20px;
+  border: 1px solid rgba(250, 250, 250, 0.3);
+  border-radius: 1000px;
+  background-color: var(--main-bg-color);
+  color: var(--main-color);
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.3;
+  text-transform: uppercase;
+
+  margin-top: 20px;
+  position: absolute;
+  right: 20px;
 }
 
 @media screen and (max-width: 375px) {
   .random {
     width: 100%;
+  }
+  .random-img {
+    max-width: 100%;
   }
 }
 
@@ -19,10 +67,42 @@
 @media screen and (min-width: 768px) {
   .random {
     width: 768px;
+    padding-bottom: 202px;
+  }
+
+  .random-text {
+    font-weight: 500;
+    font-size: 44px;
+    line-height: 1;
+    margin-bottom: 64px;
+  }
+  .random-value-text {
+    font-size: 16px;
+    line-height: 1.13;
+  }
+  .random-value-name {
+    margin-bottom: 16px;
+  }
+  .allCharactersBtn {
+    padding: 12px 24px;
+    margin-top: 32px;
+    right: 32px;
   }
 }
 @media screen and (min-width: 1440px) {
   .random {
     width: 1440px;
+  }
+  .random-info {
+    display: flex;
+    gap: 32px;
+  }
+  .random-list {
+    margin-top: 45px;
+  }
+}
+@media screen and (max-width: 1440px) {
+  .random-img {
+    margin-bottom: 32px;
   }
 }
