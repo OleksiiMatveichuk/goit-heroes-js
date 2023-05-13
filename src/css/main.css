@@ -18,7 +18,7 @@ body {
   background-color: var(--main-bg-color);
 }
 section {
-  /* background-color: var(--main-bg-color); */
+  background-color: var(--main-bg-color);
 }
 
 a {
