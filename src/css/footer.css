@@ -1,72 +1,71 @@
-.footer {
-  background-color: var(--color-dark-purple);
+/* .footer {
   padding-top: 32px;
   padding-bottom: 32px;
-}
-
-.slogan {
-  width: 300px;
-  color: var(--color-white);
-  font-weight: 500;
-  font-size: 24px;
-  line-height: calc(28 / 24);
-  letter-spacing: -0.02em;
-  margin-bottom: 32px;
-}
+} */
 
 .footer-top {
+  background-color: var(--main-bg-color);
+  padding: 40px 0;
+}
+
+.footer-list {
+  width: 100%;
+  list-style: none;
   display: flex;
-  align-items: flex-start;
-  margin-bottom: 32px;
+  align-items: baseline;
   justify-content: space-between;
-}
-border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-
-.contacts-list {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  color: var(--color-white);
-  letter-spacing: -0.02em;
+  /* flex-wrap: wrap; */
 }
 
-.footer-contact-link {
-  display: block;
-  transition: color 250ms var(--cubic);
+.policy-div {
+  background-color: var(--main-hover);
+  padding: 16px 0;
+  text-align: center;
+}
+
+.policy-link {
+  color: rgba(250, 250, 250, 0.4);
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: calc(12 / 10);
+
+  letter-spacing: 0.02em;
 }
 
 .icons-list {
   display: flex;
   gap: 20px;
+  list-style: none;
 }
 
 .footer-icon {
-  fill: var(--color-white);
-  transition: fill 250ms var(--cubic);
+  fill: var(--main-color);
+  /* transition: fill 250ms var(--cubic); */
 }
 
-.footer-icon-item-link:hover > .footer-icon,
+.character-link {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: calc(18 / 14);
+}
+
+/* .footer-icon-item-link:hover > .footer-icon,
 .footer-icon-item-link:focus > .footer-icon {
-  fill: var(--color-orange);
-}
+  fill: var(--main-hover);
+} */
 
-.links-list {
-  color: var(--color-white);
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  line-height: calc(16 / 14);
-  letter-spacing: -0.02em;
-}
-
-.footer-link {
+/* .policy-link {
   transition: color 250ms var(--cubic);
-}
+} */
 
-.footer-link:hover,
-.footer-link:focus {
-  color: var(--color-orange);
-}
+/* .policy-link:hover,
+.policy-link:focus {
+  color: var(--main-hover);
+} */
 
 @media screen and (min-width: 767.98px) {
   .footer {
