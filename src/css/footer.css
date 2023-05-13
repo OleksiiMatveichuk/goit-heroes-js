@@ -1,11 +1,12 @@
-/* .footer {
+.footer {
   padding-top: 32px;
   padding-bottom: 32px;
-} */
+}
 
 .footer-top {
   background-color: var(--main-bg-color);
   padding: 40px 0;
+  /* display: flex; */
 }
 
 .footer-list {
@@ -38,6 +39,7 @@
   display: flex;
   gap: 20px;
   list-style: none;
+  align-items: baseline;
 }
 
 .footer-icon {
@@ -71,10 +73,6 @@
   .footer {
     padding-top: 50px;
     padding-bottom: 50px;
-  }
-
-  .footer-top {
-    display: flex;
   }
 
   .links-list {
