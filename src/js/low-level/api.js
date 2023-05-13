@@ -4,7 +4,6 @@ import { key } from './keys.js';
 import md5Hash from './md5Hash.js';
 
 
-
 const PRIVATE_KEY = key.privatekey;
 const PUBLIC_KEY = key.publickey;
 const API_URL = 'https://gateway.marvel.com/v1/public';
@@ -129,7 +128,6 @@ export const api = {
       return data;
     } catch (error) {
       console.log(error);
-      // location.replace('../404.html');
     }
   },
   getSeriesById: async ({ seriesId }) => {
@@ -206,3 +204,21 @@ export const api = {
 
 
 // *****************
+// HOW IT WORKS
+
+// import { api } from "./low-lewel/api"
+// const btn = document.querySelector("#getAll")
+// btn.addEventListener("click", handleClick)
+
+// async function handleClick() {
+//     const data = await api.getAllCharacters({
+//         nameStartsWith: '',
+//         offset: 0,
+//         limit: 16,
+//         modifiedSince: '01-01-2011',
+
+//     })
+//     console.log(data)
+//     console.log(data.results[2].name)
+//     console.log(data.results[2].id)
+// }
