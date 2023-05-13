@@ -1,5 +1,5 @@
-import { key } from './credentials.js';
-import hash from './hash.js';
+import { key } from './keys';
+import hash from './md5hash';
 import axios from 'axios';
 
 const PRIVATE_KEY = key.privatekey;
@@ -143,3 +143,22 @@ export const api = {
     }
   },
 };
+
+// HOW IT WORKS
+
+// import { api } from "./low-lewel/api"
+// const btn = document.querySelector("#getAll")
+// btn.addEventListener("click", handleClick)
+
+// async function handleClick() {
+//     const data = await api.getAllCharacters({
+//         nameStartsWith: '',
+//         offset: 0,
+//         limit: 16,
+//         modifiedSince: '01-01-2011',
+
+//     })
+//     console.log(data)
+//     console.log(data.results[2].name)
+//     console.log(data.results[2].id)
+// }
