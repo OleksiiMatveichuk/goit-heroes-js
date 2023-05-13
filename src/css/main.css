@@ -4,7 +4,7 @@ html {
 
 :root {
   --main-bg-color: #000000;
-  --main-color: #fafafa;
+  --main-color: rgb(250, 250, 250);
   --main-hover: #34387f;
 }
 
