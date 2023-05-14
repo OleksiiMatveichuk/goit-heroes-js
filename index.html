@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/goit-heroes-js/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/goit-heroes-js/assets/Marvel_Logo-b56925b3.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla App Template</title>
+    <title>Heroes-JS</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/modern-normalize@1.1.0/modern-normalize.min.css"
@@ -16,30 +16,171 @@
       rel="stylesheet"
     />
     
-    <script type="module" crossorigin src="/goit-heroes-js/assets/index-fac82e35.js"></script>
-    <link rel="stylesheet" href="/goit-heroes-js/assets/index-29f60f8d.css">
+    <script type="module" crossorigin src="/goit-heroes-js/assets/index-bea751bd.js"></script>
+    <link rel="modulepreload" crossorigin href="/goit-heroes-js/assets/index-7924ca72.js">
+    <link rel="stylesheet" href="/goit-heroes-js/assets/index-08ba0e1e.css">
   </head>
   <body>
     <header class="header">
-    <a href="../index.html"><img src="" alt="MAIN_LOGO"></a>
-    <form action="" class="search_form">
-        <input type="query" class="search_input" placeholder="Search">
-        <svg><use src=""></use></svg>
+  <div class="container header-items">
+    <a href="../index.html"><img src="" alt="MAIN_LOGO" /></a>
+
+    <form class="header-form" id="search-form">
+      <button class="header-btn" type="submit">
+        <svg class="header-icon" width="18px" height="18px">
+          <use href="../images/icons.svg#search"></use>
+        </svg>
+      </button>
+      <input
+        type="query"
+        name="searchQuery"
+        class="header-input"
+        placeholder="SEARCH"
+        autocomplete="on"
+      />
     </form>
+  </div>
 </header>
+
     <main>
-      
+      <section class="hero-section">
+  <div class="hero-section-wrap container">
+    <div class="hero-section-text-card">
+      <p class="text-card-subtitle">Web-based platform</p>
+      <h1 class="text-card-title">Marvelous Adventures</h1>
+      <p class="text-card-txt">
+        is a web-based platform that provides an immersive experience for users to
+        explore and discover a vast collection of Marvel characters and comics.
+        Start exploring the Marvelous Adventures now by visiting our Characters
+        and Comics sections and discover your new favorites today.
+      </p>
+      <button class="button" type="button">All Characters</button>
+    </div>
+    <ul class="hero-pagination">
+      <li class="hero-pagination-item-active"></li>
+      <li class="hero-pagination-item"></li>
+      <li class="hero-pagination-item"></li>
+    </ul>
+    <div class="hero-section-image-wrap">
+        <picture>
+          <source srcset="/goit-heroes-js/assets/black-panther-desktop-min-83eeabc3.jpg 1x, /goit-heroes-js/assets/black-panther@2x-desctop-min-52a1141c.jpg 2x"
+            media="(min-width: 1440px)">
+          <source srcset="/goit-heroes-js/assets/black-panther-min-fcffd4a1.jpg 1x, /goit-heroes-js/assets/black-panther@2x-min-cb984c0b.jpg 2x"
+            media="(min-width: 768px)">
+          <source srcset="/goit-heroes-js/assets/black-panther-min-06d4abd7.jpg 1x, /goit-heroes-js/assets/black-panther@2x-min-43c08122.jpg 2x"
+            media="(max-width: 767px)">
+        
+          <img src="/goit-heroes-js/assets/black-panther-desktop-min-83eeabc3.jpg" class="image-card-main-img" alt="Black Panther" width="352">
+        </picture>
+      <div class="container-secondary-card">
+        <div class="image-card-secondary-img-wrap">
+          <picture>
+            <source srcset="/goit-heroes-js/assets/black-panther-gallery-desktop-min-467c33f6.jpg 1x, /goit-heroes-js/assets/black-panther-gallery@2x-desktop-min-9cfcb040.jpg 2x"
+              media="(min-width: 1440px)">
+            <source srcset="/goit-heroes-js/assets/black-panther-gallery-min-95dfe3f9.jpg 1x, /goit-heroes-js/assets/black-panther@2x-gallery-min-ffb6d735.jpg 2x"
+              media="(min-width: 768px)">
+            <source srcset="/goit-heroes-js/assets/black-panther-gallery-min-5c4433d3.jpg 1x, /goit-heroes-js/assets/black-panther-gallery@2x-min-f4be9ef1.jpg 2x"
+              media="(max-width: 767px)">
+          
+            <img src="/goit-heroes-js/assets/black-panther-gallery-desktop-min-467c33f6.jpg" class="image-card-secondary-img" alt="Black Panther" width="352">
+          </picture>
+          <div class="decorate-ellipse">
+            <h2 class="decorate-ellipse-title">Black Panther</h2>
+          </div>
+          <span class="secondary-card-gradient"></span>
+          <a href="" class="image-card-link">
+            <svg class="arrow" width="32" height="32">
+              <use href=""></use>
+            </svg>
+          </a>
+        </div>
+        
+        <span class="decorate-line"></span>
+        <div class="image-card-character-description">
+          <p class="image-card-title">Characters</p>
+          <p class="image-card-txt">
+              T’Challa is the king of the secretive and highly advanced African nation
+              of Wakanda - as well as the powerful warrior known as the Black Panther.
+          </p> 
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
       <section class="random">
   <div class="container">
-    <h2>Random characters</h2>
+    <h2 class="random-text">Random characters</h2>
+    <div class="random-info">
+      <picture>
+        <!-- <source
+          srcset="../images/remove_img/ant_man1440.jpg"
+          media="(min-width: 1440px)"
+          width="496"
+        />
+        <source
+          srcset="../images/remove_img/ant_man768.jpg"
+          media="(min-width: 768px)"
+          width="704"
+        />
+        <source
+          srcset="../images/remove_img/ant_man335.jpg"
+          media="(max-width: 768px)"
+          width="335"
+        /> -->
+
+        <img
+          class="random-img"
+          src="../images/remove_img/ant_man335.jpg"
+          alt="img"
+          width="335"
+        />
+      </picture>
+      <ul class="random-list list"></ul>
+    </div>
+    <button class="allCharactersBtn">all Characters</button>
   </div>
 </section>
 
     </main>
     
-    
-    
-    
+    <section class="hero-secondary">
+  <div class="hero-content container">
+    <p class="hero-secondary-text">Web-based platform</p>
+    <h1 class="hero-secondary-title">Characters</h1>
+    <p class="hero-secondary-subtitle">
+      With over 70,000 characters in the Marvel Multiverse, this is the most
+      complete public listing in existence.
+    </p>
+
+    <a href="./index.html" class="back-home-link">back home</a>
+  </div>
+</section>
+
+    <section class="section-filter">
+<div class="container filtrer-container">
+    <form class="form">
+        <div class="input-boxil"><label class="lable" for="comic">Comics</label>
+        <input class="input-txt" type="text" id="comic" name="comic" placeholder="Enter Text"></div>
+        <div class="input-boxil"><label class="lable" for="name">Name Starts With</label>
+        <input class="input-txt" type="text" id="name" name="name" placeholder="Enter Text"></div>
+        
+        <div class="input-box">
+       <div> <label class="lable" for="order">Order by</label>
+        <input class="input-choose" type="text" id="order" name="order"></div>
+       <div> <label class="lable" for="date">Date</label>
+        <input class="input-choose" type="date" id="date" name="date"></div>
+    </div>
+    </form>
+    <ul class="characters-list"></ul>
+</div>
+</section>
+    <section class="section">
+  <div class="container">
+    <ul class="gallery"></ul>
+  </div>
+</section>
+
 
     
   </body>
