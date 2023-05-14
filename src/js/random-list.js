@@ -68,7 +68,7 @@ function createLi(value) {
 }
 
 function gerRandomCharacters(data) {
-  console.log('DATA', data);
+  // console.log('DATA', data);
   return data.map(character => createLi(character.results)).join('');
 }
 
@@ -114,23 +114,23 @@ async function startMain() {
         limit: 1,
         offset: Math.round(Math.random() * 1561),
       });
-      console.log('result', result);
+      // console.log('result', result);
       promiseArray.push(result);
     });
   }
-  console.log('promiseArray', promiseArray);
+  // console.log('promiseArray', promiseArray);
   Promise.all(promiseArray)
     .then(data => {
-      console.log('XXX', data);
+      // console.log('XXX', data);
       createMarkup(data);
     })
     .catch(er => console.log('ERR', er));
 }
 
 function createMarkup(data) {
-  console.log('tyt');
+  // console.log('tyt');
   const markup = gerRandomCharacters(data);
-  console.log('markup', markup);
+  // console.log('markup', markup);
   ulList.innerHTML = markup;
 }
 startMain();
