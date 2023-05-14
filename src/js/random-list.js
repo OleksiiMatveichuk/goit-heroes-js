@@ -1,4 +1,5 @@
 //import { resolveBaseUrl } from 'vite';
+//import { resolveConfig } from 'vite';
 import { createModal1 } from './createModal1';
 import { api } from './low-level/api';
 
@@ -14,6 +15,7 @@ async function getRandomData(params) {
   const data = await api.getAllCharacters(params);
 
   listCharacters.push(data.results);
+  return data;
 }
 
 function newImg({ resourceURI }) {
@@ -35,7 +37,7 @@ function handleClickItem(e) {
     li.forEach(item => {
       let activeLink = document.querySelector('.random-item.active');
       const p = item.querySelector('p');
-      console.log(p);
+
       if (activeLink) {
         activeLink.classList.remove('active');
       }
@@ -63,42 +65,70 @@ function createLi(value) {
     `;
 }
 
-function gerRandomCharacters(array) {
-  console.log(array);
-  return array.map(character => createLi(character)).join('');
+function gerRandomCharacters(data) {
+  console.log('DATA', data);
+  return data.map(character => createLi(character.results)).join('');
 }
 
-async function startMain() {
-  // for (let i = 0; i < 5; i += 1) {
-  //   await getRandomData({
-  //     limit: 1,
-  //     offset: Math.round(Math.random() * 1561),
-  //   });
-  // }
-  const d1 = new Date();
-  await promise();
-  const d2 = new Date();
-  console.log('time: ', (d2 - d1) / 60);
-  const markup = gerRandomCharacters(listCharacters);
-  ulList.innerHTML = markup;
-  const newIMG = document.createElement('img');
-  newIMG.src = listCharacters[0][0].resourceURI;
-  ulList.insertAdjacentElement('beforebegin', newIMG);
-  img.src = listCharacters[0][0].resourceURI;
-}
-startMain();
+//async function startMain() {
+// for (let i = 0; i < 5; i += 1) {
+//   await getRandomData({
+//     limit: 1,
+//     offset: Math.round(Math.random() * 1561),
+//   });
+// }
+// const d1 = new Date();
+// await promise();
+// const d2 = new Date();
+// console.log('time: ', (d2 - d1) / 60);
+// //const markup = gerRandomCharacters(listCharacters);
+// // ulList.innerHTML = markup;
+// const newIMG = document.createElement('img');
+// newIMG.src = listCharacters[0][0].resourceURI;
+// ulList.insertAdjacentElement('beforebegin', newIMG);
+// img.src = listCharacters[0][0].resourceURI;
+//}
+//startMain();
 
 //================promise
 
-async function promise() {
+// async function promise() {
+//   const promiseArray = [];
+//   for (let i = 0; i < 5; i += 1) {
+//     const res = await getRandomData({
+//       limit: 1,
+//       offset: Math.round(Math.random() * 1561),
+//     });
+//     //promiseArray.push(res);
+//   }
+//   // console.log('promiseArray', promiseArray);
+//   Promise.all(promiseArray);
+// }
+async function startMain() {
   const promiseArray = [];
   for (let i = 0; i < 5; i += 1) {
-    const res = await getRandomData({
-      limit: 1,
-      offset: Math.round(Math.random() * 1561),
+    const res = new Promise(resolve => {
+      const result = getRandomData({
+        limit: 1,
+        offset: Math.round(Math.random() * 1561),
+      });
+      console.log('result', result);
+      promiseArray.push(result);
     });
-    // promiseArray.push(res);
   }
-  // console.log(promiseArray);
-  Promise.all(promiseArray);
+  console.log('promiseArray', promiseArray);
+  Promise.all(promiseArray)
+    .then(data => {
+      console.log('XXX', data);
+      createMarkup(data);
+    })
+    .catch(er => console.log('ERR', er));
 }
+
+function createMarkup(data) {
+  console.log('tyt');
+  const markup = gerRandomCharacters(data);
+  console.log('markup', markup);
+  ulList.innerHTML = markup;
+}
+startMain();
