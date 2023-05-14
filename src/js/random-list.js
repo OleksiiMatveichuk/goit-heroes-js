@@ -20,6 +20,7 @@ async function getRandomData(params) {
 
 function newImg({ resourceURI }) {
   img.src = `${resourceURI}`;
+  // img.src = `../images/remove_img/modal1-img.jpg`;
 }
 
 function handleClickItem(e) {
@@ -59,6 +60,7 @@ function handleClickItem(e) {
 function createLi(value) {
   return `
     <li class='random-item' id=${value[0].id}>
+  
        <h3 class='random-value-name hero-name'>${value[0].name}</h3>
        <p class='random-value-text'>${value[0].description}</p>
     </li>
