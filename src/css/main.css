@@ -6,6 +6,14 @@ html {
   --main-bg-color: #000000;
   --main-color: rgb(250, 250, 250);
   --main-hover: #34387f;
+  --green-btn: #5B7F3C;
+  --green-btn-hover:#435e2d;
+  --bordo-btn:#600404;
+  --bordo-btn-hover:#4a0707;
+  --blue-btn:#34387F;
+  --blue-btn-hover:#292c63;
+  --dark-btn:#0C0B0B;
+  --dark-btn-hover:#242020;
 }
 
 body {
