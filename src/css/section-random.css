@@ -56,6 +56,10 @@
   position: absolute;
   right: 20px;
 }
+.allCharactersBtn:hover,
+.allCharactersBtn:focus {
+  color: var(--main-hover);
+}
 
 @media screen and (max-width: 375px) {
   .random {
