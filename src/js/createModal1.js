@@ -1,3 +1,5 @@
+import { createSlider } from './random-list';
+
 export function createModal1() {
   //e.preventDefault();
   document.body.style.overflow = 'hidden';
@@ -136,6 +138,7 @@ function closeModal(e) {
   ) {
     const modal1 = document.querySelector('.bacground-modal');
     document.body.style.overflow = '';
+    createSlider();
     modal1?.remove();
   }
 }

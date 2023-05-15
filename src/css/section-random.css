@@ -14,6 +14,10 @@
   border-radius: 8px;
   /* background-image: url(../images/remove_img/ant_man335.jpg); */
 }
+.random-bacground {
+  width: 335px;
+  height: 335px;
+}
 .random-item {
   cursor: pointer;
 }
