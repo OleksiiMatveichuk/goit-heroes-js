@@ -1,9 +1,13 @@
+import * as Hammer from 'hammerjs';
+
 const heroSlides = document.querySelectorAll('.hero-slide');
 const paginationItems = document.querySelectorAll('.hero-pagination-item');
 const heroSection = document.querySelector('.hero-section');
 
 const heroSlideArr = Array.from(heroSlides);
 const paginationItemsArr = Array.from(paginationItems);
+let activeSlide = 0;
+
 
 // функція зміни зображення
 
@@ -34,11 +38,33 @@ function setActivePagination(paginationNumber) {
 
 // присвоєння event на click
 
-paginationItemsArr.forEach((element, index) => {
-    element.addEventListener('click', (event) => {
-        const index = +element.dataset.index;
-        console.log(index);
-        setActiveSlide(index);
-        setActivePagination(index);
+paginationItemsArr.forEach((element) => {
+    element.addEventListener('click', () => {
+        activeSlide = +element.dataset.index;
+        setActiveSlide(activeSlide);
+        setActivePagination(activeSlide);
     })
 });
+
+// присвоєння event на svipe за допомогою бібліотеки hammerjs
+
+heroSlideArr.forEach((element) => {
+    const mc = new Hammer(element);
+    mc.on("swipeleft swiperight", (ev) => {
+        if (ev.type === 'swipeleft') {
+            if (activeSlide === 2){
+                activeSlide = 0;
+            } else { 
+               activeSlide++; 
+            }
+        } else {
+            if (activeSlide === 0) {
+                activeSlide = 2;
+            } else {
+               activeSlide--; 
+            }
+        }
+        setActiveSlide(activeSlide);
+        setActivePagination(activeSlide);
+    });
+})
