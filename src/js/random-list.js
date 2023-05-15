@@ -10,6 +10,9 @@ const form = document.querySelector('.form-random');
 //form.addEventListener('submit', createModal1);
 form.addEventListener('click', handleClickForm);
 ulList.addEventListener('click', handleClickItem);
+const random_bacground = document.querySelector('.random-bacground');
+
+//console.log(random_bacground);
 //const main = document.getElementsByName('main');
 // const loading = document.querySelector('.loading');
 // loading.style.display = 'none';
@@ -20,7 +23,7 @@ img.addEventListener('click', () => {
 
   removeSetInterval();
 });
-let setIntervalId;
+let setIntervalId = null;
 let timeId = null;
 
 const character = {
@@ -31,6 +34,7 @@ const character = {
 };
 function removeSetInterval() {
   clearInterval(setIntervalId);
+  setIntervalId = null;
 }
 
 function handleClickForm(e) {
@@ -46,16 +50,28 @@ async function getRandomData(params) {
 function newImg(value) {
   // console.log('value==', value);
   img.src = `${value.thumbnail.path}.${value.thumbnail.extension}`;
+  //  background-size: cover;
+  //     background-position: center;
+  //     background-repeat: no-repeat
+
+  random_bacground.style.backgroundImage = `url(${value.thumbnail.path}.${value.thumbnail.extension})`;
+  random_bacground.style.backgroundSize = 'cover';
+  random_bacground.style.backgroundPosition = 'center';
+  random_bacground.style.backgroundRepeat = 'no-repeat';
   // img.src = `../images/remove_img/modal1-img.jpg`;
 }
 
 function handleClickItem(e) {
   if (setIntervalId) {
     removeSetInterval();
+
     if (!timeId) {
       timeId = setTimeout(() => {
         //запускаем заново slider
         createSlider();
+
+        clearTimeout(timeId);
+        timeId = null;
       }, 3500);
     }
   }
@@ -75,40 +91,62 @@ function handleClickItem(e) {
     let i = 0;
     li.forEach(item => {
       let activeLink = document.querySelector('.random-item.active');
-      //const p = item.querySelector('.random-value-text.active');
-      console.log('li', i, '  p ', p);
+      const p = item.querySelector('.random-value-text.active');
+      //console.log('li', i, '  p ', p);
 
-      let active_p = document.querySelector('.random-value-text.active');
       if (activeLink) {
         activeLink.classList.remove('active');
-        p.classList.remove('active');
+        p?.classList.remove('active');
       }
+      let active_p = document.querySelector('.random-value-text.active');
       if (active_p) {
+        //console.log('active==', active_p);
         active_p.classList.remove('active');
+        active_p.style.color = '';
       }
 
-      i += 1;
       e.target.closest('li').classList.add('active');
       let newActive = document.querySelector('.random-item.active');
+      //console.log(';newActive', newActive);
       const p_new_active = newActive.querySelector('.random-value-text');
+      p_new_active.style.color = 'rgb(52, 56, 127)';
+      //console.log('p_new_active', p_new_active.style.color);
+
       p_new_active.classList.add('active');
     });
   }
 }
-function add_active_p() {}
+function activeSlider(value) {
+  let li = document.querySelectorAll('.random-item');
+  let activeLink = document.querySelector('.random-item.active');
+  if (activeLink) {
+    activeLink.classList.remove('active');
+  }
+  let active_p = document.querySelector('.random-value-text.active');
+  if (active_p) {
+    //console.log('active==', active_p);
+    active_p.classList.remove('active');
+    active_p.style.color = '';
+  }
+  li[value].classList.add('active');
 
-function createNewCharacter(value) {
-  const { id, name, description, resourceURI } = value;
-  character.id = id;
-  character.name = name;
-  character.description = description;
-  character.resourceURI = resourceURI;
-  // console.log('character', character);
-  // console.log('listCharacters', listCharacters);
+  let newActive = document.querySelector('.random-item.active');
+  const p_new_active = newActive.querySelector('.random-value-text');
+  p_new_active.style.color = 'rgb(52, 56, 127)';
+  //console.log('p_new_active', p_new_active.style.color);
+
+  p_new_active.classList.add('active');
+  // console.log('qqqq', listCharacters[value][0]);
+  newImg(listCharacters[value][0]);
+  //перегрузити треба фото
 }
 
-function createSlider() {
+export function createSlider() {
   let i = 0;
+
+  if (setIntervalId > 2) {
+    removeSetInterval();
+  }
   setIntervalId = setInterval(() => {
     activeSlider(i);
     i += 1;
@@ -118,16 +156,14 @@ function createSlider() {
   }, 3500);
 }
 
-function activeSlider(value) {
-  let li = document.querySelectorAll('.random-item');
-  let activeLink = document.querySelector('.random-item.active');
-  if (activeLink) {
-    activeLink.classList.remove('active');
-  }
-  li[value].classList.add('active');
-  // console.log('qqqq', listCharacters[value][0]);
-  newImg(listCharacters[value][0]);
-  //перегрузити треба фото
+function createNewCharacter(value) {
+  const { id, name, description, resourceURI } = value;
+  character.id = id;
+  character.name = name;
+  character.description = description;
+  character.resourceURI = resourceURI;
+  // console.log('character', character);
+  // console.log('listCharacters', listCharacters);
 }
 
 function createLi(value) {

@@ -16,7 +16,7 @@
     height: 36px;
 
 
-
+    background-color: var(--hero-accent-color);
     color: var(--main-color);
     text-decoration: none;
     font-family: 'Poppins', 'Roboto', 'Open Sans', sans-serif;
@@ -27,18 +27,6 @@
     text-transform: uppercase;
 }
 
-/* Для зеленої кноки */
-.hero-all-characters-btn-green {
-    background-color: var(--green-btn);
-}
-/* Для синьої кнопки */
-.hero-all-characters-btn-blue {
-    background-color: var(--blue-btn);
-}
-/* Для бордової кнопки*/
-.hero-all-characters-btn-bordo {
-    background-color: var(--bordo-btn);
-}
 /* Hover i focus для бордової кнопки */
 .hero-all-characters-btn-bordo:hover,
 .hero-all-characters-btn-bordo:focus {

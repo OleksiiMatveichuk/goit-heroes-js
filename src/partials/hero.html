@@ -1,4 +1,4 @@
-<section class="hero-section">
+<section class="hero-section" data-mod="blue">
   <div class="hero-section-wrap container">
     <div class="hero-section-text-card">
       <p class="text-card-subtitle">Web-based platform</p>
@@ -9,55 +9,157 @@
         Start exploring the Marvelous Adventures now by visiting our Characters
         and Comics sections and discover your new favorites today.
       </p>
-      <button class="button" type="button">All Characters</button>
+      <a href="/page-2.html">
+        <button class="hero-all-characters-btn hero-all-characters-btn-blue" type="button">All Characters</button>
+      </a>
     </div>
     <ul class="hero-pagination">
-      <li class="hero-pagination-item-active"></li>
-      <li class="hero-pagination-item"></li>
-      <li class="hero-pagination-item"></li>
+      <li class="hero-pagination-item active" data-index="0"></li>
+      <li class="hero-pagination-item" data-index="1"></li>
+      <li class="hero-pagination-item" data-index="2"></li>
     </ul>
-    <div class="hero-section-image-wrap">
+    <div class="hero-slide active" data-mod="blue">
+      <picture>
+        <source srcset="/images/desktop/black-panther-desktop-min.jpg 1x, /images/desktop/black-panther@2x-desctop-min.jpg 2x"
+          media="(min-width: 1440px)">
+        <source srcset="/images/tablet/black-panther-min.jpg 1x, /images/tablet/black-panther@2x-min.jpg 2x"
+          media="(min-width: 768px)">
+        <source srcset="/images/mobile/black-panther-min.jpg 1x, /images/mobile/black-panther@2x-min.jpg 2x"
+          media="(max-width: 767px)">
+      
+        <img src="/images/desktop/black-panther-desktop-min.jpg" class="image-card-main-img" alt="Black Panther" width="352">
+      </picture>
+    <div class="container-secondary-card">
+      <div class="image-card-secondary-img-wrap">
         <picture>
-          <source srcset="/images/desktop/black-panther-desktop-min.jpg 1x, /images/desktop/black-panther@2x-desctop-min.jpg 2x"
+          <source srcset="/images/desktop/black-panther-gallery-desktop-min.jpg 1x, /images/desktop/black-panther-gallery@2x-desktop-min.jpg 2x"
             media="(min-width: 1440px)">
-          <source srcset="/images/tablet/black-panther-min.jpg 1x, /images/tablet/black-panther@2x-min.jpg 2x"
+          <source srcset="/images/tablet/black-panther-gallery-min.jpg 1x, /images/tablet/black-panther@2x-gallery-min.jpg 2x"
             media="(min-width: 768px)">
-          <source srcset="/images/mobile/black-panther-min.jpg 1x, /images/mobile/black-panther@2x-min.jpg 2x"
+          <source srcset="/images/mobile/black-panther-gallery-min.jpg 1x, /images/mobile/black-panther-gallery@2x-min.jpg 2x"
             media="(max-width: 767px)">
         
-          <img src="/images/desktop/black-panther-desktop-min.jpg" class="image-card-main-img" alt="Black Panther" width="352">
+          <img src="/images/desktop/black-panther-gallery-desktop-min.jpg" class="image-card-secondary-img" alt="Black Panther" width="352">
         </picture>
+        <div class="decorate-ellipse">
+          <h2 class="decorate-ellipse-title">Black Panther</h2>
+        </div>
+        <a href="" class="image-card-link">
+          <svg class="arrow" width="32" height="32">
+            <use href="/images/symbol-defs.svg#icon-arrow"></use>
+          </svg>
+        </a>
+      </div>
+      
+      <span class="decorate-line"></span>
+      <div class="image-card-character-description">
+        <p class="image-card-title">Characters</p>
+        <p class="image-card-txt">
+            T’Challa is the king of the secretive and highly advanced African nation
+            of Wakanda - as well as the powerful warrior known as the Black Panther.
+        </p> 
+      </div>
+      <span class="secondary-card-gradient"></span>
+    </div>
+    </div>
+    <div class="hero-slide" data-mod="green">
+      <picture>
+        <source
+          srcset="/images/desktop/hulk-desktop-min.jpg 1x, /images/desktop/hulk@2x-desktop-min.jpg 2x"
+          media="(min-width: 1440px)">
+        <source srcset="/images/tablet/hulk-min.jpg 1x, /images/tablet/hulk@2x-min.jpg 2x"
+          media="(min-width: 768px)">
+        <source srcset="/images/mobile/black-panther-min.jpg 1x, /images/mobile/black-panther@2x-min.jpg 2x"
+          media="(max-width: 767px)">
+    
+        <img src="/images/desktop/hulk-desktop-min.jpg" class="image-card-main-img" alt="Black Panther"
+          width="352">
+      </picture>
       <div class="container-secondary-card">
         <div class="image-card-secondary-img-wrap">
           <picture>
-            <source srcset="/images/desktop/black-panther-gallery-desktop-min.jpg 1x, /images/desktop/black-panther-gallery@2x-desktop-min.jpg 2x"
+            <source
+              srcset="/images/desktop/hulk-gallery-desktop-min.jpg 1x, /images/desktop/hulk-gallery@2x-desktop-min.jpg 2x"
               media="(min-width: 1440px)">
-            <source srcset="/images/tablet/black-panther-gallery-min.jpg 1x, /images/tablet/black-panther@2x-gallery-min.jpg 2x"
+            <source
+              srcset="/images/tablet/hulk-gallery-min.jpg 1x, /images/tablet/hulk-gallery@2x-min.jpg 2x"
               media="(min-width: 768px)">
-            <source srcset="/images/mobile/black-panther-gallery-min.jpg 1x, /images/mobile/black-panther-gallery@2x-min.jpg 2x"
+            <source
+              srcset="/images/mobile/black-panther-gallery-min.jpg 1x, /images/mobile/black-panther-gallery@2x-min.jpg 2x"
               media="(max-width: 767px)">
-          
-            <img src="/images/desktop/black-panther-gallery-desktop-min.jpg" class="image-card-secondary-img" alt="Black Panther" width="352">
+    
+            <img src="/images/desktop/hulk-gallery-desktop-min.jpg" class="image-card-secondary-img"
+              alt="Black Panther" width="352">
           </picture>
           <div class="decorate-ellipse">
-            <h2 class="decorate-ellipse-title">Black Panther</h2>
+            <h2 class="decorate-ellipse-title">hULK</h2>
           </div>
-          <span class="secondary-card-gradient"></span>
-          <a href="" class="image-card-link">
+          <a href="#" class="image-card-link">
             <svg class="arrow" width="32" height="32">
-              <use href=""></use>
+              <use href="/images/symbol-defs.svg#icon-arrow"></use>
             </svg>
           </a>
         </div>
-        
+    
         <span class="decorate-line"></span>
         <div class="image-card-character-description">
           <p class="image-card-title">Characters</p>
           <p class="image-card-txt">
-              T’Challa is the king of the secretive and highly advanced African nation
-              of Wakanda - as well as the powerful warrior known as the Black Panther.
-          </p> 
+            Exposed to heavy doses of gamma radiation, scientist Bruce Banner transforms into the mean, green rage machine called
+            the Hulk.
+          </p>
         </div>
+        <span class="secondary-card-gradient"></span>
+      </div>
+    </div>
+    <div class="hero-slide" data-mod="bordo">
+      <picture>
+        <source
+          srcset="/images/desktop/spiderman-desktop-min.jpg 1x, /images/desktop/spiderman@2x-desktop-min.jpg 2x"
+          media="(min-width: 1440px)">
+        <source srcset="/images/tablet/spiderman-min.jpg 1x, /images/tablet/spiderman@2x-min.jpg 2x"
+          media="(min-width: 768px)">
+        <source srcset="/images/mobile/black-panther-min.jpg 1x, /images/mobile/black-panther@2x-min.jpg 2x"
+          media="(max-width: 767px)">
+    
+        <img src="/images/desktop/spiderman-desktop-min.jpg" class="image-card-main-img" alt="Black Panther"
+          width="352">
+      </picture>
+      <div class="container-secondary-card">
+        <div class="image-card-secondary-img-wrap">
+          <picture>
+            <source
+              srcset="/images/desktop/spiderman-gallery-desktop-min.jpg 1x, /images/desktop/spiderman-gallery@2x-desktop-min.jpg 2x"
+              media="(min-width: 1440px)">
+            <source
+              srcset="/images/tablet/spiderman-gallery-min.jpg 1x, /images/tablet/spiderman@2x-gallery-min.jpg 2x"
+              media="(min-width: 768px)">
+            <source
+              srcset="/images/mobile/black-panther-gallery-min.jpg 1x, /images/mobile/black-panther-gallery@2x-min.jpg 2x"
+              media="(max-width: 767px)">
+    
+            <img src="/images/desktop/black-panther-gallery-desktop-min.jpg" class="image-card-secondary-img"
+              alt="Black Panther" width="352">
+          </picture>
+          <div class="decorate-ellipse">
+            <h2 class="decorate-ellipse-title">Spider man</h2>
+          </div>
+          <a href="#" class="image-card-link">
+            <svg class="arrow" width="32" height="32">
+              <use href="/images/symbol-defs.svg#icon-arrow"></use>
+            </svg>
+          </a>
+        </div>
+    
+        <span class="decorate-line"></span>
+        <div class="image-card-character-description">
+          <p class="image-card-title">Characters</p>
+          <p class="image-card-txt">
+            With amazing spider-like abilities, teenage science whiz Peter Parker fights crime and dreams of becoming an Avenger as
+            Spider-Man.
+          </p>
+        </div>
+        <span class="secondary-card-gradient"></span>
       </div>
     </div>
   </div>
