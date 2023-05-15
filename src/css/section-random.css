@@ -12,6 +12,7 @@
 }
 .random-img {
   border-radius: 8px;
+  /* background-image: url(../images/remove_img/ant_man335.jpg); */
 }
 .random-item {
   cursor: pointer;
@@ -102,6 +103,7 @@
   }
   .random-img {
     width: 704px;
+    height: 704px;
   }
 }
 @media screen and (min-width: 1440px) {
