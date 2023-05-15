@@ -1,5 +1,9 @@
 export function createModal1() {
   //e.preventDefault();
+  document.body.style.overflow = 'hidden';
+  // window.addEventListener('scroll', e => {
+  //   window.scrollTo(0, 0);
+  // });
   const body = document.body;
 
   const modalForm = modal1();
@@ -27,6 +31,7 @@ function modal1() {
           src="../images/remove_img/modal1-img.jpg"
           alt="amg"
           width="295"
+           height= "387";
         />
 
         <ul class="img-list">
@@ -130,7 +135,7 @@ function closeModal(e) {
     e.target.classList.value === 'close-modal-btn'
   ) {
     const modal1 = document.querySelector('.bacground-modal');
-
+    document.body.style.overflow = '';
     modal1?.remove();
   }
 }
