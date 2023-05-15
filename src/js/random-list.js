@@ -10,9 +10,14 @@ const form = document.querySelector('.form-random');
 //form.addEventListener('submit', createModal1);
 form.addEventListener('click', handleClickForm);
 ulList.addEventListener('click', handleClickItem);
+//const main = document.getElementsByName('main');
+// const loading = document.querySelector('.loading');
+// loading.style.display = 'none';
+img.style.visible = false;
 
 img.addEventListener('click', () => {
   createModal1();
+
   removeSetInterval();
 });
 let setIntervalId;
@@ -67,18 +72,30 @@ function handleClickItem(e) {
 
     newImg(result[0]);
 
-    // let i = 0;
+    let i = 0;
     li.forEach(item => {
       let activeLink = document.querySelector('.random-item.active');
-      // const p = item.querySelector('p');
+      //const p = item.querySelector('.random-value-text.active');
+      console.log('li', i, '  p ', p);
 
+      let active_p = document.querySelector('.random-value-text.active');
       if (activeLink) {
         activeLink.classList.remove('active');
+        p.classList.remove('active');
       }
+      if (active_p) {
+        active_p.classList.remove('active');
+      }
+
+      i += 1;
       e.target.closest('li').classList.add('active');
+      let newActive = document.querySelector('.random-item.active');
+      const p_new_active = newActive.querySelector('.random-value-text');
+      p_new_active.classList.add('active');
     });
   }
 }
+function add_active_p() {}
 
 function createNewCharacter(value) {
   const { id, name, description, resourceURI } = value;
