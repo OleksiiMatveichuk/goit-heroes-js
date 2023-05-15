@@ -119,16 +119,6 @@ export const api = {
     }
   },
 
-  getCharactersByComicsId: async ({ comicsId }) => {
-    try {
-      const res = await axiosInst.get(`/characters/${comicsId}`);
-      const data = res.data.data.results;
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
-  },
-
   getComicById: async ({ comicId }) => {
     try {
       const res = await axiosInst.get(`/comics/${comicId}`);
@@ -147,6 +137,17 @@ export const api = {
       console.log(error);
     }
   },
+
+  getCharactersByComicsId: async ({ comicId }) => {
+    try {
+      const res = await axiosInst.get(`/comics/${comicId}/characters`);
+      const data = res.data.data.results;
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
   getCreatorById: async ({ creatorId }) => {
     try {
       const res = await axiosInst.get(`/creators/${creatorId}`);
