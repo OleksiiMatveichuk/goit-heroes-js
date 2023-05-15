@@ -96,6 +96,9 @@
     margin-top: 32px;
     right: 32px;
   }
+  .random-img {
+    width: 704px;
+  }
 }
 @media screen and (min-width: 1440px) {
   .random {
@@ -107,6 +110,11 @@
   }
   .random-list {
     margin-top: 45px;
+  }
+  .random-img {
+    width: 496px;
+    height: 704px;
+    object-fit: cover;
   }
 }
 @media screen and (max-width: 1440px) {
