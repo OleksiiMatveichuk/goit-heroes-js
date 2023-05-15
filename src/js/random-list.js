@@ -3,25 +3,18 @@ import { api } from './low-level/api';
 
 const listCharacters = [];
 const ulList = document.querySelector('.random-list');
-const clickBtn = document.querySelector('.allCharactersBtn');
-clickBtn.addEventListener('click', removeSetInterval);
+
 const img = document.querySelector('.random-img');
-const form = document.querySelector('.form-random');
-//form.addEventListener('submit', createModal1);
-form.addEventListener('click', handleClickForm);
+
 ulList.addEventListener('click', handleClickItem);
 const random_bacground = document.querySelector('.random-bacground');
 
-//console.log(random_bacground);
-//const main = document.getElementsByName('main');
-// const loading = document.querySelector('.loading');
-// loading.style.display = 'none';
 img.style.visible = false;
 
 img.addEventListener('click', () => {
   createModal1();
-
   removeSetInterval();
+  console.log('character', character);
 });
 let setIntervalId = null;
 let timeId = null;
@@ -37,9 +30,6 @@ function removeSetInterval() {
   setIntervalId = null;
 }
 
-function handleClickForm(e) {
-  //console.log(e.target);
-}
 async function getRandomData(params) {
   const data = await api.getAllCharacters(params);
 
@@ -48,11 +38,9 @@ async function getRandomData(params) {
 }
 
 function newImg(value) {
-  // console.log('value==', value);
+  //console.log('value====', value.name);
+  createNewCharacter(value);
   img.src = `${value.thumbnail.path}.${value.thumbnail.extension}`;
-  //  background-size: cover;
-  //     background-position: center;
-  //     background-repeat: no-repeat
 
   random_bacground.style.backgroundImage = `url(${value.thumbnail.path}.${value.thumbnail.extension})`;
   random_bacground.style.backgroundSize = 'cover';
@@ -62,29 +50,27 @@ function newImg(value) {
 }
 
 function handleClickItem(e) {
-  if (setIntervalId) {
-    removeSetInterval();
+  if (e.target.tagName !== 'UL' && e.target.tagName !== 'DIV') {
+    if (setIntervalId) {
+      removeSetInterval();
 
-    if (!timeId) {
-      timeId = setTimeout(() => {
-        //запускаем заново slider
-        createSlider();
+      if (!timeId) {
+        timeId = setTimeout(() => {
+          //запускаем заново slider
+          createSlider();
 
-        clearTimeout(timeId);
-        timeId = null;
-      }, 3500);
+          clearTimeout(timeId);
+          timeId = null;
+        }, 3500);
+      }
     }
-  }
-  //console.log(e.target);
-  if (e.target.tagName !== 'UL') {
+
     let li = document.querySelectorAll('.random-item');
     const id_character = e.target.closest('li').id;
 
     const result = listCharacters.find(
       character => character[0].id === Number(id_character)
     );
-
-    createNewCharacter(result[0]);
 
     newImg(result[0]);
 
@@ -117,6 +103,9 @@ function handleClickItem(e) {
   }
 }
 function activeSlider(value) {
+  //console.log('value :', value);
+  //createNewCharacter(listCharacters[value][0]);
+  newImg(listCharacters[value][0]);
   let li = document.querySelectorAll('.random-item');
   let activeLink = document.querySelector('.random-item.active');
   if (activeLink) {
@@ -137,7 +126,8 @@ function activeSlider(value) {
 
   p_new_active.classList.add('active');
   // console.log('qqqq', listCharacters[value][0]);
-  newImg(listCharacters[value][0]);
+
+  // createNewCharacter(listCharacters[value][0]);
   //перегрузити треба фото
 }
 
@@ -149,6 +139,7 @@ export function createSlider() {
   }
   setIntervalId = setInterval(() => {
     activeSlider(i);
+
     i += 1;
     if (i === 5) {
       i = 0;
@@ -158,6 +149,7 @@ export function createSlider() {
 
 function createNewCharacter(value) {
   const { id, name, description, resourceURI } = value;
+  console.log('nowcrt', name);
   character.id = id;
   character.name = name;
   character.description = description;
@@ -182,7 +174,7 @@ function gerRandomCharacters(data) {
   return data.map(character => createLi(character.results)).join('');
 }
 
-async function startMain() {
+function startMain() {
   const promiseArray = [];
   for (let i = 0; i < 5; i += 1) {
     const res = new Promise(resolve => {
@@ -204,7 +196,7 @@ async function startMain() {
 }
 
 function createMarkup(data) {
-  //console.log('tytData', data[0].results[0]);
+  console.log('tytData', data);
   createNewCharacter(data[0].results[0]);
   const markup = gerRandomCharacters(data);
   // console.log('markup', markup);

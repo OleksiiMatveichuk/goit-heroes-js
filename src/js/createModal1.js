@@ -30,7 +30,7 @@ function modal1() {
       <div class="img-info">
         <img
           class="img-modal"
-          src="../images/remove_img/modal1-img.jpg"
+          src="./images/remove_img/modal1-img.jpg"
           alt="amg"
           width="295"
            height= "387";
@@ -40,7 +40,7 @@ function modal1() {
           <li>
             <img
               class="img-list-item"
-              src="../images/remove_img/modal1.jpg"
+              src="./images/remove_img/modal1.jpg"
               alt="img"
               width="80"
             />
@@ -48,7 +48,7 @@ function modal1() {
           <li>
             <img
               class="img-list-item"
-              src="../images/remove_img/modal2.jpg"
+              src="./images/remove_img/modal2.jpg"
               alt="img"
               width="80"
             />
@@ -56,7 +56,7 @@ function modal1() {
           <li>
             <img
               class="img-list-item"
-              src="../images/remove_img/modal3.jpg"
+              src="./images/remove_img/modal3.jpg"
               alt="img"
               width="80"
             />
@@ -81,7 +81,7 @@ function modal1() {
       <div class="black-widow-card">
         <img
           class="img-list-item-card"
-          src="../images/remove_img/card1.jpg"
+          src="./images/remove_img/card1.jpg"
           alt="img"
           width="263"
         />
@@ -95,7 +95,7 @@ function modal1() {
       <div class="black-widow-card">
         <img
           class="img-list-item-card"
-          src="../images/remove_img/card2.jpg"
+          src="./images/remove_img/card2.jpg"
           alt="img"
           width="263"
         />
@@ -109,7 +109,7 @@ function modal1() {
       <div class="black-widow-card">
         <img
           class="img-list-item-card"
-          src="../images/remove_img/card3.jpg"
+          src="./images/remove_img/card3.jpg"
           alt="img"
           width="263"
         />
