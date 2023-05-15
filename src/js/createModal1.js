@@ -1,4 +1,5 @@
-export function createModal1() {
+export function createModal1(e) {
+  e.preventDefault();
   const body = document.body;
 
   const modalForm = modal1();
@@ -7,7 +8,7 @@ export function createModal1() {
   const closeModalForm = document.querySelector('.bacground-modal');
   closeModalForm.addEventListener('click', closeModal);
   //modalForm.addEventListener('click', closeModal);
-  console.log(modalForm);
+  //console.log(modalForm);
   // ==============================================
   //   const modal1 = document.createElement('div');
   //   modal1.classList.add('bacground-modal');

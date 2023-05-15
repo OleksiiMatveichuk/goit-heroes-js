@@ -93,6 +93,17 @@
 /* десктоп */
 
 @media screen and (min-width: 1200px) {
+  .hero-secondary {
+    background-image: url(../images/desktop/background-hero-desktop-min.png);
+  }
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .hero-secondary {
+      background-image: url(../images/desktop/background-hero-desktop@2x-min.png);
+    }
+  }
   .hero-secondary-text {
     margin-bottom: 16px;
   }

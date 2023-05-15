@@ -1,0 +1,143 @@
+/* Кнопки для секції hero*/
+
+/*Загальні стилі*/
+
+.hero-all-characters-btn {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+
+    border-radius: 1000px;
+    border: none;
+    width: 142px;
+    height: 36px;
+
+
+
+    color: var(--main-color);
+    text-decoration: none;
+    font-family: 'Poppins', 'Roboto', 'Open Sans', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+
+    text-transform: uppercase;
+}
+
+/* Для зеленої кноки */
+.hero-all-characters-btn-green {
+    background-color: var(--green-btn);
+}
+/* Для синьої кнопки */
+.hero-all-characters-btn-blue {
+    background-color: var(--blue-btn);
+}
+/* Для бордової кнопки*/
+.hero-all-characters-btn-bordo {
+    background-color: var(--bordo-btn);
+}
+/* Hover i focus для бордової кнопки */
+.hero-all-characters-btn-bordo:hover,
+.hero-all-characters-btn-bordo:focus {
+    background-color: var(--bordo-btn-hover);
+}
+/* Hover i focus для зеленої кнопки */
+.hero-all-characters-btn-green:hover,
+.hero-all-characters-btn-green:focus {
+    background-color: var(--green-btn-hover);
+}
+/* Hover i focus для синьої кнопки */
+.hero-all-characters-btn-blue:hover,
+.hero-all-characters-btn-blue:focus {
+    background-color: var(--blue-btn-hover);
+}
+
+/* Збільшення розмірів кнопки і шрифта для кнопок(однакові для tablet i desktop  */
+@media screen and (min-width: 768px) {
+    .hero-all-characters-btn {
+        width: 167px;
+        height: 42px;
+        font-size: 14px;
+        line-height: 18px;
+    }
+}
+
+/* Кнока для random characters*/
+.random-all-characters-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    border-radius: 1000px;
+    border: none;
+    width: 162px;
+    height: 38px;
+
+    color: var(--main-color);
+    background-color: var(--dark-btn);
+    border: 1px solid rgba(250, 250, 250, 0.3);
+    border-radius: 1000px;
+    text-decoration: none;
+    font-family: 'Poppins', 'Roboto', 'Open Sans', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    text-transform: uppercase;
+}
+
+.random-all-characters-btn:hover,
+.random-all-characters-btn:focus {
+    background-color: var(--dark-btn-hover);
+}
+
+@media screen and (min-width: 768px){
+    .random-all-characters-btn{
+        width: 170px;
+        height: 42px;
+        font-size: 14px;
+        line-height: 18px;
+    }
+}
+
+
+
+.back-home-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    border-radius: 1000px;
+    border: none;
+    width: 111px;
+    height: 36px;
+
+
+    background-color: #0C0B0B;
+    color: var(--main-color);
+    border: 1px solid rgba(250, 250, 250, 0.5);
+    border-radius: 1000px;
+    text-decoration: none;
+    font-family: 'Poppins', 'Roboto', 'Open Sans', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    text-transform: uppercase;
+}
+
+.back-home-btn:hover,
+.back-home-btn:focus {
+    background-color: var(--dark-btn-hover);
+}
+@media screen and (min-width: 768px){
+ .back-home-btn{
+    width: 131px;
+    height: 42px;
+    font-size: 14px;
+    line-height: 18px;
+ }
+}
