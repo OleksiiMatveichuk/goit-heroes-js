@@ -3,14 +3,20 @@ import { api } from './low-level/api';
 
 const listCharacters = [];
 const ulList = document.querySelector('.random-list');
-// const clickBtn = document.querySelector('.allCharactersBtn');
-// clickBtn.addEventListener('click', createModal1);
+const clickBtn = document.querySelector('.allCharactersBtn');
+clickBtn.addEventListener('click', removeSetInterval);
 const img = document.querySelector('.random-img');
 const form = document.querySelector('.form-random');
 //form.addEventListener('submit', createModal1);
 form.addEventListener('click', handleClickForm);
 ulList.addEventListener('click', handleClickItem);
-img.addEventListener('click', createModal1);
+
+img.addEventListener('click', () => {
+  createModal1();
+  removeSetInterval();
+});
+let setIntervalId;
+let timeId = null;
 
 const character = {
   id: null,
@@ -18,6 +24,9 @@ const character = {
   description: null,
   resourceURI: null,
 };
+function removeSetInterval() {
+  clearInterval(setIntervalId);
+}
 
 function handleClickForm(e) {
   //console.log(e.target);
@@ -29,50 +38,44 @@ async function getRandomData(params) {
   return data;
 }
 
-function newImg({ resourceURI }) {
-  img.src = `${resourceURI}`;
+function newImg(value) {
+  // console.log('value==', value);
+  img.src = `${value.thumbnail.path}.${value.thumbnail.extension}`;
   // img.src = `../images/remove_img/modal1-img.jpg`;
 }
 
 function handleClickItem(e) {
+  if (setIntervalId) {
+    removeSetInterval();
+    if (!timeId) {
+      timeId = setTimeout(() => {
+        //запускаем заново slider
+        createSlider();
+      }, 3500);
+    }
+  }
   //console.log(e.target);
   if (e.target.tagName !== 'UL') {
-    let li = document.querySelectorAll('li');
+    let li = document.querySelectorAll('.random-item');
     const id_character = e.target.closest('li').id;
 
     const result = listCharacters.find(
       character => character[0].id === Number(id_character)
     );
-    // console.log('result = ', result[0]);
-    // const { id, name, description, resourceURI } = result[0];
-    // character.id = id;
-    // character.name = name;
-    // character.description = description;
-    // character.resourceURI = resourceURI;
-    // console.log('character', character);
+
     createNewCharacter(result[0]);
 
     newImg(result[0]);
 
-    let i = 0;
+    // let i = 0;
     li.forEach(item => {
       let activeLink = document.querySelector('.random-item.active');
-      const p = item.querySelector('p');
+      // const p = item.querySelector('p');
 
       if (activeLink) {
         activeLink.classList.remove('active');
       }
       e.target.closest('li').classList.add('active');
-
-      //   if (item.id === id) {
-      //     console.log(id, 'Так');
-      //     e.target.closest('li').classList.add('activ');
-      //   } else {
-      //     console.log(id, 'ні');
-      //     e.target.closest('li').classList.remove('activ');
-      //   }
-      // ?
-      // : ;
     });
   }
 }
@@ -83,14 +86,38 @@ function createNewCharacter(value) {
   character.name = name;
   character.description = description;
   character.resourceURI = resourceURI;
-  //console.log('character', character);
+  // console.log('character', character);
+  // console.log('listCharacters', listCharacters);
+}
+
+function createSlider() {
+  let i = 0;
+  setIntervalId = setInterval(() => {
+    activeSlider(i);
+    i += 1;
+    if (i === 5) {
+      i = 0;
+    }
+  }, 3500);
+}
+
+function activeSlider(value) {
+  let li = document.querySelectorAll('.random-item');
+  let activeLink = document.querySelector('.random-item.active');
+  if (activeLink) {
+    activeLink.classList.remove('active');
+  }
+  li[value].classList.add('active');
+  // console.log('qqqq', listCharacters[value][0]);
+  newImg(listCharacters[value][0]);
+  //перегрузити треба фото
 }
 
 function createLi(value) {
-  // console.log('value.thumbnail.path', value[0].thumbnail.path);
+  //<img class="gallery-image" src="${item.thumbnail.path}.${item.thumbnail.extension}" alt="${item.description}" />
   return `
     <li class='random-item' id=${value[0].id} data-id=${value[0].id} >
- <img src=${value[0].events.collectionURI}>
+
        <h3 class='random-value-name hero-name' data-name>${value[0].name}</h3>
        <p class='random-value-text' data-description>${value[0].description}</p>
     </li>
@@ -102,40 +129,6 @@ function gerRandomCharacters(data) {
   return data.map(character => createLi(character.results)).join('');
 }
 
-//async function startMain() {
-// for (let i = 0; i < 5; i += 1) {
-//   await getRandomData({
-//     limit: 1,
-//     offset: Math.round(Math.random() * 1561),
-//   });
-// }
-// const d1 = new Date();
-// await promise();
-// const d2 = new Date();
-// console.log('time: ', (d2 - d1) / 60);
-// //const markup = gerRandomCharacters(listCharacters);
-// // ulList.innerHTML = markup;
-// const newIMG = document.createElement('img');
-// newIMG.src = listCharacters[0][0].resourceURI;
-// ulList.insertAdjacentElement('beforebegin', newIMG);
-// img.src = listCharacters[0][0].resourceURI;
-//}
-//startMain();
-
-//================promise
-
-// async function promise() {
-//   const promiseArray = [];
-//   for (let i = 0; i < 5; i += 1) {
-//     const res = await getRandomData({
-//       limit: 1,
-//       offset: Math.round(Math.random() * 1561),
-//     });
-//     //promiseArray.push(res);
-//   }
-//   // console.log('promiseArray', promiseArray);
-//   Promise.all(promiseArray);
-// }
 async function startMain() {
   const promiseArray = [];
   for (let i = 0; i < 5; i += 1) {
@@ -163,5 +156,7 @@ function createMarkup(data) {
   const markup = gerRandomCharacters(data);
   // console.log('markup', markup);
   ulList.innerHTML = markup;
+  newImg(listCharacters[0][0]);
+  createSlider();
 }
 startMain();
