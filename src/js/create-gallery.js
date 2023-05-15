@@ -19,7 +19,7 @@ async function handleInput(event) {
 
 async function createGallery() {
   try {
-    const data = await getCharacters(comics);
+    const data = await api.getCharactersByComicsId(comics);
 
     const heroCard = galleryItem(data);
     gallery.insertAdjacentHTML('beforeend', heroCard.join(''));
@@ -31,23 +31,23 @@ async function createGallery() {
   }
 }
 
-// const container = document.querySelector('.container');
-// let windowWidth = window.getComputedStyle(container).width;
-// let itemsOnPage = null;
-// // ВИЗНАЧАЄМО ШИРИНУ ВЬЮПОРТУ
-// // debugger
-// switch (windowWidth) {
-//   case '375px':
-//     itemsOnPage = 5;
-//     break;
-//   case '100%':
-//     itemsOnPage = 5;
-//     break;
-//   case '1440px':
-//     itemsOnPage = 16;
-//     break;
+const container = document.querySelector('.container');
+let windowWidth = window.getComputedStyle(container).width;
+let itemsOnPage = null;
+// ВИЗНАЧАЄМО ШИРИНУ ВЬЮПОРТУ
+// debugger
+switch (windowWidth) {
+  case '375px':
+    itemsOnPage = 5;
+    break;
+  case '100%':
+    itemsOnPage = 5;
+    break;
+  case '1440px':
+    itemsOnPage = 16;
+    break;
 
-//   default:
-//     itemsOnPage = 8;
-//     break;
-// }
+  default:
+    itemsOnPage = 8;
+    break;
+}

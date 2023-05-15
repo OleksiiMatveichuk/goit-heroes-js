@@ -11,7 +11,7 @@
 // };
 // /${imageSize}
 
-export const galleryItem = galleryItems => {
+export const renderGallery = galleryItems => {
   return galleryItems.map(item => {
     return `<li class="gallery-item" [data-id = ${item.id}]>
 //    <a class="gallery-link" href="#">
