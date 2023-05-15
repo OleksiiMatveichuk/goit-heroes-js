@@ -16,8 +16,8 @@
       rel="stylesheet"
     />
     
-    <script type="module" crossorigin src="/goit-heroes-js/assets/header-b8b08ddf.js"></script>
-    <link rel="stylesheet" href="/goit-heroes-js/assets/header-1bb3b649.css">
+    <script type="module" crossorigin src="/goit-heroes-js/assets/hero-slider-b026266c.js"></script>
+    <link rel="stylesheet" href="/goit-heroes-js/assets/hero-slider-a9f1acdb.css">
   </head>
   <body>
     <header class="header">
@@ -42,7 +42,7 @@
 </header>
 
     <main>
-      <section class="hero-section">
+      <section class="hero-section" data-mod="blue">
   <div class="hero-section-wrap container">
     <div class="hero-section-text-card">
       <p class="text-card-subtitle">Web-based platform</p>
@@ -53,55 +53,157 @@
         Start exploring the Marvelous Adventures now by visiting our Characters
         and Comics sections and discover your new favorites today.
       </p>
-      <button class="button" type="button">All Characters</button>
+      <a href="/page-2.html">
+        <button class="hero-all-characters-btn hero-all-characters-btn-blue" type="button">All Characters</button>
+      </a>
     </div>
     <ul class="hero-pagination">
-      <li class="hero-pagination-item-active"></li>
-      <li class="hero-pagination-item"></li>
-      <li class="hero-pagination-item"></li>
+      <li class="hero-pagination-item active" data-index="0"></li>
+      <li class="hero-pagination-item" data-index="1"></li>
+      <li class="hero-pagination-item" data-index="2"></li>
     </ul>
-    <div class="hero-section-image-wrap">
+    <div class="hero-slide active" data-mod="blue">
+      <picture>
+        <source srcset="/goit-heroes-js/assets/black-panther-desktop-min-42a05f50.jpg 1x, /goit-heroes-js/assets/black-panther@2x-desctop-min-6ccac806.jpg 2x"
+          media="(min-width: 1440px)">
+        <source srcset="/goit-heroes-js/assets/black-panther-min-414fe183.jpg 1x, /goit-heroes-js/assets/black-panther@2x-min-d302157d.jpg 2x"
+          media="(min-width: 768px)">
+        <source srcset="/goit-heroes-js/assets/black-panther-min-69c9c912.jpg 1x, /goit-heroes-js/assets/black-panther@2x-min-5ebb0a37.jpg 2x"
+          media="(max-width: 767px)">
+      
+        <img src="/goit-heroes-js/assets/black-panther-desktop-min-42a05f50.jpg" class="image-card-main-img" alt="Black Panther" width="352">
+      </picture>
+    <div class="container-secondary-card">
+      <div class="image-card-secondary-img-wrap">
         <picture>
-          <source srcset="/goit-heroes-js/assets/black-panther-desktop-min-42a05f50.jpg 1x, /goit-heroes-js/assets/black-panther@2x-desctop-min-6ccac806.jpg 2x"
+          <source srcset="/goit-heroes-js/assets/black-panther-gallery-desktop-min-ff0156f1.jpg 1x, /goit-heroes-js/assets/black-panther-gallery@2x-desktop-min-2047f499.jpg 2x"
             media="(min-width: 1440px)">
-          <source srcset="/goit-heroes-js/assets/black-panther-min-414fe183.jpg 1x, /goit-heroes-js/assets/black-panther@2x-min-d302157d.jpg 2x"
+          <source srcset="/goit-heroes-js/assets/black-panther-gallery-min-9f22e77e.jpg 1x, /goit-heroes-js/assets/black-panther@2x-gallery-min-56e4259d.jpg 2x"
             media="(min-width: 768px)">
-          <source srcset="/goit-heroes-js/assets/black-panther-min-69c9c912.jpg 1x, /goit-heroes-js/assets/black-panther@2x-min-5ebb0a37.jpg 2x"
+          <source srcset="/goit-heroes-js/assets/black-panther-gallery-min-bf03279e.jpg 1x, /goit-heroes-js/assets/black-panther-gallery@2x-min-0ed105ff.jpg 2x"
             media="(max-width: 767px)">
         
-          <img src="/goit-heroes-js/assets/black-panther-desktop-min-42a05f50.jpg" class="image-card-main-img" alt="Black Panther" width="352">
+          <img src="/goit-heroes-js/assets/black-panther-gallery-desktop-min-ff0156f1.jpg" class="image-card-secondary-img" alt="Black Panther" width="352">
         </picture>
+        <div class="decorate-ellipse">
+          <h2 class="decorate-ellipse-title">Black Panther</h2>
+        </div>
+        <a href="" class="image-card-link">
+          <svg class="arrow" width="32" height="32">
+            <use href="/goit-heroes-js/assets/symbol-defs-3fdb80bc.svg#icon-arrow"></use>
+          </svg>
+        </a>
+      </div>
+      
+      <span class="decorate-line"></span>
+      <div class="image-card-character-description">
+        <p class="image-card-title">Characters</p>
+        <p class="image-card-txt">
+            T’Challa is the king of the secretive and highly advanced African nation
+            of Wakanda - as well as the powerful warrior known as the Black Panther.
+        </p> 
+      </div>
+      <span class="secondary-card-gradient"></span>
+    </div>
+    </div>
+    <div class="hero-slide" data-mod="green">
+      <picture>
+        <source
+          srcset="/goit-heroes-js/assets/hulk-desktop-min-3fd56299.jpg 1x, /goit-heroes-js/assets/hulk@2x-desktop-min-d9653ba9.jpg 2x"
+          media="(min-width: 1440px)">
+        <source srcset="/goit-heroes-js/assets/hulk-min-faef2e42.jpg 1x, /goit-heroes-js/assets/hulk@2x-min-3e30fc47.jpg 2x"
+          media="(min-width: 768px)">
+        <source srcset="/goit-heroes-js/assets/black-panther-min-69c9c912.jpg 1x, /goit-heroes-js/assets/black-panther@2x-min-5ebb0a37.jpg 2x"
+          media="(max-width: 767px)">
+    
+        <img src="/goit-heroes-js/assets/hulk-desktop-min-3fd56299.jpg" class="image-card-main-img" alt="Black Panther"
+          width="352">
+      </picture>
       <div class="container-secondary-card">
         <div class="image-card-secondary-img-wrap">
           <picture>
-            <source srcset="/goit-heroes-js/assets/black-panther-gallery-desktop-min-ff0156f1.jpg 1x, /goit-heroes-js/assets/black-panther-gallery@2x-desktop-min-2047f499.jpg 2x"
+            <source
+              srcset="/goit-heroes-js/assets/hulk-gallery-desktop-min-cc0f3f85.jpg 1x, /goit-heroes-js/assets/hulk-gallery@2x-desktop-min-b82c2721.jpg 2x"
               media="(min-width: 1440px)">
-            <source srcset="/goit-heroes-js/assets/black-panther-gallery-min-9f22e77e.jpg 1x, /goit-heroes-js/assets/black-panther@2x-gallery-min-56e4259d.jpg 2x"
+            <source
+              srcset="/goit-heroes-js/assets/hulk-gallery-min-486b9eb8.jpg 1x, /goit-heroes-js/assets/hulk-gallery@2x-min-a1bbda7e.jpg 2x"
               media="(min-width: 768px)">
-            <source srcset="/goit-heroes-js/assets/black-panther-gallery-min-bf03279e.jpg 1x, /goit-heroes-js/assets/black-panther-gallery@2x-min-0ed105ff.jpg 2x"
+            <source
+              srcset="/goit-heroes-js/assets/black-panther-gallery-min-bf03279e.jpg 1x, /goit-heroes-js/assets/black-panther-gallery@2x-min-0ed105ff.jpg 2x"
               media="(max-width: 767px)">
-          
-            <img src="/goit-heroes-js/assets/black-panther-gallery-desktop-min-ff0156f1.jpg" class="image-card-secondary-img" alt="Black Panther" width="352">
+    
+            <img src="/goit-heroes-js/assets/hulk-gallery-desktop-min-cc0f3f85.jpg" class="image-card-secondary-img"
+              alt="Black Panther" width="352">
           </picture>
           <div class="decorate-ellipse">
-            <h2 class="decorate-ellipse-title">Black Panther</h2>
+            <h2 class="decorate-ellipse-title">hULK</h2>
           </div>
-          <span class="secondary-card-gradient"></span>
-          <a href="" class="image-card-link">
+          <a href="#" class="image-card-link">
             <svg class="arrow" width="32" height="32">
-              <use href=""></use>
+              <use href="/goit-heroes-js/assets/symbol-defs-3fdb80bc.svg#icon-arrow"></use>
             </svg>
           </a>
         </div>
-        
+    
         <span class="decorate-line"></span>
         <div class="image-card-character-description">
           <p class="image-card-title">Characters</p>
           <p class="image-card-txt">
-              T’Challa is the king of the secretive and highly advanced African nation
-              of Wakanda - as well as the powerful warrior known as the Black Panther.
-          </p> 
+            Exposed to heavy doses of gamma radiation, scientist Bruce Banner transforms into the mean, green rage machine called
+            the Hulk.
+          </p>
         </div>
+        <span class="secondary-card-gradient"></span>
+      </div>
+    </div>
+    <div class="hero-slide" data-mod="bordo">
+      <picture>
+        <source
+          srcset="/goit-heroes-js/assets/spiderman-desktop-min-cd1d34c4.jpg 1x, /goit-heroes-js/assets/spiderman@2x-desktop-min-6fc793c3.jpg 2x"
+          media="(min-width: 1440px)">
+        <source srcset="/goit-heroes-js/assets/spiderman-min-bba924cd.jpg 1x, /goit-heroes-js/assets/spiderman@2x-min-17820bab.jpg 2x"
+          media="(min-width: 768px)">
+        <source srcset="/goit-heroes-js/assets/black-panther-min-69c9c912.jpg 1x, /goit-heroes-js/assets/black-panther@2x-min-5ebb0a37.jpg 2x"
+          media="(max-width: 767px)">
+    
+        <img src="/goit-heroes-js/assets/spiderman-desktop-min-cd1d34c4.jpg" class="image-card-main-img" alt="Black Panther"
+          width="352">
+      </picture>
+      <div class="container-secondary-card">
+        <div class="image-card-secondary-img-wrap">
+          <picture>
+            <source
+              srcset="/goit-heroes-js/assets/spiderman-gallery-desktop-min-c6516bdc.jpg 1x, /goit-heroes-js/assets/spiderman-gallery@2x-desktop-min-131da3bd.jpg 2x"
+              media="(min-width: 1440px)">
+            <source
+              srcset="/goit-heroes-js/assets/spiderman-gallery-min-7055aebe.jpg 1x, /goit-heroes-js/assets/spiderman@2x-gallery-min-e7b0c3e9.jpg 2x"
+              media="(min-width: 768px)">
+            <source
+              srcset="/goit-heroes-js/assets/black-panther-gallery-min-bf03279e.jpg 1x, /goit-heroes-js/assets/black-panther-gallery@2x-min-0ed105ff.jpg 2x"
+              media="(max-width: 767px)">
+    
+            <img src="/goit-heroes-js/assets/black-panther-gallery-desktop-min-ff0156f1.jpg" class="image-card-secondary-img"
+              alt="Black Panther" width="352">
+          </picture>
+          <div class="decorate-ellipse">
+            <h2 class="decorate-ellipse-title">Spider man</h2>
+          </div>
+          <a href="#" class="image-card-link">
+            <svg class="arrow" width="32" height="32">
+              <use href="/goit-heroes-js/assets/symbol-defs-3fdb80bc.svg#icon-arrow"></use>
+            </svg>
+          </a>
+        </div>
+    
+        <span class="decorate-line"></span>
+        <div class="image-card-character-description">
+          <p class="image-card-title">Characters</p>
+          <p class="image-card-txt">
+            With amazing spider-like abilities, teenage science whiz Peter Parker fights crime and dreams of becoming an Avenger as
+            Spider-Man.
+          </p>
+        </div>
+        <span class="secondary-card-gradient"></span>
       </div>
     </div>
   </div>
@@ -189,7 +291,7 @@
               target="_blank"
             >
               <svg class="footer-icon" width="14" height="14">
-                <use href="/goit-heroes-js/assets/symbol-defs-3e7849d8.svg#icon-facebook"></use>
+                <use href="/goit-heroes-js/assets/symbol-defs-3fdb80bc.svg#icon-facebook"></use>
               </svg>
             </a>
           </li>
@@ -202,7 +304,7 @@
               target="_blank"
             >
               <svg class="footer-icon" width="14" height="14">
-                <use href="/goit-heroes-js/assets/symbol-defs-3e7849d8.svg#icon-instagram"></use>
+                <use href="/goit-heroes-js/assets/symbol-defs-3fdb80bc.svg#icon-instagram"></use>
               </svg>
             </a>
           </li>
@@ -214,7 +316,7 @@
               rel="noopener noreferer"
               target="_blank"
               ><svg class="footer-icon" width="14" height="14">
-                <use href="/goit-heroes-js/assets/symbol-defs-3e7849d8.svg#icon-twitter"></use>
+                <use href="/goit-heroes-js/assets/symbol-defs-3fdb80bc.svg#icon-twitter"></use>
               </svg>
             </a>
           </li>
