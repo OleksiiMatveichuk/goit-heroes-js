@@ -1,5 +1,3 @@
-//import { resolveBaseUrl } from 'vite';
-//import { resolveConfig } from 'vite';
 import { createModal1 } from './createModal1';
 import { api } from './low-level/api';
 
@@ -9,9 +7,10 @@ const ulList = document.querySelector('.random-list');
 // clickBtn.addEventListener('click', createModal1);
 const img = document.querySelector('.random-img');
 const form = document.querySelector('.form-random');
-form.addEventListener('submit', createModal1);
+//form.addEventListener('submit', createModal1);
 form.addEventListener('click', handleClickForm);
 ulList.addEventListener('click', handleClickItem);
+img.addEventListener('click', createModal1);
 
 const character = {
   id: null,
@@ -88,17 +87,18 @@ function createNewCharacter(value) {
 }
 
 function createLi(value) {
+  // console.log('value.thumbnail.path', value[0].thumbnail.path);
   return `
     <li class='random-item' id=${value[0].id} data-id=${value[0].id} >
-  
+ <img src=${value[0].events.collectionURI}>
        <h3 class='random-value-name hero-name' data-name>${value[0].name}</h3>
        <p class='random-value-text' data-description>${value[0].description}</p>
     </li>
     `;
 }
-
+//
 function gerRandomCharacters(data) {
-  //console.log('DATA', data);
+  // console.log('DATA', data);
   return data.map(character => createLi(character.results)).join('');
 }
 
