@@ -17,8 +17,8 @@
       rel="stylesheet"
     />
     
-    <script type="module" crossorigin src="/goit-heroes-js/assets/header-8f30f86f.js"></script>
-    <link rel="stylesheet" href="/goit-heroes-js/assets/header-f4cd3b2c.css">
+    <script type="module" crossorigin src="/goit-heroes-js/assets/header-31680da7.js"></script>
+    <link rel="stylesheet" href="/goit-heroes-js/assets/header-a83bceb7.css">
   </head>
   <body>
     <header class="header">
@@ -61,23 +61,47 @@
 </section>
 
       <section class="section-filter">
-<div class="container filtrer-container">
+  <div class="container filtrer-container">
     <form class="form">
-        <div class="input-boxil"><label class="lable" for="comic">Comics</label>
-        <input class="input-txt" type="text" id="comic" name="comic" placeholder="Enter Text"></div>
-        <div class="input-boxil"><label class="lable" for="name">Name Starts With</label>
-        <input class="input-txt" type="text" id="name" name="name" placeholder="Enter Text"></div>
-        
-        <div class="input-box">
-       <div> <label class="lable" for="order">Order by</label>
-        <input class="input-choose" type="text" id="order" name="order"></div>
-       <div> <label class="lable" for="date">Date</label>
-        <input class="input-choose" type="date" id="date" name="date"></div>
-    </div>
+      <div class="input-boxil">
+        <label class="lable" for="comic">Comics</label>
+        <input
+          class="input-txt"
+          type="text"
+          id="comic"
+          name="comic"
+          placeholder="Enter Text"
+        />
+        <svg class="search-svg"><use href="../images/symbol-defs.svg#icon-search" width="15" heigth="15"></use></svg>
+      </div>
+      <div class="input-boxil">
+        <label class="lable" for="name">Name Starts With</label>
+        <input
+          class="input-txt"
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Enter Text"
+        />
+        <svg class="search-svg"><use href="../images/symbol-defs.svg#icon-search" width="15" heigth="15"></use></svg>
+      </div>
+
+      <div class="input-box">
+        <div class="small-input-box">
+          <label class="lable" for="order">Order by</label>
+          <input class="input-choose" type="text" id="order" name="order" />
+          <svg class="search-svg"><use href="../images/symbol-defs.svg#icon-arrow-down" width="18" heigth="18"></use></svg>
+        </div>
+        <div class="small-input-box">
+          <label class="lable" for="date">Date</label>
+          <input class="input-choose" type="date" id="date" name="date" />
+          <svg class="search-svg"><use href="../images/symbol-defs.svg#icon-arrow-down" width="18" heigth="18"></use></svg>
+        </div>
+      </div>
     </form>
-    <ul class="characters-list"></ul>
-</div>
+  </div>
 </section>
+
       <section class="section">
   <div class="container">
     <ul class="gallery"></ul>
