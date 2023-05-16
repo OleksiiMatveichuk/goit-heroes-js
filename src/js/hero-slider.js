@@ -34,6 +34,17 @@ function setActivePagination(paginationNumber) {
   });
 }
 
+// функція для автоматичної зміни слайдів кожні 4 секунди
+
+function autoChangeSlide() {
+  nextSlide()
+  setActiveSlide(activeSlide);
+  setActivePagination(activeSlide);
+}
+
+setInterval(autoChangeSlide, 5000);
+
+
 // присвоєння event на click
 
 paginationItemsArr.forEach(element => {
