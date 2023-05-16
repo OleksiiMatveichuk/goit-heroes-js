@@ -15,7 +15,7 @@ async function handleInput(event) {
 
 async function createGallery() {
   try {
-    const searchQuery = Number(comicsFilter.value.trim());
+    const searchQuery = comicsFilter.value.trim();
     const data = await api.getCharactersByComicsId({ comicId: searchQuery });
     const result = data.results;
 
