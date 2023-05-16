@@ -1,10 +1,10 @@
-.pagi_List {
+.pagin_List {
   display: flex;
   justify-content: center;
   gap: 8px;
 }
 
-.pagi_Btn {
+.pagin_Btn {
   background: #171717;
   border: 1px solid #34387f;
   border-radius: 4px;
