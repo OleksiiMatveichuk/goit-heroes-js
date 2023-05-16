@@ -1,5 +1,5 @@
-.bacground-modal {
-    background: rgb(255, 255, 255);
+.bacground-mod-two {
+    background: rgba(255, 255, 255, 0.096);
     position: fixed;
     width: 100%;
     height: 100vh;
@@ -16,8 +16,9 @@
     color: rgba(250, 250, 250, 0.5);
 }
 .modal-two {
+    position: absolute;
     /* box-sizing: border-box; */
-    width: 335px;
+    max-width: 335px;
     max-width: 335px;
     /* max-width: 100%; */
     background-color: #070000;
@@ -28,7 +29,8 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    /* bottom: 50%; */
+    transform: translate(-50%, -15%);
     margin: 0 auto;
     overflow-y: auto;
     z-index: 2;
@@ -162,17 +164,7 @@
     .modal-two {
         width: 600px;
         max-width: 600px;
-        /* max-width: 100%; */
-        padding: 64px 32px;
-        /* height: 584px; */
-        /* max-height: 100vh; */
-        /* background-color: var(--primary-bg-color); */
-        /* padding: 72px 24px 24px 24px; */
-        /* position: absolute; */
-        /* top: 50%; */
-        /* left: 50%; */
-        /* transform: translate(-50%, -50%) scale(1); */
-        /* transition: transform 250ms var(--cubic); */
+        padding: 64px 32px;  
     }
 
 
@@ -259,7 +251,7 @@
         max-width: 1000px;
         min-height: 840px;
         display: flex;
-        background-color: #fff;
+        background-color: #000000;
     }
 
     .mod-two-first-gallery {
