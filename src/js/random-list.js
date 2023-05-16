@@ -32,9 +32,9 @@ function removeSetInterval() {
 async function getRandomData(params) {
   const data = await api.getAllCharacters(params);
 
-//   listCharacters.push(data.results);
-//   return data;
-// }
+  //   listCharacters.push(data.results);
+  //   return data;
+}
 
 function newImg(value) {
   createNewCharacter(value);
@@ -198,4 +198,4 @@ function createMarkup(data) {
   newImg(listCharacters[0][0]);
   startSlider(0);
 }
-startMain()
+startMain();
