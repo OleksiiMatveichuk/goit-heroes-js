@@ -11,7 +11,7 @@
   cursor: pointer;
   overflow: scroll;
 
-  z-index: 1;
+  z-index: 10;
 }
 
 .modal-window {
@@ -27,6 +27,7 @@
   padding-top: 40px;
   margin: 0 auto;
   overflow-y: auto;
+  z-index: 20;
 }
 
 /* //=================================skroll add */
@@ -135,6 +136,7 @@
   }
   .img-modal {
     width: 332px;
+    object-fit: cover;
   }
   .img-list {
     flex-direction: column;
