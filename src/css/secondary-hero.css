@@ -94,6 +94,7 @@
 
 @media screen and (min-width: 1200px) {
   .hero-secondary {
+    padding-bottom: 106px;
     background-image: url(../images/desktop/background-hero-desktop-min.png);
   }
 
