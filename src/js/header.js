@@ -69,8 +69,11 @@ window.addEventListener('load', async () => {
             // Если значение сохранено, вставляем его в инпут
             const searchInput = document.querySelector('.header-input');
             searchInput.value = savedValue;
+            const formStartWith = document.querySelector('#name')
+            formStartWith.value = savedValue
         }
         const galleryList = document.querySelector('.gallery');
+        galleryList.setAttribute("data-limits", itemsOnPage)
         galleryList.innerHTML = '';
         galleryList.innerHTML = await createGallery(savedValue || '');
     }
@@ -89,7 +92,10 @@ form.addEventListener('submit', async (event) => {
         window.location.href = url;
     } else if (window.location.pathname.includes("page-2.html")) {
         searchQuery = searchInput.value
+        let name = document.querySelector(`[name="name"]`)
+        name.value = searchInput.value
         const galleryList = document.querySelector('.gallery');
+
         galleryList.innerHTML = ''
         console.log("input", searchQuery)
         galleryList.innerHTML = await createGallery(searchQuery)
@@ -105,12 +111,21 @@ async function createGallery(searchQuery) {
         const results = data.results
         console.log(data)
         console.log(results)
+        const galleryList = document.querySelector('.gallery');
+        galleryList.setAttribute("data-total", data.total)
+        galleryList.setAttribute("data-offset", data.offset)
+
+
         if (results.length === 0) {
             console.log("NOT FOUND!!!!")
+            errorGallery();
             return
         }
         return renderGallery(results)
-    } catch (e) { console.log(e) }
+    } catch (e) {
+
+        console.log(e)
+    }
 
 }
 
