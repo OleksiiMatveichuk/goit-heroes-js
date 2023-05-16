@@ -12,18 +12,17 @@ const random_bacground = document.querySelector('.random-bacground');
 img.style.visible = false;
 
 img.addEventListener('click', () => {
-  createModal1();
+  createModal1(character.data);
   removeSetInterval();
-  console.log('character', character);
 });
 let setIntervalId = null;
 let timeId = null;
 
 const character = {
-  id: null,
-  name: null,
-  description: null,
-  resourceURI: null,
+  // id: null,
+  // name: null,
+  // description: null,
+  // resourceURI: null,
 };
 function removeSetInterval() {
   clearInterval(setIntervalId);
@@ -38,8 +37,8 @@ async function getRandomData(params) {
 }
 
 function newImg(value) {
-  //console.log('value====', value.name);
   createNewCharacter(value);
+
   img.src = `${value.thumbnail.path}.${value.thumbnail.extension}`;
 
   random_bacground.style.backgroundImage = `url(${value.thumbnail.path}.${value.thumbnail.extension})`;
@@ -57,7 +56,7 @@ function handleClickItem(e) {
       if (!timeId) {
         timeId = setTimeout(() => {
           //запускаем заново slider
-          createSlider();
+          startSlider(0);
 
           clearTimeout(timeId);
           timeId = null;
@@ -78,7 +77,6 @@ function handleClickItem(e) {
     li.forEach(item => {
       let activeLink = document.querySelector('.random-item.active');
       const p = item.querySelector('.random-value-text.active');
-      //console.log('li', i, '  p ', p);
 
       if (activeLink) {
         activeLink.classList.remove('active');
@@ -86,26 +84,21 @@ function handleClickItem(e) {
       }
       let active_p = document.querySelector('.random-value-text.active');
       if (active_p) {
-        //console.log('active==', active_p);
         active_p.classList.remove('active');
         active_p.style.color = '';
       }
 
       e.target.closest('li').classList.add('active');
       let newActive = document.querySelector('.random-item.active');
-      //console.log(';newActive', newActive);
+
       const p_new_active = newActive.querySelector('.random-value-text');
       p_new_active.style.color = 'rgb(52, 56, 127)';
-      //console.log('p_new_active', p_new_active.style.color);
 
       p_new_active.classList.add('active');
     });
   }
 }
-function activeSlider(value) {
-  //console.log('value :', value);
-  //createNewCharacter(listCharacters[value][0]);
-  newImg(listCharacters[value][0]);
+function active_Slider(value) {
   let li = document.querySelectorAll('.random-item');
   let activeLink = document.querySelector('.random-item.active');
   if (activeLink) {
@@ -113,32 +106,37 @@ function activeSlider(value) {
   }
   let active_p = document.querySelector('.random-value-text.active');
   if (active_p) {
-    //console.log('active==', active_p);
     active_p.classList.remove('active');
     active_p.style.color = '';
   }
-  li[value].classList.add('active');
+  li[value]?.classList.add('active');
+  //=================получаем id і посилаємо шукати наш обжект
+  getCharacter(Number(li[value].dataset.id));
 
   let newActive = document.querySelector('.random-item.active');
   const p_new_active = newActive.querySelector('.random-value-text');
   p_new_active.style.color = 'rgb(52, 56, 127)';
-  //console.log('p_new_active', p_new_active.style.color);
 
   p_new_active.classList.add('active');
-  // console.log('qqqq', listCharacters[value][0]);
 
-  // createNewCharacter(listCharacters[value][0]);
   //перегрузити треба фото
 }
 
-export function createSlider() {
-  let i = 0;
+function getCharacter(id) {
+  const result = listCharacters.filter(item => {
+    return item[0].id === id;
+    //return item.results[0].id === id;
+  });
+  newImg(result[0][0]);
+}
+export function startSlider(vel) {
+  let i = vel;
 
   if (setIntervalId > 2) {
     removeSetInterval();
   }
   setIntervalId = setInterval(() => {
-    activeSlider(i);
+    active_Slider(i);
 
     i += 1;
     if (i === 5) {
@@ -147,15 +145,14 @@ export function createSlider() {
   }, 3500);
 }
 
-function createNewCharacter(value) {
-  const { id, name, description, resourceURI } = value;
-  console.log('nowcrt', name);
-  character.id = id;
-  character.name = name;
-  character.description = description;
-  character.resourceURI = resourceURI;
-  // console.log('character', character);
-  // console.log('listCharacters', listCharacters);
+function createNewCharacter(data) {
+  // const { id, name, description, resourceURI } = data;
+  character.data = { ...data };
+
+  // character.id = id;
+  // character.name = name;
+  // character.description = description;
+  // character.resourceURI = resourceURI;
 }
 
 function createLi(value) {
@@ -170,7 +167,6 @@ function createLi(value) {
 }
 //
 function gerRandomCharacters(data) {
-  // console.log('DATA', data);
   return data.map(character => createLi(character.results)).join('');
 }
 
@@ -182,26 +178,24 @@ function startMain() {
         limit: 1,
         offset: Math.round(Math.random() * 1561),
       });
-      // console.log('result', result);
+
       promiseArray.push(result);
     });
   }
-  // console.log('promiseArray', promiseArray);
+
   Promise.all(promiseArray)
     .then(data => {
-      // console.log('XXX', data);
       createMarkup(data);
     })
     .catch(er => console.log('ERR', er));
 }
 
 function createMarkup(data) {
-  console.log('tytData', data);
   createNewCharacter(data[0].results[0]);
   const markup = gerRandomCharacters(data);
-  // console.log('markup', markup);
+
   ulList.innerHTML = markup;
   newImg(listCharacters[0][0]);
-  createSlider();
+  startSlider(0);
 }
 startMain();

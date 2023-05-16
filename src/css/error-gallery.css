@@ -1,0 +1,78 @@
+/* mobile */
+@media screen and (min-width: 375px) {
+  .error-item {
+    width: 267px;
+    height: 152px;
+    margin: 40px auto 80px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(../images/mobile/try-looking-min.png);
+  }
+  .error-message {
+    width: 151px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    padding-top: 61px;
+    text-align: center;
+    margin: 0 auto;
+    padding-bottom: 43px;
+  }
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .error-item {
+      background-image: url(../images/mobile/try-looking@2x-min.png);
+    }
+  }
+}
+
+/* tablet */
+
+@media screen and (min-width: 768px) {
+  .error-item {
+    width: 375px;
+    height: 221px;
+    margin: 128px auto;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(../images/tablet/try-looking-min.png);
+  }
+  .error-message {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.16;
+    padding-top: 82px;
+    padding-bottom: 82px;
+  }
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .error-item {
+      background-image: url(../images/tablet/try-looking@2x-min.png);
+    }
+  }
+}
+/* десктоп */
+
+@media screen and (min-width: 1200px) {
+  .error-item {
+    background-image: url(../images/desktop/try-looking-min.png);
+  }
+  .error-message {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.16;
+  }
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .error-item {
+      background-image: url(../images/desktop/try-looking@2x-min.png);
+    }
+  }
+}
