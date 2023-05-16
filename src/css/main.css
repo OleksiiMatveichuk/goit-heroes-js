@@ -4,8 +4,16 @@ html {
 
 :root {
   --main-bg-color: #000000;
-  --main-color: #fafafa;
+  --main-color: rgb(250, 250, 250);
   --main-hover: #34387f;
+  --green-btn: #5b7f3c;
+  --green-btn-hover: #435e2d;
+  --bordo-btn: #600404;
+  --bordo-btn-hover: #4a0707;
+  --blue-btn: #34387f;
+  --blue-btn-hover: #292c63;
+  --dark-btn: #0c0b0b;
+  --dark-btn-hover: #242020;
 }
 
 body {
@@ -15,6 +23,9 @@ body {
   line-height: 1.25;
   letter-spacing: 0.02em;
   color: var(--main-color);
+  background-color: var(--main-bg-color);
+}
+section {
   background-color: var(--main-bg-color);
 }
 
@@ -43,6 +54,7 @@ ol {
   margin-top: 0;
   margin-bottom: 0;
   padding-left: 0;
+  list-style: none;
 }
 img {
   display: block;
@@ -53,7 +65,18 @@ button {
   cursor: pointer;
 }
 
+.hero-name {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33;
+}
+
 .container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.container-modal {
   max-width: 100%;
   margin: 0 auto;
   padding: 0 20px;
@@ -63,11 +86,17 @@ button {
   .container {
     max-width: 375px;
   }
+  .container-modal {
+    max-width: 335px;
+  }
 }
 /* mobile */
 @media screen and (min-width: 375px) {
   .container {
     width: 375px;
+  }
+  .container-modal {
+    width: 335px;
   }
 }
 
@@ -78,11 +107,25 @@ button {
     width: 768px;
     padding: 0 32px;
   }
+  .container-modal {
+    width: 600px;
+    padding: 0 32px;
+  }
+  .hero-name {
+    font-size: 24px;
+    line-height: 1;
+  }
 }
 /* десктоп */
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1440px) {
   .container {
     width: 1440px;
+  }
+  .container-modal {
+    width: 1000px;
+  }
+  .random-list {
+    width: 100%;
   }
 }
