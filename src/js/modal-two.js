@@ -71,15 +71,15 @@ function modalTwo(arr) {
           </li>
           <li class="mod-two-info-item">
             <h3 class="modal-two-info-header">Year released</h3>
-            <p>1967</p>
+            <p>${arr[0].dates[0].date}</p>
           </li>
           <li class="mod-two-info-item">
             <h3 class="modal-two-info-header">Pages</h3>
-            <p>28</p>
+            <p>${arr[0].pageCount}</p>
           </li>
           <li class="mod-two-info-item">
             <h3 class="modal-two-info-header">Price</h3>
-            <p>$3.99</p>
+            <p>$ ${arr[0].prices[0].price}</p>
           </li>
         </ul>
         <h2 class="mod-two-creator-header">Creator</h2>
@@ -98,7 +98,7 @@ function modalTwo(arr) {
               src="../images/remove_img/malenkoe.png"
               alt=""
             />
-            <p>функция делающая лишки</p>
+            <p>${arr[0].characters.items[0].name}</p>
           </li>
           <li class="modal-two-characters">
             <img
@@ -106,7 +106,7 @@ function modalTwo(arr) {
               src="../images/remove_img/malenkoe.png"
               alt=""
             />
-            <p>функция делающая лишки</p>
+            <p>${arr[0].characters.items[1].name}</p>
           </li>
           <li class="modal-two-characters">
             <img
@@ -114,7 +114,7 @@ function modalTwo(arr) {
               src="../images/remove_img/malenkoe.png"
               alt=""
             />
-            <p>функция делающая лишки</p>
+            <p>${arr[0].characters.items[2].name}</p>
           </li>
           <li class="modal-two-characters">
             <img
@@ -122,7 +122,7 @@ function modalTwo(arr) {
               src="../images/remove_img/malenkoe.png"
               alt=""
             />
-            <p>функция делающая лишки</p>
+            <p>${arr[0].characters.items[3].name}</p>
           </li>
         </ul>
       </div>
