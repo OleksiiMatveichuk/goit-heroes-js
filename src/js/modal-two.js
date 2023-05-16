@@ -1,5 +1,14 @@
-export function createModalTwo() {
+// getCharactersByComicsId
+import * as sey from './low-level/api';
+import { api } from './low-level/api';
+
+export async function createModalTwo() {
   // document.body.style.overflow = 'hidden';
+
+  const id = 37421;
+
+  const API = await api.getCharactersByComicsId({ comicId: id });
+  console.log('API :>> ', API);
 
   const body = document.body;
   const modal = modalTwo();
