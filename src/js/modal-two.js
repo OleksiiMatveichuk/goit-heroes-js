@@ -130,3 +130,15 @@ function modalTwo() {
     </div>
     `;
 }
+
+function closeModal(e) {
+  if (
+    e.target.classList.value === 'bacground-mod-two' ||
+    e.target.classList.value === 'mod-two-buttom'
+  ) {
+    const modal1 = document.querySelector('.bacground-modal');
+    document.body.style.overflow = '';
+    startSlider(0);
+    modal1?.remove();
+  }
+}
