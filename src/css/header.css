@@ -1,28 +1,87 @@
 .header {
-    padding-top: 20px;
+  height: 30px;
+  /* width: 100%; */
+  justify-content: center;
+  position: sticky;
+  margin: -20px;
+  top: 20px;
+  left: 0px;
+  z-index: 1000;
+}
+
+.header-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-btn {
+  background: transparent;
+  position: absolute;
+  outline: none;
+  border-color: transparent;
+}
+
+.header-icon {
+  position: absolute;
+  top: 50%;
+  left: 18px;
+  width: 16px;
+  height: 16px;
+  transform: translateY(20%);
+  fill: var(--main-color);
+}
+
+.header-input {
+  width: 108px;
+  height: 28px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--text);
+  background: transparent;
+  padding: 7px 18px 7px 42px;
+  /* justify-content: center;
+    align-items: center; */
+  border: 1px solid var(--main-color);
+  border-radius: 1000px;
+}
+
+.header-input::placeholder {
+  font-weight: bold;
+
+  color: var(--main-color);
+}
+@media screen and (min-width: 375px) {
+  .logo-svg {
+    width: 98px;
+    height: 15px;
+  }
+  .header {
     height: 30px;
     /* width: 100%; */
     justify-content: center;
     position: sticky;
-    top: 0px;
+    margin: -20px;
+    top: 20px;
     left: 0px;
     z-index: 1000;
-}
+  }
 
-.header-items {
+  .header-items {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
+  }
 
-.header-btn {
+  .header-btn {
     background: transparent;
     position: absolute;
     outline: none;
     border-color: transparent;
-}
+  }
 
-.header-icon {
+  .header-icon {
     position: absolute;
     top: 50%;
     left: 18px;
@@ -30,9 +89,11 @@
     height: 16px;
     transform: translateY(20%);
     fill: var(--main-color);
-}
+  }
 
-.header-input {
+  .header-input {
+    width: 108px;
+    height: 28px;
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
@@ -43,11 +104,25 @@
     align-items: center; */
     border: 1px solid var(--main-color);
     border-radius: 1000px;
-    width: 168px;
-}
+  }
 
-.header-input::placeholder {
+  .header-input::placeholder {
     font-weight: bold;
 
     color: var(--main-color);
+  }
+}
+@media screen and (min-width: 768px) {
+  .logo-svg {
+    width: 202px;
+    height: 31px;
+  }
+  .header-input {
+    width: 130px;
+    height: 42px;
+  }
+  .header-icon {
+    top: 8px;
+    left: 14px;
+  }
 }
