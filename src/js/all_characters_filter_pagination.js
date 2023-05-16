@@ -78,7 +78,7 @@ export async function createFilterGallery() {
       orderBy: orderText,
       modifiedSince: date.value,
     });
-    results = data.results;
+    const results = data.results;
     galleryList.setAttribute('data-total', data.total);
     galleryList.setAttribute('data-offset', data.offset);
     if (results.length === 0) {

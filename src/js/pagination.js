@@ -1,42 +1,24 @@
-import './src/css/pagination.css';
-import { api } from './low-level/api';
+// import './src/css/pagination.css';
+import { createFilterGallery } from './all_characters_filter';
 
-getAllCharacters: async ({
-  nameStartsWith = '',
-  offset = 0,
-  limit = 16,
-  comics = 0,
-  orderBy = '',
-  modifiedSince = '',
-}) => {
-  try {
-    const res = await axiosInst.get('/characters', {
-      params: {
-        ...(nameStartsWith && { nameStartsWith }),
-        ...(offset && { offset }),
-        ...(limit && { limit }),
-        ...(comics && { comics }),
-        ...(orderBy && { orderBy }),
-        ...(modifiedSince && { modifiedSince }),
-      },
-    });
-    const data = res.data.data;
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-};
+const galleryList = document.querySelector('.gallery');
+console.log('galleryList :>> ', galleryList.attributes);
 
-// =======================================================================================
+const limits = galleryList.dataset.limits;
+const offset = galleryList.dataset['offset'];
+const total = galleryList.dataset.total;
+console.log('limits:>> ', limits);
+console.log('offset :>> ', offset);
+console.log('total :>> ', total);
+console.log('galleryList.dataset :>> ', galleryList.dataset);
+
 const refs = {
   paginationList: document.querySelector('.paginList'),
 };
 
 refs.paginationList.addEventListener('click', requestHandler);
 
-function requestHandler(params) {}
-
-function createPaginationList(total, limit, offset) {
+export function createPaginationList(total, limit, offset) {
   paginationList.innerHTML = '';
   if (total < 1) {
     return;
@@ -55,6 +37,19 @@ function createPaginationList(total, limit, offset) {
 function handlePagination(target) {
   if ((target.localName = 'li')) {
     const offset = target.textContent * limit;
+    console.log('offset :>> ', offset);
     getAllCharacters(offset);
+    return offset;
   }
 }
+
+const saveBtn = document.querySelector('.editor button[data-action="save"]');
+const closeBtn = document.querySelector('.editor button[data-action="close"]');
+
+console.log(saveBtn.dataset.action); //save
+console.log(closeBtn.dataset.action); //close
+
+// const dishes = document.querySelectorAll('.dishes > li');
+// dishes.forEach(dish => {
+//   console.log(dish.dataset.id);
+// });

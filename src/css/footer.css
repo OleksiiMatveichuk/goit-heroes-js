@@ -16,6 +16,11 @@
   margin-right: 140px;
 }
 
+.logo-img {
+  width: 100px;
+  height: 15px;
+}
+
 .footer-bottom {
   background-color: var(--main-hover);
   padding: 16px 0;
@@ -87,6 +92,12 @@ policy-link {
 .logo {
   margin-right: 0;
 }
+
+.logo-img {
+  width: 200px;
+  height: 30px;
+}
+
 .footer-top {
   margin-bottom: 68px;
 }
