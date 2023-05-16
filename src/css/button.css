@@ -28,21 +28,10 @@
 }
 
 /* Hover i focus для бордової кнопки */
-.hero-all-characters-btn-bordo:hover,
-.hero-all-characters-btn-bordo:focus {
-    background-color: var(--bordo-btn-hover);
+.hero-all-characters-btn:hover,
+.hero-all-characters-btn:focus {
+    background-color: var(--hero-accent-hover-color);
 }
-/* Hover i focus для зеленої кнопки */
-.hero-all-characters-btn-green:hover,
-.hero-all-characters-btn-green:focus {
-    background-color: var(--green-btn-hover);
-}
-/* Hover i focus для синьої кнопки */
-.hero-all-characters-btn-blue:hover,
-.hero-all-characters-btn-blue:focus {
-    background-color: var(--blue-btn-hover);
-}
-
 /* Збільшення розмірів кнопки і шрифта для кнопок(однакові для tablet i desktop  */
 @media screen and (min-width: 768px) {
     .hero-all-characters-btn {
