@@ -1,16 +1,6 @@
 import './src/css/pagination.css';
 import { api } from './low-level/api';
 
-// let page = 1;
-// const limit = 4;
-
-// async function getRandomData(params) {
-//   const data = await api.getAllCharacters(params);
-
-//   listCharacters.push(data.results);
-//   return data;
-// }
-
 getAllCharacters: async ({
   nameStartsWith = '',
   offset = 0,
