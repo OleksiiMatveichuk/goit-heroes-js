@@ -24,19 +24,19 @@ function modalTwo() {
         </svg>
       </button>
       <div class="mod-two-first-gallery">
-        <img class="mod-two-first-img" src="./img/bolshoe.png" alt="" />
+        <img class="mod-two-first-img" src="../images/remove_img/bolshoe.png" alt="" />
         <ul class="mod-two-gallery">
           <li class="mod-two-gallery-item">
-            <img class="mod-two-gallery-img" src="./img/srednee.png" alt="" />
+            <img class="mod-two-gallery-img" src="../images/remove_img/srednee.png" alt="" />
           </li>
           <li class="mod-two-gallery-item">
-            <img class="mod-two-gallery-img" src="./img/srednee.png" alt="" />
+            <img class="mod-two-gallery-img" src="../images/remove_img/srednee.png" alt="" />
           </li>
           <li class="mod-two-gallery-item">
-            <img class="mod-two-gallery-img" src="./img/srednee.png" alt="" />
+            <img class="mod-two-gallery-img" src="../images/remove_img/srednee.png" alt="" />
           </li>
           <li class="mod-two-gallery-item">
-            <img class="mod-two-gallery-img" src="./img/srednee.png" alt="" />
+            <img class="mod-two-gallery-img" src="../images/remove_img/srednee.png" alt="" />
           </li>
         </ul>
       </div>
@@ -76,7 +76,7 @@ function modalTwo() {
         </ul>
         <h2 class="mod-two-creator-header">Creator</h2>
         <div class="mod-two-creator">
-          <img class="mod-two-img-creator" src="./img/malenkoe.png" alt="" />
+          <img class="mod-two-img-creator" src="../images/remove_img/malenkoe.png" alt="" />
           <div>
             <h3 class="mod-two-creator-job-title">Writer</h3>
             <p>Chip Zdarsky</p>
@@ -87,7 +87,7 @@ function modalTwo() {
           <li class="modal-two-characters">
             <img
               class="mod-two-charaters-img"
-              src="./img/malenkoe.png"
+              src="../images/remove_img/malenkoe.png"
               alt=""
             />
             <p>функция делающая лишки</p>
@@ -95,7 +95,7 @@ function modalTwo() {
           <li class="modal-two-characters">
             <img
               class="mod-two-charaters-img"
-              src="./img/malenkoe.png"
+              src="../images/remove_img/malenkoe.png"
               alt=""
             />
             <p>функция делающая лишки</p>
@@ -103,7 +103,7 @@ function modalTwo() {
           <li class="modal-two-characters">
             <img
               class="mod-two-charaters-img"
-              src="./img/malenkoe.png"
+              src="../images/remove_img/malenkoe.png"
               alt=""
             />
             <p>функция делающая лишки</p>
@@ -111,7 +111,7 @@ function modalTwo() {
           <li class="modal-two-characters">
             <img
               class="mod-two-charaters-img"
-              src="./img/malenkoe.png"
+              src="../images/remove_img/malenkoe.png"
               alt=""
             />
             <p>функция делающая лишки</p>

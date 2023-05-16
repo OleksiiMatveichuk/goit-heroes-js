@@ -6,11 +6,13 @@
   border-radius: 8px;
   overflow: hidden;
   margin-bottom: 40px;
+  width: 335px;
 }
 
 .gallery-image {
   margin-bottom: 16px;
-  width: 335px;
+  border-radius: 8px;
+  width: 100%;
   height: 445px;
 }
 
@@ -23,9 +25,6 @@
 
   .gallery-item {
     margin-bottom: 0;
-  }
-
-  .gallery-image {
     width: 336px;
   }
 }
@@ -34,7 +33,7 @@
   .gallery {
     gap: 64px 16px;
   }
-  .gallery-image {
+  .gallery-item {
     width: 332px;
   }
 }
