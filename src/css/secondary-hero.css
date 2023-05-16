@@ -49,13 +49,13 @@
 @media screen and (min-width: 768px) {
   .hero-secondary {
     padding-bottom: 74px;
-    background-image: url(../images/tablet/background-hero-min.png);
+    background-image: url(../images/tablet/background-hero-min.jpg);
   }
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
     .hero-secondary {
-      background-image: url(../images/tablet/background-hero@2x-min.png);
+      background-image: url(../images/tablet/background-hero@2x-min.jpg);
     }
   }
 
@@ -95,14 +95,14 @@
 @media screen and (min-width: 1200px) {
   .hero-secondary {
     padding-bottom: 106px;
-    background-image: url(../images/desktop/background-hero-desktop-min.png);
+    background-image: url(../images/desktop/background-hero-desktop-min.jpg);
   }
 
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
     .hero-secondary {
-      background-image: url(../images/desktop/background-hero-desktop@2x-min.png);
+      background-image: url(../images/desktop/background-hero-desktop@2x-min.jpg);
     }
   }
   .hero-secondary-text {
