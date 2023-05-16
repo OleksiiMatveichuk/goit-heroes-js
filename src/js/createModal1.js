@@ -1,32 +1,135 @@
 import { startSlider } from './random-list';
+import { api } from './low-level/api';
 
-export function createModal1(data) {
-  //e.preventDefault();
-  document.body.style.overflow = 'hidden';
-  // window.addEventListener('scroll', e => {
-  //   window.scrollTo(0, 0);
-  // });
+export async function createModal1(data) {
   const body = document.body;
+  document.body.style.overflow = 'hidden';
+  const { id, name, description, modified } = data;
+
+  const tempData = await getCharacterDataId(id);
+  //======================
+
+  const comicsArray = await getComicsArray(tempData);
+
+  console.log('comicsArray', comicsArray);
+  //=================
+  const markups = await createMarcup(tempData);
+
+  const result = markups.join('');
+
+  console.log('RESALT', result);
 
   const modalForm = modal1(data);
-
   body.insertAdjacentHTML('afterbegin', modalForm);
+
+  const markup = reternCharacterInfo(name, description, modified);
+
+  const black_widow = document.querySelector('.black-widow');
+  black_widow.insertAdjacentHTML('afterbegin', markup);
 
   const closeModalForm = document.querySelector('.bacground-modal');
   closeModalForm.addEventListener('click', closeModal);
+
   const close_btn = document.querySelector('.close-modal-btn');
   close_btn.addEventListener('click', closeModal);
+
+  const black_widow_list = document.querySelector('.black-widow-list');
+  black_widow_list.insertAdjacentHTML('afterbegin', result);
 }
+//PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+//PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+async function getCharacterDataId(id) {
+  const data = await api.getCharactersById({ characterId: id });
+  return data;
+}
+
+async function getComic(data) {
+  var b = data.resourceURI.split('/');
+  const idComic = Number(b[b.length - 1]);
+  const oneComic = await api.getComicById({ comicId: idComic });
+  console.log('oneComic', oneComic);
+  return oneComic;
+}
+
+async function getComicsArray(data) {
+  const { items } = data[0].comics;
+  const res = items.filter((item, i) => {
+    if (i < 3) {
+      return item;
+    }
+  });
+
+  const dat = res.map(async data => {
+    console.log('FFFFFFFFFFFFFFFFF', await getComic(data));
+    return await getComic(data);
+  });
+  console.log('DATDATDAT_________', dat);
+  return dat;
+}
+
+async function createMarcup(data) {
+  console.log('data data ', data);
+  const { items } = data[0].comics;
+  const markup = [];
+  items.forEach(async (item, i) => {
+    if (i < 3) {
+      // console.log(item);
+      let mar = await createComics(item);
+      console.log('MAR', mar);
+      markup.push(mar);
+    }
+  });
+  console.log('MARKUP+', markup);
+  return markup;
+}
+
 //`url(${value.thumbnail.path}.${value.thumbnail.extension})`;
+// function toPaintCard(mapkup) {
+//   console.log('MARK++++++++++', mapkup.join(''));
+//   const black_widow_list = document.querySelector('.black-widow-list');
+//   console.log(black_widow_list);
+//   black_widow_list.insertAdjacentHTML('afterbegin', mapkup.join(''));
+// }
+
+function reternCharacterInfo(name, description, modified) {
+  return `
+  <div class="black-widow-info">
+    <h4 class="black-widow-info-text">${name}</h4>
+    <p class="black-widow-info-data">${modified}</p>
+  </div>
+   <p class="black-widow-content">
+   ${description}
+  </p>
+  `;
+}
+
+async function createComics(data) {
+  var b = data.resourceURI.split('/');
+  const idComic = Number(b[b.length - 1]);
+
+  const comic = await api.getComicById({ comicId: idComic });
+
+  // console.log('COM-RETERN=', comic);
+  const { id, thumbnail, title } = comic[0];
+  console.log('thumbnail', thumbnail);
+  return `
+   <li class="black-widow-list-item" data-id=${id}>
+      <div class="black-widow-card">
+        <img
+          class="img-list-item-card"
+          src="${thumbnail.path}/${thumbnail.extension}"
+        />
+        <div class="black-widow-card-footer">
+          <h4 class="black-widow-card-text">${title}</h4>
+          <p class="black-widow-card-description">Kelly Thompson</p>
+        </div>
+      </div>
+    </li>
+  `;
+}
+// ;
+
 function modal1(data) {
-  const comics = data.comics.items;
-  let img_Url;
-  const events = data.events.items;
-  console.log(events);
-  if (events.length >= 1) {
-    console.log('OK');
-    img_Url = events[0].resourceURI;
-  }
   return `
    <div class="bacground-modal">
   <section class="modal-window">
@@ -48,7 +151,7 @@ function modal1(data) {
           <li>
             <img
               class="img-list-item"
-              src="${img_Url}.jpg"
+              src="./images/remove_img/modal1.jpg"
               alt="img"
               width="80"
             />
@@ -73,60 +176,14 @@ function modal1(data) {
       </div>
 
      <div class="black-widow">
-  <div class="black-widow-info">
-    <h4 class="black-widow-info-text">Black Widow</h4>
-    <p class="black-widow-info-data">July 9, 2021</p>
-  </div>
-  <p class="black-widow-content">
-    A deadly assassin is closing in on Natasha Romanoff. Now Natasha must
-    reunite with an unlikely group of spies from her past in order to survive
-    and stop a lethal force from being unleashed on the world.
-  </p>
+
+
+ 
   <h4 class="black-widow-list-text">List of comics</h4>
 
   <ul class="black-widow-list">
-    <li class="black-widow-list-item">
-      <div class="black-widow-card">
-        <img
-          class="img-list-item-card"
-          src="./images/remove_img/card1.jpg"
-          alt="img"
-          width="263"
-        />
-        <div class="black-widow-card-footer">
-          <h4 class="black-widow-card-text">Black Widow (2020)</h4>
-          <p class="black-widow-card-description">Kelly Thompson</p>
-        </div>
-      </div>
-    </li>
-    <li class="black-widow-list-item">
-      <div class="black-widow-card">
-        <img
-          class="img-list-item-card"
-          src="./images/remove_img/card2.jpg"
-          alt="img"
-          width="263"
-        />
-        <div class="black-widow-card-footer">
-          <h4 class="black-widow-card-text">Black Widow (2020)</h4>
-          <p class="black-widow-card-description">Kelly Thompson</p>
-        </div>
-      </div>
-    </li>
-    <li class="black-widow-list-item">
-      <div class="black-widow-card">
-        <img
-          class="img-list-item-card"
-          src="./images/remove_img/card3.jpg"
-          alt="img"
-          width="263"
-        />
-        <div class="black-widow-card-footer">
-          <h4 class="black-widow-card-text">Black Widow (2020)</h4>
-          <p class="black-widow-card-description">Kelly Thompson</p>
-        </div>
-      </div>
-    </li>
+   
+   
   </ul>
 </div> 
 
@@ -150,4 +207,32 @@ function closeModal(e) {
   }
 }
 
-// ======================
+// // ======================
+//  <li class="black-widow-list-item">
+//       <div class="black-widow-card">
+//         <img
+//           class="img-list-item-card"
+//           src="./images/remove_img/card2.jpg"
+//           alt="img"
+//           width="263"
+//         />
+//         <div class="black-widow-card-footer">
+//           <h4 class="black-widow-card-text">Black Widow (2020)</h4>
+//           <p class="black-widow-card-description">Kelly Thompson</p>
+//         </div>
+//       </div>
+//     </li>
+//     <li class="black-widow-list-item">
+//       <div class="black-widow-card">
+//         <img
+//           class="img-list-item-card"
+//           src="./images/remove_img/card3.jpg"
+//           alt="img"
+//           width="263"
+//         />
+//         <div class="black-widow-card-footer">
+//           <h4 class="black-widow-card-text">Black Widow (2020)</h4>
+//           <p class="black-widow-card-description">Kelly Thompson</p>
+//         </div>
+//       </div>
+//     </li>
