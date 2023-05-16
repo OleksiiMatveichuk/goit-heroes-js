@@ -2,7 +2,7 @@
 import { api } from './low-level/api';
 
 export async function createModalTwo() {
-  // document.body.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
 
   const id = 37421;
 
@@ -142,9 +142,9 @@ function closeModal(e) {
     e.target.classList.value === 'bacground-mod-two' ||
     e.target.classList.value === 'mod-two-buttom'
   ) {
-    const modal1 = document.querySelector('.bacground-modal');
+    const modal = document.querySelector('.bacground-mod-two');
     document.body.style.overflow = '';
     startSlider(0);
-    modal1?.remove();
+    modal?.remove();
   }
 }

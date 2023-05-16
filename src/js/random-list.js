@@ -19,10 +19,10 @@ let setIntervalId = null;
 let timeId = null;
 
 const character = {
-  id: null,
-  name: null,
-  description: null,
-  resourceURI: null,
+  // id: null,
+  // name: null,
+  // description: null,
+  // resourceURI: null,
 };
 function removeSetInterval() {
   clearInterval(setIntervalId);
@@ -32,8 +32,8 @@ function removeSetInterval() {
 async function getRandomData(params) {
   const data = await api.getAllCharacters(params);
 
-  //   listCharacters.push(data.results);
-  //   return data;
+  listCharacters.push(data.results);
+  return data;
 }
 
 function newImg(value) {
@@ -45,7 +45,7 @@ function newImg(value) {
   random_bacground.style.backgroundSize = 'cover';
   random_bacground.style.backgroundPosition = 'center';
   random_bacground.style.backgroundRepeat = 'no-repeat';
-  img.src = `../images/remove_img/modal1-img.jpg`;
+  // img.src = `../images/remove_img/modal1-img.jpg`;
 }
 
 function handleClickItem(e) {
@@ -146,13 +146,13 @@ export function startSlider(vel) {
 }
 
 function createNewCharacter(data) {
-  const { id, name, description, resourceURI } = data;
+  // const { id, name, description, resourceURI } = data;
   character.data = { ...data };
 
-  character.id = id;
-  character.name = name;
-  character.description = description;
-  character.resourceURI = resourceURI;
+  // character.id = id;
+  // character.name = name;
+  // character.description = description;
+  // character.resourceURI = resourceURI;
 }
 
 function createLi(value) {
