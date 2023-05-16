@@ -71,6 +71,20 @@ input[type="date"] {
     outline: none;
 }
 
+.input-boxil {
+    position: relative;
+}
+.search-svg {
+    position: absolute;
+    top: -27px;
+    fill: #FAFAFA;
+    right: -265px;
+}
+.small-input-box {
+    position: relative;
+}
+
+
 @media screen and (min-width: 768px) {
     .input-choose {
         width: 180px;
@@ -87,10 +101,13 @@ input[type="date"] {
     .form {
         display: flex;
         gap: 8px;
-    }
 
-
+       }
+   
+.search-svg {
+    top: -22px;
 }
+
 
 @media screen and (min-width: 1200px) {
     .input-txt {

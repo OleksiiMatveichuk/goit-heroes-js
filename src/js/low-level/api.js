@@ -3,7 +3,6 @@ import axios from 'axios';
 import { key } from './keys.js';
 import md5Hash from './md5Hash.js';
 
-
 const PRIVATE_KEY = key.privatekey;
 const PUBLIC_KEY = key.publickey;
 const API_URL = 'https://gateway.marvel.com/v1/public';
@@ -19,7 +18,6 @@ const axiosInst = axios.create({
 });
 
 export const api = {
-
   // ********************************
   // https://developer.marvel.com/docs#!/public/getCreatorCollection_get_0
   // ************************************
@@ -139,6 +137,17 @@ export const api = {
       console.log(error);
     }
   },
+
+  getCharactersByComicsId: async ({ comicId }) => {
+    try {
+      const res = await axiosInst.get(`/comics/${comicId}/characters`);
+      const data = res.data.data.results;
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
   getCreatorById: async ({ creatorId }) => {
     try {
       const res = await axiosInst.get(`/creators/${creatorId}`);
@@ -157,12 +166,9 @@ export const api = {
       console.log(error);
     }
   },
-
-
 };
 
 // How it works
-
 
 // *****************
 // import { api } from "./js/low-level/api";
@@ -184,7 +190,6 @@ export const api = {
 //     console.log(array)
 // }
 
-
 // async function handleClickAll() {
 //     const array = await api.getAllCharacters({
 //         // limit: 4,
@@ -200,8 +205,6 @@ export const api = {
 // offset:0 смещение - использовать в пагинации
 // results:(16) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}] - массив с    значениями
 // total:1562 - всего записей - использовать в пагинации
-
-
 
 // *****************
 // HOW IT WORKS
