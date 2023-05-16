@@ -81,6 +81,11 @@ button {
   margin: 0 auto;
   padding: 0 20px;
 }
+.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
 
 @media screen and (max-width: 375px) {
   .container {
