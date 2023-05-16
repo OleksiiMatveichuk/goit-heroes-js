@@ -1,66 +1,76 @@
 .lable {
     font-family: 'Poppins';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-line-height: 18px;
-color: rgba(250, 250, 250, 0.3);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: rgba(250, 250, 250, 0.3);
 
 }
+
 .input-txt::placeholder {
     font-family: 'Poppins';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 18px;
-color: #FAFAFA;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    color: #FAFAFA;
 }
+
 .input-txt {
     padding: 14px 24px;
     gap: 204px;
     margin-top: 4px;
     width: 335px;
     height: 46px;
-    
+
     background: #171717;
     border: 2px solid #34387F;
     border-radius: 100px;
     margin-bottom: 12px;
+    color: #FAFAFA;
 }
+
 .input-txt:focus {
     background: #34387F;
     outline: none;
 }
+
 .input-choose {
-  display: flex;
-margin-top: 4px;
-padding: 14px 24px;
-gap: 42px;
+    display: flex;
+    margin-top: 4px;
+    padding: 14px 24px;
+    gap: 42px;
 
-max-width: 163.5px;
-height: 46px;
-
-background: #171717;
-border: 2px solid #34387F;
-border-radius: 100px;
+    max-width: 163.5px;
+    height: 46px;
+    color: #FAFAFA;
+    background: #171717;
+    border: 2px solid #34387F;
+    border-radius: 100px;
 }
+
 .input-box {
     display: flex;
     gap: 8px;
     margin-bottom: 40px;
 }
+
 input[type="date"] {
     font-family: 'Poppins';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-line-height: 18px;
-color: #FAFAFA;
+    font-style: normal;
+    padding: 0 auto;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #FAFAFA;
+    width: 100px
+}
 
+.input-choose:focus {
+    outline: none;
 }
-.input-choose:focus{
-outline: none;
-}
+
 .input-boxil {
     position: relative;
 }
@@ -76,49 +86,60 @@ outline: none;
 
 
 @media screen and (min-width: 768px) {
-       .input-choose {
+    .input-choose {
         width: 180px;
-height: 50px;
-margin-top: 8px;
-       }
-       .input-txt {
+        height: 50px;
+        margin-top: 8px;
+    }
+
+    .input-txt {
         width: 180px;
-height: 50px;   
-margin-top: 8px;
-       }
-       .form {
+        height: 50px;
+        margin-top: 8px;
+    }
+
+    .form {
         display: flex;
         gap: 8px;
+
        }
    
 .search-svg {
     top: -22px;
 }
 }
-@media screen and (min-width: 1200px) { 
+
+
+@media screen and (min-width: 1200px) {
     .input-txt {
-       display: flex;
+        display: flex;
     }
-   input[name="comic"] {
-    width: 268px;
-height: 50px;
-   }
-   .form {
-    gap: 16px
-   }
-   .filtrer-container {
-    margin: 0 auto;
-   }
-   input[name="name"]{
-    width: 190px;
-height: 50px;
-   }
-   input[name="order"] {
-    width: 185px;
-height: 50px;
-   }
-   input[name="date"] {
-    width: 170px;
-height: 50px;
-   }
+
+    input[name="comic"] {
+        width: 268px;
+        height: 50px;
+    }
+
+    .form {
+        gap: 16px
+    }
+
+    .filtrer-container {
+        margin: 0 auto;
+    }
+
+    input[name="name"] {
+        width: 190px;
+        height: 50px;
+    }
+
+    input[name="order"] {
+        width: 185px;
+        height: 50px;
+    }
+
+    input[name="date"] {
+        width: 170px;
+        height: 50px;
+    }
 }

@@ -7,7 +7,7 @@
     cursor: pointer;
     overflow: scroll;
 
-    z-index: 1;
+    z-index: 2;
 }
 .modal-two h3 {
     font-weight: 400;
@@ -31,6 +31,7 @@
     transform: translate(-50%, -50%);
     margin: 0 auto;
     overflow-y: auto;
+    z-index: 2;
 }
 .mod-two-buttom {
     width: 19px;
@@ -64,15 +65,17 @@
 .mod-two-gallery {
     display: flex;
     flex-wrap: wrap;
+    gap: 8px;
     margin-bottom: 16px;
 }
-.mod-two-gallery-item:not(:last-child) {
+/* .mod-two-gallery-item:not(:last-child) {
     margin-right: 8px;
-}
+} */
 .mod-two-gallery-img {
     width: 80px;
     height: 80px;
     border-radius: 8px;
+    object-fit: cover;
 }
 .modal-two-setion-two {
     background-color: rgba(23, 23, 23, 1);
@@ -194,10 +197,10 @@
         margin-bottom: 0px;
     }
 
-    .mod-two-gallery-item:not(:last-child) {
+    /* .mod-two-gallery-item:not(:last-child) {
         margin-right: 0px;
         margin-bottom: 8px
-    }
+    } */
 
     .mod-two-date-blok {
         display: flex;
@@ -270,6 +273,14 @@
     .mod-two-first-img {
         margin-bottom: 8px;
         margin-right: 0px;
+    }
+
+    .mod-two-gallery {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-bottom: 0px;
+        /* gap: 8px; */
     }
 
 

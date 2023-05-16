@@ -1,8 +1,16 @@
-export function createModalTwo() {
+// getCharactersByComicsId
+import { api } from './low-level/api';
+
+export async function createModalTwo() {
   // document.body.style.overflow = 'hidden';
 
+  const id = 37421;
+
+  const API = await api.getComicById({ comicId: id });
+  console.log('API :>> ', API);
+
   const body = document.body;
-  const modal = modalTwo();
+  const modal = modalTwo(API);
 
   body.insertAdjacentHTML('afterbegin', modal);
 
@@ -14,7 +22,7 @@ export function createModalTwo() {
   closeBtn.addEventListener('click', closeModal);
 }
 
-function modalTwo() {
+function modalTwo(arr) {
   return `
   <div class="bacground-mod-two">
     <div class="modal-two">
@@ -24,25 +32,25 @@ function modalTwo() {
         </svg>
       </button>
       <div class="mod-two-first-gallery">
-        <img class="mod-two-first-img" src="../images/remove_img/bolshoe.png" alt="" />
+        <img class="mod-two-first-img" src="${arr[0].thumbnail.path}.${arr[0].thumbnail.extension}" alt="" />
         <ul class="mod-two-gallery">
           <li class="mod-two-gallery-item">
-            <img class="mod-two-gallery-img" src="../images/remove_img/srednee.png" alt="" />
+            <img class="mod-two-gallery-img" src="${arr[0].images[1].path}.${arr[0].images[1].extension}" alt="" />
           </li>
           <li class="mod-two-gallery-item">
-            <img class="mod-two-gallery-img" src="../images/remove_img/srednee.png" alt="" />
+            <img class="mod-two-gallery-img" src="${arr[0].images[2].path}.${arr[0].images[2].extension}" alt="" />
           </li>
           <li class="mod-two-gallery-item">
-            <img class="mod-two-gallery-img" src="../images/remove_img/srednee.png" alt="" />
+            <img class="mod-two-gallery-img" src="${arr[0].images[3].path}.${arr[0].images[3].extension}" alt="" />
           </li>
           <li class="mod-two-gallery-item">
-            <img class="mod-two-gallery-img" src="../images/remove_img/srednee.png" alt="" />
+            <img class="mod-two-gallery-img" src="${arr[0].images[4].path}.${arr[0].images[4].extension}" alt="" />
           </li>
         </ul>
       </div>
       <div class="modal-two-setion-two">
         <div class="mod-two-date-blok">
-          <h2 class="mod-two-primary-header">Daredevil<span>(2022)</span></h2>
+          <h2 class="mod-two-primary-header">${arr[0].title}</h2>
           <div class="mod-two-date">
             <h3 class="mod-two-avtor">Chip Zdarsky</h3>
 
@@ -78,8 +86,8 @@ function modalTwo() {
         <div class="mod-two-creator">
           <img class="mod-two-img-creator" src="../images/remove_img/malenkoe.png" alt="" />
           <div>
-            <h3 class="mod-two-creator-job-title">Writer</h3>
-            <p>Chip Zdarsky</p>
+            <h3 class="mod-two-creator-job-title">${arr[0].creators.items[0].role}</h3>
+            <p>${arr[0].creators.items[0].name}</p>
           </div>
         </div>
         <h2 class="mod-two-charaters-header">Characters</h2>
@@ -121,4 +129,16 @@ function modalTwo() {
     </div>
     </div>
     `;
+}
+
+function closeModal(e) {
+  if (
+    e.target.classList.value === 'bacground-mod-two' ||
+    e.target.classList.value === 'mod-two-buttom'
+  ) {
+    const modal1 = document.querySelector('.bacground-modal');
+    document.body.style.overflow = '';
+    startSlider(0);
+    modal1?.remove();
+  }
 }
