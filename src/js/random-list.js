@@ -3,39 +3,32 @@ import { api } from './low-level/api';
 
 const listCharacters = [];
 const ulList = document.querySelector('.random-list');
-const clickBtn = document.querySelector('.allCharactersBtn');
-clickBtn.addEventListener('click', removeSetInterval);
+
 const img = document.querySelector('.random-img');
-const form = document.querySelector('.form-random');
-//form.addEventListener('submit', createModal1);
-form.addEventListener('click', handleClickForm);
+
 ulList.addEventListener('click', handleClickItem);
-//const main = document.getElementsByName('main');
-// const loading = document.querySelector('.loading');
-// loading.style.display = 'none';
+const random_bacground = document.querySelector('.random-bacground');
+
 img.style.visible = false;
 
 img.addEventListener('click', () => {
-  createModal1();
-
+  createModal1(character.data);
   removeSetInterval();
 });
-let setIntervalId;
+let setIntervalId = null;
 let timeId = null;
 
 const character = {
-  id: null,
-  name: null,
-  description: null,
-  resourceURI: null,
+  // id: null,
+  // name: null,
+  // description: null,
+  // resourceURI: null,
 };
 function removeSetInterval() {
   clearInterval(setIntervalId);
+  setIntervalId = null;
 }
 
-function handleClickForm(e) {
-  //console.log(e.target);
-}
 async function getRandomData(params) {
   const data = await api.getAllCharacters(params);
 
@@ -44,23 +37,33 @@ async function getRandomData(params) {
 }
 
 function newImg(value) {
-  // console.log('value==', value);
+  createNewCharacter(value);
+
   img.src = `${value.thumbnail.path}.${value.thumbnail.extension}`;
+
+  random_bacground.style.backgroundImage = `url(${value.thumbnail.path}.${value.thumbnail.extension})`;
+  random_bacground.style.backgroundSize = 'cover';
+  random_bacground.style.backgroundPosition = 'center';
+  random_bacground.style.backgroundRepeat = 'no-repeat';
   // img.src = `../images/remove_img/modal1-img.jpg`;
 }
 
 function handleClickItem(e) {
-  if (setIntervalId) {
-    removeSetInterval();
-    if (!timeId) {
-      timeId = setTimeout(() => {
-        //запускаем заново slider
-        createSlider();
-      }, 3500);
+  if (e.target.tagName !== 'UL' && e.target.tagName !== 'DIV') {
+    if (setIntervalId) {
+      removeSetInterval();
+
+      if (!timeId) {
+        timeId = setTimeout(() => {
+          //запускаем заново slider
+          startSlider(0);
+
+          clearTimeout(timeId);
+          timeId = null;
+        }, 3500);
+      }
     }
-  }
-  //console.log(e.target);
-  if (e.target.tagName !== 'UL') {
+
     let li = document.querySelectorAll('.random-item');
     const id_character = e.target.closest('li').id;
 
@@ -68,49 +71,73 @@ function handleClickItem(e) {
       character => character[0].id === Number(id_character)
     );
 
-    createNewCharacter(result[0]);
-
     newImg(result[0]);
 
     let i = 0;
     li.forEach(item => {
       let activeLink = document.querySelector('.random-item.active');
-      //const p = item.querySelector('.random-value-text.active');
-      console.log('li', i, '  p ', p);
+      const p = item.querySelector('.random-value-text.active');
 
-      let active_p = document.querySelector('.random-value-text.active');
       if (activeLink) {
         activeLink.classList.remove('active');
-        p.classList.remove('active');
+        p?.classList.remove('active');
       }
+      let active_p = document.querySelector('.random-value-text.active');
       if (active_p) {
         active_p.classList.remove('active');
+        active_p.style.color = '';
       }
 
-      i += 1;
       e.target.closest('li').classList.add('active');
       let newActive = document.querySelector('.random-item.active');
+
       const p_new_active = newActive.querySelector('.random-value-text');
+      p_new_active.style.color = 'rgb(52, 56, 127)';
+
       p_new_active.classList.add('active');
     });
   }
 }
-function add_active_p() {}
+function active_Slider(value) {
+  let li = document.querySelectorAll('.random-item');
+  let activeLink = document.querySelector('.random-item.active');
+  if (activeLink) {
+    activeLink.classList.remove('active');
+  }
+  let active_p = document.querySelector('.random-value-text.active');
+  if (active_p) {
+    active_p.classList.remove('active');
+    active_p.style.color = '';
+  }
+  li[value]?.classList.add('active');
+  //=================получаем id і посилаємо шукати наш обжект
+  getCharacter(Number(li[value].dataset.id));
 
-function createNewCharacter(value) {
-  const { id, name, description, resourceURI } = value;
-  character.id = id;
-  character.name = name;
-  character.description = description;
-  character.resourceURI = resourceURI;
-  // console.log('character', character);
-  // console.log('listCharacters', listCharacters);
+  let newActive = document.querySelector('.random-item.active');
+  const p_new_active = newActive.querySelector('.random-value-text');
+  p_new_active.style.color = 'rgb(52, 56, 127)';
+
+  p_new_active.classList.add('active');
+
+  //перегрузити треба фото
 }
 
-function createSlider() {
-  let i = 0;
+function getCharacter(id) {
+  const result = listCharacters.filter(item => {
+    return item[0].id === id;
+    //return item.results[0].id === id;
+  });
+  newImg(result[0][0]);
+}
+export function startSlider(vel) {
+  let i = vel;
+
+  if (setIntervalId > 2) {
+    removeSetInterval();
+  }
   setIntervalId = setInterval(() => {
-    activeSlider(i);
+    active_Slider(i);
+
     i += 1;
     if (i === 5) {
       i = 0;
@@ -118,16 +145,14 @@ function createSlider() {
   }, 3500);
 }
 
-function activeSlider(value) {
-  let li = document.querySelectorAll('.random-item');
-  let activeLink = document.querySelector('.random-item.active');
-  if (activeLink) {
-    activeLink.classList.remove('active');
-  }
-  li[value].classList.add('active');
-  // console.log('qqqq', listCharacters[value][0]);
-  newImg(listCharacters[value][0]);
-  //перегрузити треба фото
+function createNewCharacter(data) {
+  // const { id, name, description, resourceURI } = data;
+  character.data = { ...data };
+
+  // character.id = id;
+  // character.name = name;
+  // character.description = description;
+  // character.resourceURI = resourceURI;
 }
 
 function createLi(value) {
@@ -142,11 +167,10 @@ function createLi(value) {
 }
 //
 function gerRandomCharacters(data) {
-  // console.log('DATA', data);
   return data.map(character => createLi(character.results)).join('');
 }
 
-async function startMain() {
+function startMain() {
   const promiseArray = [];
   for (let i = 0; i < 5; i += 1) {
     const res = new Promise(resolve => {
@@ -154,26 +178,24 @@ async function startMain() {
         limit: 1,
         offset: Math.round(Math.random() * 1561),
       });
-      // console.log('result', result);
+
       promiseArray.push(result);
     });
   }
-  // console.log('promiseArray', promiseArray);
+
   Promise.all(promiseArray)
     .then(data => {
-      // console.log('XXX', data);
       createMarkup(data);
     })
     .catch(er => console.log('ERR', er));
 }
 
 function createMarkup(data) {
-  //console.log('tytData', data[0].results[0]);
   createNewCharacter(data[0].results[0]);
   const markup = gerRandomCharacters(data);
-  // console.log('markup', markup);
+
   ulList.innerHTML = markup;
   newImg(listCharacters[0][0]);
-  createSlider();
+  startSlider(0);
 }
 startMain();

@@ -1,4 +1,6 @@
-export function createModal1() {
+import { startSlider } from './random-list';
+
+export function createModal1(data) {
   //e.preventDefault();
   document.body.style.overflow = 'hidden';
   // window.addEventListener('scroll', e => {
@@ -6,7 +8,7 @@ export function createModal1() {
   // });
   const body = document.body;
 
-  const modalForm = modal1();
+  const modalForm = modal1(data);
 
   body.insertAdjacentHTML('afterbegin', modalForm);
 
@@ -15,8 +17,16 @@ export function createModal1() {
   const close_btn = document.querySelector('.close-modal-btn');
   close_btn.addEventListener('click', closeModal);
 }
-
-function modal1() {
+//`url(${value.thumbnail.path}.${value.thumbnail.extension})`;
+function modal1(data) {
+  const comics = data.comics.items;
+  let img_Url;
+  const events = data.events.items;
+  console.log(events);
+  if (events.length >= 1) {
+    console.log('OK');
+    img_Url = events[0].resourceURI;
+  }
   return `
    <div class="bacground-modal">
   <section class="modal-window">
@@ -28,7 +38,7 @@ function modal1() {
       <div class="img-info">
         <img
           class="img-modal"
-          src="../images/remove_img/modal1-img.jpg"
+          src="${data.thumbnail.path}.${data.thumbnail.extension}"
           alt="amg"
           width="295"
            height= "387";
@@ -38,7 +48,7 @@ function modal1() {
           <li>
             <img
               class="img-list-item"
-              src="../images/remove_img/modal1.jpg"
+              src="${img_Url}.jpg"
               alt="img"
               width="80"
             />
@@ -46,7 +56,7 @@ function modal1() {
           <li>
             <img
               class="img-list-item"
-              src="../images/remove_img/modal2.jpg"
+              src="./images/remove_img/modal2.jpg"
               alt="img"
               width="80"
             />
@@ -54,7 +64,7 @@ function modal1() {
           <li>
             <img
               class="img-list-item"
-              src="../images/remove_img/modal3.jpg"
+              src="./images/remove_img/modal3.jpg"
               alt="img"
               width="80"
             />
@@ -79,7 +89,7 @@ function modal1() {
       <div class="black-widow-card">
         <img
           class="img-list-item-card"
-          src="../images/remove_img/card1.jpg"
+          src="./images/remove_img/card1.jpg"
           alt="img"
           width="263"
         />
@@ -93,7 +103,7 @@ function modal1() {
       <div class="black-widow-card">
         <img
           class="img-list-item-card"
-          src="../images/remove_img/card2.jpg"
+          src="./images/remove_img/card2.jpg"
           alt="img"
           width="263"
         />
@@ -107,7 +117,7 @@ function modal1() {
       <div class="black-widow-card">
         <img
           class="img-list-item-card"
-          src="../images/remove_img/card3.jpg"
+          src="./images/remove_img/card3.jpg"
           alt="img"
           width="263"
         />
@@ -129,13 +139,13 @@ function modal1() {
 }
 
 function closeModal(e) {
-  console.log('e.target ', e.target.classList.value);
   if (
     e.target.classList.value === 'bacground-modal' ||
     e.target.classList.value === 'close-modal-btn'
   ) {
     const modal1 = document.querySelector('.bacground-modal');
     document.body.style.overflow = '';
+    startSlider(0);
     modal1?.remove();
   }
 }
