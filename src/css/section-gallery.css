@@ -7,6 +7,7 @@
   overflow: hidden;
   margin-bottom: 40px;
   width: 335px;
+  padding-bottom: 4px;
 }
 
 .gallery-image {
@@ -16,22 +17,35 @@
   height: 445px;
 }
 
+.hero-name {
+  /* color: var(--main-color); */
+  font-weight: 500;
+  font-size: 18px;
+  line-height: calc(24 / 18);
+  letter-spacing: -0.02em;
+}
+
 @media screen and (min-width: 768px) {
   .gallery {
     display: flex;
     flex-wrap: wrap;
-    gap: 32px;
+    gap: 28px 32px;
   }
 
   .gallery-item {
     margin-bottom: 0;
     width: 336px;
   }
+
+  .hero-name {
+    font-size: 24px;
+    line-height: calc(24 / 24);
+  }
 }
 
 @media screen and (min-width: 1200px) {
   .gallery {
-    gap: 64px 16px;
+    gap: 60px 16px;
   }
   .gallery-item {
     width: 332px;
