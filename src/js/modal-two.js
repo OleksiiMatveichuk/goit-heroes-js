@@ -32,19 +32,29 @@ function modalTwo(arr) {
         </svg>
       </button>
       <div class="mod-two-first-gallery">
-        <img class="mod-two-first-img" src="${arr[0].thumbnail.path}.${arr[0].thumbnail.extension}" alt="" />
+        <img class="mod-two-first-img" src="${arr[0].thumbnail.path}.${
+    arr[0].thumbnail.extension
+  }" alt="" />
         <ul class="mod-two-gallery">
           <li class="mod-two-gallery-item">
-            <img class="mod-two-gallery-img" src="${arr[0].images[1].path}.${arr[0].images[1].extension}" alt="" />
+            <img class="mod-two-gallery-img" src="${arr[0].images[1].path}.${
+    arr[0].images[1].extension
+  }" alt="" />
           </li>
           <li class="mod-two-gallery-item">
-            <img class="mod-two-gallery-img" src="${arr[0].images[2].path}.${arr[0].images[2].extension}" alt="" />
+            <img class="mod-two-gallery-img" src="${arr[0].images[2].path}.${
+    arr[0].images[2].extension
+  }" alt="" />
           </li>
           <li class="mod-two-gallery-item">
-            <img class="mod-two-gallery-img" src="${arr[0].images[3].path}.${arr[0].images[3].extension}" alt="" />
+            <img class="mod-two-gallery-img" src="${arr[0].images[3].path}.${
+    arr[0].images[3].extension
+  }" alt="" />
           </li>
           <li class="mod-two-gallery-item">
-            <img class="mod-two-gallery-img" src="${arr[0].images[4].path}.${arr[0].images[4].extension}" alt="" />
+            <img class="mod-two-gallery-img" src="${arr[0].images[4].path}.${
+    arr[0].images[4].extension
+  }" alt="" />
           </li>
         </ul>
       </div>
@@ -57,21 +67,15 @@ function modalTwo(arr) {
             <h3>December 07, 2022</h3>
           </div>
         </div>
-        <p class="mod-two-text">
-          In the most shocking issue of Chip Zdarsky and Marco Checchetto s
-          landmark DAREDEVIL epic yet, Elektra finds herself at the center of an
-          international incident that threatens to put her, Matt Murdock and
-          everything they hold dear on a collision course with the Avengers -
-          after which, things may never be the same!
-        </p>
+        <p class="mod-two-text">${arr[0].description}</p>
         <ul class="modal-two-info">
           <li class="mod-two-info-item">
             <h3 class="modal-two-info-header">Format</h3>
-            <p>Comic</p>
+            <p>${arr[0].format}</p>
           </li>
           <li class="mod-two-info-item">
             <h3 class="modal-two-info-header">Year released</h3>
-            <p>${arr[0].dates[0].date}</p>
+            <p>${arr[0].dates[0].date.slice(0, 4)}</p>
           </li>
           <li class="mod-two-info-item">
             <h3 class="modal-two-info-header">Pages</h3>
@@ -86,7 +90,9 @@ function modalTwo(arr) {
         <div class="mod-two-creator">
           <img class="mod-two-img-creator" src="../images/remove_img/malenkoe.png" alt="" />
           <div>
-            <h3 class="mod-two-creator-job-title">${arr[0].creators.items[0].role}</h3>
+            <h3 class="mod-two-creator-job-title">${
+              arr[0].creators.items[0].role
+            }</h3>
             <p>${arr[0].creators.items[0].name}</p>
           </div>
         </div>
