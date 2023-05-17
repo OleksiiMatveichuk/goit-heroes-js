@@ -1,11 +1,11 @@
 // getCharactersByComicsId
 import { api } from './low-level/api';
 
-export async function createModalTwo() {
+export async function createModalTwo(value) {
   document.body.style.overflow = 'hidden';
-
+  console.log(value);
   const id = 37421;
-
+  //const id = value;
   const API = await api.getComicById({ comicId: id });
   console.log('API :>> ', API);
 
@@ -17,9 +17,9 @@ export async function createModalTwo() {
   const closeModal = document.querySelector('.bacground-mod-two');
   const closeBtn = document.querySelector('.mod-two-buttom');
 
-  closeModal.addEventListener('click', closeModal);
+  closeModal.addEventListener('click', closeModal_Window);
 
-  closeBtn.addEventListener('click', closeModal);
+  closeBtn.addEventListener('click', closeModal_Window);
 }
 
 function modalTwo(arr) {
@@ -137,14 +137,16 @@ function modalTwo(arr) {
     `;
 }
 
-function closeModal(e) {
+function closeModal_Window(e) {
+  console.log(e.target);
   if (
     e.target.classList.value === 'bacground-mod-two' ||
-    e.target.classList.value === 'mod-two-buttom'
+    e.target.classList.value === 'mod-two-buttom' ||
+    e.target.tagName === 'svg'
   ) {
     const modal = document.querySelector('.bacground-mod-two');
     document.body.style.overflow = '';
-    startSlider(0);
+    //startSlider(0);
     modal?.remove();
   }
 }

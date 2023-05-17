@@ -1,11 +1,16 @@
 import { startSlider } from './random-list';
 import { api } from './low-level/api';
+import { createModalTwo } from './modal-two';
 
 export async function createModal1(data) {
   const body = document.body;
   document.body.style.overflow = 'hidden';
-
+  console.log(data);
   const { id, name, description, modified } = data;
+
+  // const new_data = new Date(modified);
+  // console.log('DATE ', new_data);
+
   //=========================================
   const tempData = await getCharacterDataId(id);
 
@@ -39,24 +44,35 @@ export async function createModal1(data) {
 }
 
 function clickModalImg(e) {
-  console.log(e.target.tagName);
   if (e.target.classList.value !== 'img-list-item-card') {
     return;
   }
   if (e.target.tagName === 'use') {
     closeModal();
   }
+  // console.log(e.target.closest('li').dataset.id);
+  createModalTwo(Number(e.target.closest('li').dataset.id));
 }
 
 async function getCharacterDataId(id) {
   const data = await api.getCharactersById({ characterId: id });
   return data;
 }
+function getFormatDate(data) {
+  let d = new Date(data);
+  let ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+  let mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+  let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+  return `${mo} ${da}, ${ye}`;
+}
 
 function createNewMarcup(data) {
   const markup = data
     .map(item => {
-      const { id, thumbnail, title } = item;
+      const { id, thumbnail, title, creators } = item;
+      const name = creators.items[0]?.name
+        ? creators.items[0].name
+        : 'Wiktor Djoba';
       return `
    <li class="black-widow-list-item" data-id=${id}>
    <a href="#" class="black-widow-handle">
@@ -67,7 +83,7 @@ function createNewMarcup(data) {
         />
         <div class="black-widow-card-footer">
           <h4 class="black-widow-card-text">${title}</h4>
-          <p class="black-widow-card-description">Kelly Thompson</p>
+          <p class="black-widow-card-description">${name}</p>
         </div>
       </div></a>
     </li>
@@ -125,10 +141,11 @@ async function getComicsArray(data) {
 // }
 
 function reternCharacterInfo(name, description, modified) {
+  const date = getFormatDate(modified);
   return `
   <div class="black-widow-info">
     <h4 class="black-widow-info-text">${name}</h4>
-    <p class="black-widow-info-data">${modified}</p>
+    <p class="black-widow-info-data">${date}</p>
   </div>
    <p class="black-widow-content">
    ${description}
