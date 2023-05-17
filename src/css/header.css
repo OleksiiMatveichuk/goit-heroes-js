@@ -8,7 +8,10 @@
   left: 0px;
   z-index: 1000;
 }
-
+.logo-svg {
+  width: 98px;
+  height: 15px;
+}
 .header-items {
   display: flex;
   align-items: center;
