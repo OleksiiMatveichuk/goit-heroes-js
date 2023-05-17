@@ -1,20 +1,18 @@
 .bacground-mod-two {
-    background: rgba(255, 255, 255, 0.096);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.123);
     position: fixed;
-    width: 100%;
-    height: 100vh;
-    max-height: 100vh;
-    cursor: pointer;
+    width: 100vw;
+    min-height: 100%;
+    /* max-height: 100vh; */
+    /* cursor: pointer; */
     overflow: scroll;
 
     z-index: 2;
 }
-.modal-two h3 {
-    font-weight: 400;
-    font-size: 10px;
-    line-height: 1.2;
-    color: rgba(250, 250, 250, 0.5);
-}
+
 .modal-two {
     position: absolute;
     /* box-sizing: border-box; */
@@ -26,18 +24,25 @@
     padding: 40px 20px 64px;
     /* height: 584px; */
     /* max-height: 100vh; */
-    position: absolute;
+    /* position: absolute; */
     top: 50%;
     left: 50%;
     /* bottom: 50%; */
-    transform: translate(-50%, -15%);
-    margin: 0 auto;
-    overflow-y: auto;
+    transform: translate(-50%, 0%);
+    /* margin: 0 auto; */
+    /* overflow-y: auto; */
     z-index: 2;
+}
+.modal-two h3 {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 1.2;
+    color: rgba(250, 250, 250, 0.5);
 }
 .mod-two-buttom {
     width: 19px;
     height: 19px;
+    border-radius: 5px;
     /* border-radius: 50%;
     border: 1px solid rgba(0, 0, 0, 0.1); */
     background-color: inherit;
@@ -53,12 +58,12 @@
 }
 .mod-two-buttom:hover,
 .mod-two-buttom:focus {
-    background-color: #05f13c;
+    background-color: rgba(23, 23, 23, 1);
 
 }
 .mod-two-close {
     
-    fill: #f10a0a;
+    fill: #fafafa;
     /* transition: fill 250ms var(--cubic); */
 }
 .mod-two-swg-close{
