@@ -44,53 +44,33 @@ async function inputHandler() {
 const container = document.querySelector('.container');
 let windowWidth = window.getComputedStyle(container).width;
 let itemsOnPage = null;
+// ВИЗНАЧАЄМО ШИРИНУ ВЬЮПОРТУ
+// debugger
+switch (windowWidth) {
+  case '375px':
+    itemsOnPage = 5;
+    break;
+  case '100%':
+    itemsOnPage = 5;
+    break;
+  case '1440px':
+    itemsOnPage = 16;
+    break;
 
-function updateItemsOnPage() {
-    if (window.location.pathname.includes('page-2.html')) {
-        const galleryList = document.querySelector('.gallery');
-        // ВИЗНАЧАЄМО ШИРИНУ ВЬЮПОРТУ
-        // debugger
-        switch (windowWidth) {
-            case '375px':
-                itemsOnPage = 4;
-                break;
-            case '100%':
-                itemsOnPage = 4;
-                break;
-            case '1440px':
-                itemsOnPage = 16;
-                break;
-
-            default:
-                itemsOnPage = 8;
-                break;
-        }
-        galleryList.setAttribute("data-limits", itemsOnPage)
-    }
-
-
+  default:
+    itemsOnPage = 8;
+    break;
 }
-updateItemsOnPage();
-// Attach the function as an event listener to the window's resize event
-window.addEventListener('resize', updateItemsOnPage);
 
 window.addEventListener('load', async () => {
-
-    if (window.location.pathname.includes('page-2.html')) {
-        updateItemsOnPage();
-        const savedValue = localStorage.getItem('searchValue');
-        if (savedValue) {
-            // Если значение сохранено, вставляем его в инпут
-            const searchInput = document.querySelector('.header-input');
-            searchInput.value = savedValue;
-            const formStartWith = document.querySelector('#name')
-            formStartWith.value = savedValue
-        }
-        const galleryList = document.querySelector('.gallery');
-        galleryList.setAttribute("data-limits", itemsOnPage)
-        galleryList.innerHTML = '';
-        galleryList.innerHTML = await createGallery(savedValue || '');
-
+  if (window.location.pathname.includes('page-2.html')) {
+    const savedValue = localStorage.getItem('searchValue');
+    if (savedValue) {
+      // Если значение сохранено, вставляем его в инпут
+      const searchInput = document.querySelector('.header-input');
+      searchInput.value = savedValue;
+      const formStartWith = document.querySelector('#name');
+      formStartWith.value = savedValue;
     }
     const galleryList = document.querySelector('.gallery');
     galleryList.setAttribute('data-limits', itemsOnPage);
