@@ -212,4 +212,8 @@
   .img-list-item-card {
     width: 174px;
   }
+  .black-widow-content {
+    height: 55px;
+    overflow: hidden;
+  }
 }

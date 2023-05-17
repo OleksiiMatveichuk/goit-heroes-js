@@ -1,11 +1,15 @@
 import debounce from 'lodash.debounce';
 
+import { createModalOn } from './createModalOn';
+//import { createModalTwo } from './modal-two';
+
 const form = document.querySelector('.form');
 let comic = document.querySelector(`[name="comic"]`);
 let name = document.querySelector(`[name="name"]`);
 let order = document.querySelector(`[name="order"]`);
 let date = document.querySelector(`[name="date"]`);
 const galleryList = document.querySelector('.gallery');
+galleryList.addEventListener('click', clickCard);
 
 const searchInput = document.querySelector('.header-input');
 searchInput.addEventListener('input', debounce(inputHandler, 500));
@@ -109,4 +113,12 @@ btn.addEventListener("click", async (event) => {
     // localStorage.removeItem('searchValue');
     // createFilterGallery()
 }) */
+}
+
+function clickCard(e) {
+  if (e.target.classList.value === 'gallery-image') {
+    const id = Number(e.target.closest('li').dataset.id);
+
+    createModalOn(id);
+  }
 }
