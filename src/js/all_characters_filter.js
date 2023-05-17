@@ -41,16 +41,20 @@ async function inputHandler() {
 // ШУКАЮ ШИРИНУ КОНТЕЙНЕРА
 const container = document.querySelector('.container');
 let windowWidth = window.getComputedStyle(container).width;
+
 let itemsOnPage = null;
 let paginationTotal = null;
 // ВИЗНАЧАЄМО ШИРИНУ ВЬЮПОРТУ
 // debugger
+if (parseInt(windowWidth, 10) < 375) windowWidth = '100'
+
+// console.log("ВИЗНАЧАЄМО ШИРИНУ ВЬЮПОРТУ = ", windowWidth)
 switch (windowWidth) {
   case '375px':
-    itemsOnPage = 5;
+    itemsOnPage = 4;
     break;
-  case '100%':
-    itemsOnPage = 5;
+  case '100':
+    itemsOnPage = 4;
     break;
   case '1440px':
     itemsOnPage = 16;
@@ -93,6 +97,8 @@ async function createFilterGallery() {
 
 form.addEventListener('change', async event => {
   event.preventDefault();
+  localStorage.setItem('searchValue', name.value);
+  searchInput.value = name.value
   galleryList.innerHTML = '';
   galleryList.innerHTML = await createFilterGallery();
 });
