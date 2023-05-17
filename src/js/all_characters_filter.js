@@ -41,28 +41,35 @@ async function inputHandler() {
 
 
 // ШУКАЮ ШИРИНУ КОНТЕЙНЕРА
-const container = document.querySelector(".container")
-let windowWidth = window.getComputedStyle(container).width;
-let itemsOnPage = null;
-let paginationTotal = null;
+// const container = document.querySelector(".container")
+// let windowWidth = window.getComputedStyle(container).width;
+// let itemsOnPage = null;
+// let paginationTotal = null;
 // ВИЗНАЧАЄМО ШИРИНУ ВЬЮПОРТУ
 // debugger
-switch (windowWidth) {
-    case '375px':
-        itemsOnPage = 5;
-        break;
-    case '100%':
-        itemsOnPage = 5;
-        break;
-    case '1440px':
-        itemsOnPage = 16;
-        break;
+// switch (windowWidth) {
+//     case '375px':
+//         itemsOnPage = 5;
+//         break;
+//     case '100%':
+//         itemsOnPage = 5;
+//         break;
+//     case '1440px':
+//         itemsOnPage = 16;
+//         break;
 
-    default:
-        itemsOnPage = 8;
-        break;
-}
-galleryList.setAttribute("data-limits", itemsOnPage)
+//     default:
+//         itemsOnPage = 8;
+//         break;
+// }
+// galleryList.setAttribute("data-limits", itemsOnPage)
+// async function logg() {
+//     console.log("-------------")
+//     console.log(galleryList.dataset.total)
+//     console.log(galleryList.dataset.limits)
+//     console.log(galleryList.dataset.offset)
+//     console.log(galleryList.dataset.total)
+// }
 
 import { galleryItem, renderGallery } from "./get-gallery-list"
 import { api } from "./low-level/api"
@@ -72,6 +79,7 @@ async function createFilterGallery() {
     try {
         const orderText = order.value.toLowerCase()
         const offsetValue = galleryList.dataset.offset
+        const itemsOnPage = galleryList.dataset.limit
         const data = await api.getAllCharacters({
             nameStartsWith: name.value,
             limit: itemsOnPage,
@@ -83,6 +91,7 @@ async function createFilterGallery() {
         const results = data.results
         galleryList.setAttribute("data-total", data.total)
         galleryList.setAttribute("data-offset", data.offset)
+
         if (results.length === 0) {
             console.log("NOT FOUND!!!!")
             errorGallery()
