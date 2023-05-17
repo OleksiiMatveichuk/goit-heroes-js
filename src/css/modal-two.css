@@ -46,9 +46,10 @@
     justify-content: center;
     align-items: center;
     position: absolute;
+    border: none;
     top: 19px;
     right: 19px;
-    transition: background-color 250ms var(--cubic), color 250ms var(--cubic);
+    /* transition: background-color 250ms var(--cubic); */
 }
 .mod-two-buttom:hover,
 .mod-two-buttom:focus {
@@ -56,8 +57,13 @@
 
 }
 .mod-two-close {
+    
     fill: #f10a0a;
-    transition: fill 250ms var(--cubic);
+    /* transition: fill 250ms var(--cubic); */
+}
+.mod-two-swg-close{
+width: 14px;
+    height: 14px;
 }
 .mod-two-first-img {
     width: 295px;
