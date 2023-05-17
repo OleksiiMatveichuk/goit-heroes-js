@@ -150,3 +150,5 @@ function closeModal_Window(e) {
     modal?.remove();
   }
 }
+
+function createLiCharacters() {}
