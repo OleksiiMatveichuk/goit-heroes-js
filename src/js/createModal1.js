@@ -4,20 +4,18 @@ import { api } from './low-level/api';
 export async function createModal1(data) {
   const body = document.body;
   document.body.style.overflow = 'hidden';
-  const { id, name, description, modified } = data;
 
+  const { id, name, description, modified } = data;
+  //=========================================
   const tempData = await getCharacterDataId(id);
-  //======================
 
   const comicsArray = await getComicsArray(tempData);
 
-  console.log('comicsArray', comicsArray);
-  //=================
-  const markups = await createMarcup(tempData);
+  const marKup = await Promise.all(comicsArray).then(data => {
+    const marcup = createNewMarcup(data);
 
-  const result = markups.join('');
-
-  console.log('RESALT', result);
+    return marcup;
+  });
 
   const modalForm = modal1(data);
   body.insertAdjacentHTML('afterbegin', modalForm);
@@ -34,23 +32,63 @@ export async function createModal1(data) {
   close_btn.addEventListener('click', closeModal);
 
   const black_widow_list = document.querySelector('.black-widow-list');
-  black_widow_list.insertAdjacentHTML('afterbegin', result);
+  black_widow_list.insertAdjacentHTML('afterbegin', marKup);
+
+  const modal_window = document.querySelector('.modal-window');
+  modal_window.addEventListener('click', clickModalImg);
 }
-//PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
-//PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+
+function clickModalImg(e) {
+  console.log(e.target.tagName);
+  if (e.target.classList.value !== 'img-list-item-card') {
+    return;
+  }
+  if (e.target.tagName === 'use') {
+    closeModal();
+  }
+}
+
 async function getCharacterDataId(id) {
   const data = await api.getCharactersById({ characterId: id });
   return data;
+}
+
+function createNewMarcup(data) {
+  const markup = data
+    .map(item => {
+      const { id, thumbnail, title } = item;
+      return `
+   <li class="black-widow-list-item" data-id=${id}>
+   <a href="#" class="black-widow-handle">
+      <div class="black-widow-card">
+        <img  width ='263'height= '263'
+          class="img-list-item-card"
+          src="${thumbnail.path}.${thumbnail.extension}"
+        />
+        <div class="black-widow-card-footer">
+          <h4 class="black-widow-card-text">${title}</h4>
+          <p class="black-widow-card-description">Kelly Thompson</p>
+        </div>
+      </div></a>
+    </li>
+  `;
+    })
+    .join('');
+  return markup;
 }
 
 async function getComic(data) {
   var b = data.resourceURI.split('/');
   const idComic = Number(b[b.length - 1]);
   const oneComic = await api.getComicById({ comicId: idComic });
-  console.log('oneComic', oneComic);
-  return oneComic;
-}
 
+  return oneComic[0];
+}
+// const dataArray = [];
+
+function addComiks(data, res) {
+  return data.push(res);
+}
 async function getComicsArray(data) {
   const { items } = data[0].comics;
   const res = items.filter((item, i) => {
@@ -60,35 +98,30 @@ async function getComicsArray(data) {
   });
 
   const dat = res.map(async data => {
-    console.log('FFFFFFFFFFFFFFFFF', await getComic(data));
-    return await getComic(data);
+    const date = await getComic(data);
+
+    return date;
   });
-  console.log('DATDATDAT_________', dat);
+
   return dat;
 }
 
-async function createMarcup(data) {
-  console.log('data data ', data);
-  const { items } = data[0].comics;
-  const markup = [];
-  items.forEach(async (item, i) => {
-    if (i < 3) {
-      // console.log(item);
-      let mar = await createComics(item);
-      console.log('MAR', mar);
-      markup.push(mar);
-    }
-  });
-  console.log('MARKUP+', markup);
-  return markup;
-}
+// function getDat(data) {
+//   return data;
+// }
 
-//`url(${value.thumbnail.path}.${value.thumbnail.extension})`;
-// function toPaintCard(mapkup) {
-//   console.log('MARK++++++++++', mapkup.join(''));
-//   const black_widow_list = document.querySelector('.black-widow-list');
-//   console.log(black_widow_list);
-//   black_widow_list.insertAdjacentHTML('afterbegin', mapkup.join(''));
+// async function createMarcup(data) {
+//   const { items } = data[0].comics;
+//   const markup = [];
+//   items.forEach(async (item, i) => {
+//     if (i < 3) {
+//       let mar = await createComics(item);
+
+//       markup.push(mar);
+//     }
+//   });
+
+//   return markup;
 // }
 
 function reternCharacterInfo(name, description, modified) {
@@ -111,7 +144,7 @@ async function createComics(data) {
 
   // console.log('COM-RETERN=', comic);
   const { id, thumbnail, title } = comic[0];
-  console.log('thumbnail', thumbnail);
+  //console.log('thumbnail', thumbnail);
   return `
    <li class="black-widow-list-item" data-id=${id}>
       <div class="black-widow-card">
@@ -206,33 +239,3 @@ function closeModal(e) {
     modal1?.remove();
   }
 }
-
-// // ======================
-//  <li class="black-widow-list-item">
-//       <div class="black-widow-card">
-//         <img
-//           class="img-list-item-card"
-//           src="./images/remove_img/card2.jpg"
-//           alt="img"
-//           width="263"
-//         />
-//         <div class="black-widow-card-footer">
-//           <h4 class="black-widow-card-text">Black Widow (2020)</h4>
-//           <p class="black-widow-card-description">Kelly Thompson</p>
-//         </div>
-//       </div>
-//     </li>
-//     <li class="black-widow-list-item">
-//       <div class="black-widow-card">
-//         <img
-//           class="img-list-item-card"
-//           src="./images/remove_img/card3.jpg"
-//           alt="img"
-//           width="263"
-//         />
-//         <div class="black-widow-card-footer">
-//           <h4 class="black-widow-card-text">Black Widow (2020)</h4>
-//           <p class="black-widow-card-description">Kelly Thompson</p>
-//         </div>
-//       </div>
-//     </li>
