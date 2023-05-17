@@ -1,3 +1,7 @@
+.pagination {
+  padding-top: 40px;
+}
+
 .pagin_List {
   display: flex;
   justify-content: center;

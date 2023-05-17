@@ -1,25 +1,28 @@
-// import './src/css/pagination.css';
+import '../css/pagination.css';
 import { createFilterGallery } from './all_characters_filter';
 
 const galleryList = document.querySelector('.gallery');
 console.log('galleryList :>> ', galleryList.attributes);
 
 const limits = galleryList.dataset.limits;
-const offset = galleryList.dataset['offset'];
+const offset = galleryList.dataset.offset;
 const total = galleryList.dataset.total;
 console.log('limits:>> ', limits);
 console.log('offset :>> ', offset);
 console.log('total :>> ', total);
 console.log('galleryList.dataset :>> ', galleryList.dataset);
+console.log(galleryList.getDataAttr);
+const params = Array.from(galleryList.dataset);
+console.log('galleryList.length :>> ', galleryList.length);
 
 const refs = {
-  paginationList: document.querySelector('.paginList'),
+  sectionFilter: document.querySelector('.section-filter'),
 };
 
-refs.paginationList.addEventListener('click', requestHandler);
+// refs.paginationList.addEventListener('click', requestHandler);
 
 export function createPaginationList(total, limit, offset) {
-  paginationList.innerHTML = '';
+  // paginationList.innerHTML = '';
   if (total < 1) {
     return;
   }
@@ -31,9 +34,12 @@ export function createPaginationList(total, limit, offset) {
     li.textContent = i;
     arr.push(li);
   }
-  paginationList.append(...arr);
+  galleryList.append(...arr);
+  console.log('pages :>> ', pages);
+  console.log('activePage :>> ', activePage);
 }
 
+createPaginationList(220, 8, 40);
 function handlePagination(target) {
   if ((target.localName = 'li')) {
     const offset = target.textContent * limit;
@@ -43,13 +49,7 @@ function handlePagination(target) {
   }
 }
 
-const saveBtn = document.querySelector('.editor button[data-action="save"]');
-const closeBtn = document.querySelector('.editor button[data-action="close"]');
-
-console.log(saveBtn.dataset.action); //save
-console.log(closeBtn.dataset.action); //close
-
-// const dishes = document.querySelectorAll('.dishes > li');
-// dishes.forEach(dish => {
-//   console.log(dish.dataset.id);
-// });
+// export const key = {
+//   publickey: '3e8547eb41b42a9a2a1ebdd17f3eee37',
+//   privatekey: '1eb0a59387ba717430ceb4d1fa44d25acc6fdeb0',
+// };
