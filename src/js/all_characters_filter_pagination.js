@@ -66,7 +66,7 @@ import { galleryItem, renderGallery } from './get-gallery-list';
 import { api } from './low-level/api';
 import { errorGallery } from './error-gallery';
 console.log('Run all_charaster');
-async function createFilterGallery() {
+export async function createFilterGallery() {
   try {
     const orderText = order.value.toLowerCase();
     const offsetValue = galleryList.dataset.offset;
@@ -83,7 +83,8 @@ async function createFilterGallery() {
     galleryList.setAttribute('data-offset', data.offset);
     if (results.length === 0) {
       console.log('NOT FOUND!!!!');
-      return errorGallery();
+      errorGallery();
+      return;
     }
     return renderGallery(results);
   } catch (e) {

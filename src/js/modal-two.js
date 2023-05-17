@@ -27,7 +27,7 @@ function modalTwo(arr) {
   <div class="bacground-mod-two">
     <div class="modal-two">
       <button class="mod-two-buttom" type="button" data-modal-close>
-        <svg width="14" height="14">
+        <svg class='mod-two-swg-close' width="14" height="14">
           <use class="mod-two-close" href="./images/symbol-defs.svg#icon-close"></use>
         </svg>
       </button>
