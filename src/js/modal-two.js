@@ -9,14 +9,15 @@ export async function createModalTwo(value) {
   const API = await api.getComicById({ comicId: id });
   console.log('API :>> ', API);
 
+  const itemComics = await createLiComics(API);
+
+  const arrCreators = await api.getCreatorsByComicsId({ comicId: id });
+  const itemCreators = await createLiCreators(arrCreators, API);
+
   const arrCharacters = await api.getCharactersByComicsId({ comicId: id });
   const itemCharacters = await createLiCharacters(arrCharacters);
 
-  const arrCreators = await api.getCreatorsByComicsId({ comicId: id });
-  console.log('arrCreators :>> ', arrCreators);
-  const itemCreators = await createLiCreators(arrCreators, API);
-
-  const modal = await modalTwo(API, itemCharacters, itemCreators);
+  const modal = await modalTwo(API, itemCharacters, itemCreators, itemComics);
   const body = document.body;
 
   body.insertAdjacentHTML('afterbegin', modal);
@@ -27,7 +28,7 @@ export async function createModalTwo(value) {
   closeBtn.addEventListener('click', closeModal_Window);
 }
 
-async function modalTwo(arr, characters, creators) {
+async function modalTwo(arr, characters, creators, comics) {
   return `
   <div class="bacground-mod-two">
     <div class="modal-two">
@@ -41,26 +42,7 @@ async function modalTwo(arr, characters, creators) {
     arr[0].thumbnail.extension
   }" alt="" />
         <ul class="mod-two-gallery">
-          <li class="mod-two-gallery-item">
-            <img class="mod-two-gallery-img" src="${arr[0].images[1].path}.${
-    arr[0].images[1].extension
-  }" alt="" />
-          </li>
-          <li class="mod-two-gallery-item">
-            <img class="mod-two-gallery-img" src="${arr[0].images[2].path}.${
-    arr[0].images[2].extension
-  }" alt="" />
-          </li>
-          <li class="mod-two-gallery-item">
-            <img class="mod-two-gallery-img" src="${arr[0].images[3].path}.${
-    arr[0].images[3].extension
-  }" alt="" />
-          </li>
-          <li class="mod-two-gallery-item">
-            <img class="mod-two-gallery-img" src="${arr[0].images[4].path}.${
-    arr[0].images[4].extension
-  }" alt="" />
-          </li>
+          ${comics}
         </ul>
       </div>
       <div class="modal-two-setion-two">
@@ -174,15 +156,37 @@ async function createLiCreators(arr, comics) {
           </li>`
   );
   return await lishka.join('');
-
-  const name = '${el.fullName}';
-  const img = '${el.thumbnail.path}.${el.thumbnail.extension}';
 }
 
-// const reserv = `<li class="mod-two-creator">
-//             <img class="mod-two-img-creator" src="../images/remove_img/malenkoe.png" alt="" />
-//             <div>
-//               <h3 class="mod-two-creator-job-title">${arr[0].creators.items[0].role}</h3>
-//               <p>${arr[0].creators.items[0].name}</p>
-//             </div>
+async function createLiComics(arr) {
+  const comics = arr[0].images;
+  console.log('comics :>> ', comics);
+  if (!comics.length) {
+    return `<li class="mod-two-gallery-item">
+            <img class="mod-two-gallery-img" src="${arr[0].thumbnail.path}.${arr[0].thumbnail.extension}" alt="" />
+          </li>`;
+  }
+
+  const lishka = comics.map(
+    el =>
+      `<li class="mod-two-gallery-item">
+            <img class="mod-two-gallery-img" src="${el.path}.${el.extension}" alt="" />
+          </li>
+    `
+  );
+  console.log('lishka comics :>> ', lishka);
+  return await lishka.join('');
+}
+
+// const reserv = `<li class="mod-two-gallery-item">
+//             <img class="mod-two-gallery-img" src="${arr[0].images[1].path}.${arr[0].images[1].extension}" alt="" />
+//           </li>
+//           <li class="mod-two-gallery-item">
+//             <img class="mod-two-gallery-img" src="${arr[0].images[2].path}.${arr[0].images[2].extension}" alt="" />
+//           </li>
+//           <li class="mod-two-gallery-item">
+//             <img class="mod-two-gallery-img" src="${arr[0].images[3].path}.${arr[0].images[3].extension}" alt="" />
+//           </li>
+//           <li class="mod-two-gallery-item">
+//             <img class="mod-two-gallery-img" src="${arr[0].images[4].path}.${arr[0].images[4].extension}" alt="" />
 //           </li>`;
