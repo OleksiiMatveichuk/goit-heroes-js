@@ -9,20 +9,25 @@ export async function createModalTwo(value) {
   const API = await api.getComicById({ comicId: id });
   console.log('API :>> ', API);
 
+  const arrCharacters = await api.getCharactersByComicsId({ comicId: id });
+  const itemCharacters = await createLiCharacters(arrCharacters);
+
+  const arrCreators = await api.getCreatorsByComicsId({ comicId: id });
+  console.log('arrCreators :>> ', arrCreators);
+  const itemCreators = await createLiCreators(arrCreators, API);
+
+  const modal = await modalTwo(API, itemCharacters, itemCreators);
   const body = document.body;
-  const modal = modalTwo(API);
 
   body.insertAdjacentHTML('afterbegin', modal);
 
   const closeModal = document.querySelector('.bacground-mod-two');
   const closeBtn = document.querySelector('.mod-two-buttom');
-
   closeModal.addEventListener('click', closeModal_Window);
-
   closeBtn.addEventListener('click', closeModal_Window);
 }
 
-function modalTwo(arr) {
+async function modalTwo(arr, characters, creators) {
   return `
   <div class="bacground-mod-two">
     <div class="modal-two">
@@ -87,49 +92,12 @@ function modalTwo(arr) {
           </li>
         </ul>
         <h2 class="mod-two-creator-header">Creator</h2>
-        <div class="mod-two-creator">
-          <img class="mod-two-img-creator" src="../images/remove_img/malenkoe.png" alt="" />
-          <div>
-            <h3 class="mod-two-creator-job-title">${
-              arr[0].creators.items[0].role
-            }</h3>
-            <p>${arr[0].creators.items[0].name}</p>
-          </div>
-        </div>
+        <ul class="mod-two-gallery-creators">
+        ${creators}
+        </ul>
         <h2 class="mod-two-charaters-header">Characters</h2>
         <ul class="mod-two-charaters-gallery">
-          <li class="modal-two-characters">
-            <img
-              class="mod-two-charaters-img"
-              src="../images/remove_img/malenkoe.png"
-              alt=""
-            />
-            <p>${arr[0].characters.items[0].name}</p>
-          </li>
-          <li class="modal-two-characters">
-            <img
-              class="mod-two-charaters-img"
-              src="../images/remove_img/malenkoe.png"
-              alt=""
-            />
-            <p>${arr[0].characters.items[1].name}</p>
-          </li>
-          <li class="modal-two-characters">
-            <img
-              class="mod-two-charaters-img"
-              src="../images/remove_img/malenkoe.png"
-              alt=""
-            />
-            <p>${arr[0].characters.items[2].name}</p>
-          </li>
-          <li class="modal-two-characters">
-            <img
-              class="mod-two-charaters-img"
-              src="../images/remove_img/malenkoe.png"
-              alt=""
-            />
-            <p>${arr[0].characters.items[3].name}</p>
-          </li>
+        ${characters}
         </ul>
       </div>
     </div>
@@ -146,9 +114,75 @@ function closeModal_Window(e) {
   ) {
     const modal = document.querySelector('.bacground-mod-two');
     document.body.style.overflow = '';
-    //startSlider(0);
     modal?.remove();
   }
 }
 
-function createLiCharacters() {}
+async function createLiCharacters(arr) {
+  if (!arr.length) {
+    return `<li class="modal-two-characters">
+            <img
+              class="mod-two-charaters-img"
+              src="./images/remove_img/malenkoe.png"
+              alt=""
+            />
+            <p>Hero 1</p>
+          </li>
+          <li class="modal-two-characters">
+            <img
+              class="mod-two-charaters-img"
+              src="./images/remove_img/malenkoe.png"
+              alt=""
+            />
+            <p>Hero 2</p>
+          </li>`;
+  }
+
+  const lishka = await arr.map(
+    el =>
+      `<li class="modal-two-characters">
+            <img
+              class="mod-two-charaters-img"
+              src="${el.thumbnail.path}.${el.thumbnail.extension}"
+              alt=""
+            />
+            <p>${el.name}</p>
+          </li>`
+  );
+  return await lishka.join('');
+}
+
+async function createLiCreators(arr, comics) {
+  if (!arr.length) {
+    return `<li class="mod-two-creator">
+            <img class="mod-two-img-creator" src="./images/remove_img/malenkoe.png" alt="" />
+            <div>
+              <h3 class="mod-two-creator-job-title">Writer</h3>
+              <p>Creator name</p>
+            </div>
+          </li>`;
+  }
+
+  const lishka = await arr.map(
+    (el, i) =>
+      `<li class="mod-two-creator">
+            <img class="mod-two-img-creator" src="${el.thumbnail.path}.${el.thumbnail.extension}" alt="" />
+            <div>
+              <h3 class="mod-two-creator-job-title">${comics[0].creators.items[i].role}</h3>
+              <p>${el.fullName}</p>
+            </div>
+          </li>`
+  );
+  return await lishka.join('');
+
+  const name = '${el.fullName}';
+  const img = '${el.thumbnail.path}.${el.thumbnail.extension}';
+}
+
+// const reserv = `<li class="mod-two-creator">
+//             <img class="mod-two-img-creator" src="../images/remove_img/malenkoe.png" alt="" />
+//             <div>
+//               <h3 class="mod-two-creator-job-title">${arr[0].creators.items[0].role}</h3>
+//               <p>${arr[0].creators.items[0].name}</p>
+//             </div>
+//           </li>`;

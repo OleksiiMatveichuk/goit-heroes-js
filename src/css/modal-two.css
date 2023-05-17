@@ -130,10 +130,15 @@
   margin-bottom: 4px;
   text-transform: uppercase;
 }
+.mod-two-gallery-creators{
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 .mod-two-creator {
   display: flex;
   align-items: center;
-  margin-bottom: 32px;
 }
 .mod-two-creator-header {
   margin-bottom: 20px;
@@ -143,7 +148,8 @@
   border-radius: 8px;
   margin-right: 8px;
   width: 50px;
-  /* height: 50px; */
+  height: 50px;
+  object-fit: cover;
 }
 .mod-two-creator-job-title {
   margin-bottom: 4px;
@@ -227,6 +233,7 @@
   .mod-two-img-creator {
     margin-right: 14px;
     width: 60px;
+    height: 60px;
   }
 
   .mod-two-charaters-header {
@@ -242,6 +249,7 @@
   .mod-two-charaters-img {
     margin-right: 16px;
     width: 60px;
+    height: 60px;
   }
 }
 
