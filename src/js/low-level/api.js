@@ -148,6 +148,17 @@ export const api = {
     }
   },
 
+  getCreatorsByComicsId: async ({ comicId }) => {
+    try {
+      const res = await axiosInst.get(`/comics/${comicId}/creators`);
+      const data = res.data.data.results;
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+
   getCreatorById: async ({ creatorId }) => {
     try {
       const res = await axiosInst.get(`/creators/${creatorId}`);
