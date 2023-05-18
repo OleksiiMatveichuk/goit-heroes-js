@@ -2,27 +2,31 @@
 import { api } from './low-level/api';
 
 export async function createModalTwo(value) {
-  document.body.style.overflow = 'hidden';
-  //console.log(value);
-  const id = 37421;
-  //const id = value;
-  const API = await api.getComicById({ comicId: id });
-  console.log('API :>> ', API);
+  // const id = 37421;
+  const id = value;
 
+  const API = await api.getComicById({ comicId: id });
+
+  const itemComics = await createLiComics(API);
+
+  const arrCreators = await api.getCreatorsByComicsId({ comicId: id });
+  const itemCreators = await createLiCreators(arrCreators, API);
+
+  const arrCharacters = await api.getCharactersByComicsId({ comicId: id });
+  const itemCharacters = await createLiCharacters(arrCharacters);
+
+  const modal = await modalTwo(API, itemCharacters, itemCreators, itemComics);
   const body = document.body;
-  const modal = modalTwo(API);
 
   body.insertAdjacentHTML('afterbegin', modal);
 
   const closeModal = document.querySelector('.bacground-mod-two');
   const closeBtn = document.querySelector('.mod-two-buttom');
-
   closeModal.addEventListener('click', closeModal_Window);
-
   closeBtn.addEventListener('click', closeModal_Window);
 }
 
-function modalTwo(arr) {
+async function modalTwo(arr, characters, creators, comics) {
   return `
   <div class="bacground-mod-two">
     <div class="modal-two">
@@ -36,26 +40,7 @@ function modalTwo(arr) {
     arr[0].thumbnail.extension
   }" alt="" />
         <ul class="mod-two-gallery">
-          <li class="mod-two-gallery-item">
-            <img class="mod-two-gallery-img" src="${arr[0].images[1].path}.${
-    arr[0].images[1].extension
-  }" alt="" />
-          </li>
-          <li class="mod-two-gallery-item">
-            <img class="mod-two-gallery-img" src="${arr[0].images[2].path}.${
-    arr[0].images[2].extension
-  }" alt="" />
-          </li>
-          <li class="mod-two-gallery-item">
-            <img class="mod-two-gallery-img" src="${arr[0].images[3].path}.${
-    arr[0].images[3].extension
-  }" alt="" />
-          </li>
-          <li class="mod-two-gallery-item">
-            <img class="mod-two-gallery-img" src="${arr[0].images[4].path}.${
-    arr[0].images[4].extension
-  }" alt="" />
-          </li>
+          ${comics}
         </ul>
       </div>
       <div class="modal-two-setion-two">
@@ -87,49 +72,12 @@ function modalTwo(arr) {
           </li>
         </ul>
         <h2 class="mod-two-creator-header">Creator</h2>
-        <div class="mod-two-creator">
-          <img class="mod-two-img-creator" src="../images/remove_img/malenkoe.png" alt="" />
-          <div>
-            <h3 class="mod-two-creator-job-title">${
-              arr[0].creators.items[0].role
-            }</h3>
-            <p>${arr[0].creators.items[0].name}</p>
-          </div>
-        </div>
+        <ul class="mod-two-gallery-creators">
+        ${creators}
+        </ul>
         <h2 class="mod-two-charaters-header">Characters</h2>
         <ul class="mod-two-charaters-gallery">
-          <li class="modal-two-characters">
-            <img
-              class="mod-two-charaters-img"
-              src="../images/remove_img/malenkoe.png"
-              alt=""
-            />
-            <p>${arr[0].characters.items[0].name}</p>
-          </li>
-          <li class="modal-two-characters">
-            <img
-              class="mod-two-charaters-img"
-              src="../images/remove_img/malenkoe.png"
-              alt=""
-            />
-            <p>${arr[0].characters.items[1].name}</p>
-          </li>
-          <li class="modal-two-characters">
-            <img
-              class="mod-two-charaters-img"
-              src="../images/remove_img/malenkoe.png"
-              alt=""
-            />
-            <p>${arr[0].characters.items[2].name}</p>
-          </li>
-          <li class="modal-two-characters">
-            <img
-              class="mod-two-charaters-img"
-              src="../images/remove_img/malenkoe.png"
-              alt=""
-            />
-            <p>${arr[0].characters.items[3].name}</p>
-          </li>
+        ${characters}
         </ul>
       </div>
     </div>
@@ -144,15 +92,86 @@ function closeModal_Window(e) {
     e.target.classList.value === 'mod-two-buttom' ||
     e.target.tagName === 'svg'
   ) {
-    const modal = document.querySelectorAll('.bacground-mod-two');
-    // document.body.style.overflow = '';
+    const modal = document.querySelector('.bacground-mod-two');
+    document.body.style.overflow = '';
     //startSlider(0);
-
-    modal.forEach(item => {
-      item.remove();
-    });
-    //modal?.remove();
+    modal?.remove();
   }
 }
 
-function createLiCharacters() {}
+async function createLiCharacters(arr) {
+  if (!arr.length) {
+    return `<li class="modal-two-characters">
+            <img
+              class="mod-two-charaters-img"
+              src="./images/remove_img/malenkoe.png"
+              alt=""
+            />
+            <p>Hero 1</p>
+          </li>
+          <li class="modal-two-characters">
+            <img
+              class="mod-two-charaters-img"
+              src="./images/remove_img/malenkoe.png"
+              alt=""
+            />
+            <p>Hero 2</p>
+          </li>`;
+  }
+
+  const lishka = await arr.map(
+    el =>
+      `<li class="modal-two-characters">
+            <img
+              class="mod-two-charaters-img"
+              src="${el.thumbnail.path}.${el.thumbnail.extension}"
+              alt=""
+            />
+            <p>${el.name}</p>
+          </li>`
+  );
+  return await lishka.join('');
+}
+
+async function createLiCreators(arr, comics) {
+  if (!arr.length) {
+    return `<li class="mod-two-creator">
+            <img class="mod-two-img-creator" src="./images/remove_img/malenkoe.png" alt="" />
+            <div>
+              <h3 class="mod-two-creator-job-title">Writer</h3>
+              <p>Creator name</p>
+            </div>
+          </li>`;
+  }
+
+  const lishka = await arr.map(
+    (el, i) =>
+      `<li class="mod-two-creator">
+            <img class="mod-two-img-creator" src="${el.thumbnail.path}.${el.thumbnail.extension}" alt="" />
+            <div>
+              <h3 class="mod-two-creator-job-title">${comics[0].creators.items[i].role}</h3>
+              <p>${el.fullName}</p>
+            </div>
+          </li>`
+  );
+  return await lishka.join('');
+}
+
+async function createLiComics(arr) {
+  const comics = arr[0].images;
+  console.log('comics :>> ', comics);
+  if (!comics.length) {
+    return `<li class="mod-two-gallery-item">
+            <img class="mod-two-gallery-img" src="${arr[0].thumbnail.path}.${arr[0].thumbnail.extension}" alt="" />
+          </li>`;
+  }
+
+  const lishka = comics.map(
+    el =>
+      `<li class="mod-two-gallery-item">
+            <img class="mod-two-gallery-img" src="${el.path}.${el.extension}" alt="" />
+          </li>
+    `
+  );
+  return await lishka.join('');
+}
