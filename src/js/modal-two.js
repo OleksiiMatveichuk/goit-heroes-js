@@ -1,11 +1,9 @@
-// getCharactersByComicsId
 import { api } from './low-level/api';
 
 export async function createModalTwo(value) {
-
   // const id = 37421;
   const id = value;
-  
+
   const API = await api.getComicById({ comicId: id });
 
   const itemComics = await createLiComics(API);
@@ -87,14 +85,12 @@ async function modalTwo(arr, characters, creators, comics) {
 }
 
 function closeModal_Window(e) {
-  // console.log(e.target);
   if (
     e.target.classList.value === 'bacground-mod-two' ||
     e.target.classList.value === 'mod-two-buttom' ||
     e.target.tagName === 'svg'
   ) {
     const modal = document.querySelector('.bacground-mod-two');
-    // document.body.style.overflow = '';
     modal?.remove();
   }
 }
@@ -159,7 +155,7 @@ async function createLiCreators(arr, comics) {
 
 async function createLiComics(arr) {
   const comics = arr[0].images;
-  console.log('comics :>> ', comics);
+
   if (!comics.length) {
     return `<li class="mod-two-gallery-item">
             <img class="mod-two-gallery-img" src="${arr[0].thumbnail.path}.${arr[0].thumbnail.extension}" alt="" />
