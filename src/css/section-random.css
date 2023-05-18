@@ -14,11 +14,16 @@
   border-radius: 8px;
   transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
   /* background-image: url(../images/remove_img/ant_man335.jpg); */
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+
 .random-img:hover {
   box-shadow: 3px 4px 20px rgba(52, 56, 127, 0.4),
     3px 4px 20px rgba(52, 56, 127, 0.8), 3px 4px 20px rgba(52, 56, 127, 0.8);
 }
+
+
 .random-bacground {
   width: 335px;
   height: 335px;
