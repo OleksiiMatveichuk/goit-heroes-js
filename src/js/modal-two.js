@@ -103,7 +103,7 @@ async function createLiCharacters(arr) {
               src="./images/desktop/incognito.jpg"
               alt=""
             />
-            <p>Hero 1</p>
+            <p>Hero</p>
           </li>
           <li class="modal-two-characters">
             <img
@@ -111,7 +111,7 @@ async function createLiCharacters(arr) {
               src="./images/desktop/incognito.jpg"
               alt=""
             />
-            <p>Hero 2</p>
+            <p>Antagonist</p>
           </li>`;
   }
 
