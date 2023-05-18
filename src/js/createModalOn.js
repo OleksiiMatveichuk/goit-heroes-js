@@ -93,15 +93,21 @@ export async function createModalOn(id, value) {
   }
 
   function handleClickModal(e) {
+    console.log(e.target);
+    // const modalremobve = document.querySelectorAll('.bacground-modal');
+
+    // console.log(modalremobve.find());
+
     if (
-      e.target.className === 'bacground-modal' ||
-      e.target.className === 'close-modal-btn' ||
-      e.target.className === 'icon-close' ||
-      e.target.className === 'close-modal'
+      e.target.tagName === 'use' ||
+      e.target.tagName === 'use' ||
+      e.target.className === 'close-modal-btn'
     ) {
-      const modal1 = document.querySelector('.bacground-modal');
+      const modal1 = document.querySelectorAll('.bacground-modal');
+
+      modal1.forEach(item => item.remove());
       document.body.style.overflow = '';
-      modal1?.remove();
+      // modal1?.remove();
     } else if (
       e.target.className === 'img-list-item-card' ||
       e.target.className === 'black-widow-card-text' ||
@@ -145,27 +151,9 @@ export async function createModalOn(id, value) {
     let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
     return `${mo} ${da}, ${ye}`;
   }
-  // <img src='./images/symbol-defs.svg#icon-close' class="close-modal-btn" width="20" height="20"  ></img>
-  {
-    /* <svg class=class="close-modal-btn" width="20" height="20">
-        <use href='./images/symbol-defs.svg#icon-menu-close'></use>
-          </svg> */
-  }
-  // <a class="close " >
 
-  //        <img src='./images/close-btn.svg' class="close-modal-btn" width="20" height="20"  ></img>
+  //<img src='./images/close.svg' class="close-modal" width="10" height="10"  ></img>
 
-  //   </a>
-  // rel="noopener noreferer"
-  //   target = "_blank"
-  //   aria - label="Open instagram"
-
-  {
-    /* <a
-    class="close-modal-btn"
-       href="#"
-      ></a> */
-  }
   async function createModal(path, extension) {
     return `
    <div class="bacground-modal">
@@ -173,7 +161,11 @@ export async function createModalOn(id, value) {
     <div class="container-modal">
      
     <div class='close-modal-btn'>
-    <img src='./images/close.svg' class="close-modal" width="10" height="10"  ></img>
+<svg class="close-modal" width="10" height="10">
+  <use href="./images/symbol-defs.svg#icon-close"></use>
+</svg>
+
+    
     </div>
      
   
