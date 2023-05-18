@@ -1,4 +1,3 @@
-// getCharactersByComicsId
 import { api } from './low-level/api';
 
 export async function createModalTwo(value) {
@@ -86,15 +85,16 @@ async function modalTwo(arr, characters, creators, comics) {
 }
 
 function closeModal_Window(e) {
-  // console.log(e.target);
   if (
     e.target.classList.value === 'bacground-mod-two' ||
     e.target.classList.value === 'mod-two-buttom' ||
     e.target.tagName === 'svg'
   ) {
     const modal = document.querySelector('.bacground-mod-two');
+
     document.body.style.overflow = '';
     //startSlider(0);
+
     modal?.remove();
   }
 }
@@ -104,18 +104,18 @@ async function createLiCharacters(arr) {
     return `<li class="modal-two-characters">
             <img
               class="mod-two-charaters-img"
-              src="./images/remove_img/malenkoe.png"
+              src="./images/desktop/incognito.jpg"
               alt=""
             />
-            <p>Hero 1</p>
+            <p>Hero</p>
           </li>
           <li class="modal-two-characters">
             <img
               class="mod-two-charaters-img"
-              src="./images/remove_img/malenkoe.png"
+              src="./images/desktop/incognito.jpg"
               alt=""
             />
-            <p>Hero 2</p>
+            <p>Antagonist</p>
           </li>`;
   }
 
@@ -136,7 +136,7 @@ async function createLiCharacters(arr) {
 async function createLiCreators(arr, comics) {
   if (!arr.length) {
     return `<li class="mod-two-creator">
-            <img class="mod-two-img-creator" src="./images/remove_img/malenkoe.png" alt="" />
+            <img class="mod-two-img-creator" src="./images/desktop/incognito.jpg" alt="" />
             <div>
               <h3 class="mod-two-creator-job-title">Writer</h3>
               <p>Creator name</p>
@@ -159,7 +159,7 @@ async function createLiCreators(arr, comics) {
 
 async function createLiComics(arr) {
   const comics = arr[0].images;
-  console.log('comics :>> ', comics);
+
   if (!comics.length) {
     return `<li class="mod-two-gallery-item">
             <img class="mod-two-gallery-img" src="${arr[0].thumbnail.path}.${arr[0].thumbnail.extension}" alt="" />

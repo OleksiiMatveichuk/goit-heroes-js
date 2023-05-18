@@ -1,4 +1,4 @@
-import * as Hammer from 'hammerjs';
+import Hammer from 'hammerjs';
 
 const heroSlides = document.querySelectorAll('.hero-slide');
 const paginationItems = document.querySelectorAll('.hero-pagination-item');
@@ -14,10 +14,10 @@ function setActiveSlide(slideNumber) {
   heroSlideArr.forEach((element, index) => {
     if (index === slideNumber) {
       const mod = element.dataset.mod;
-        element.classList.remove('visually-hidden');
+      element.classList.remove('visually-hidden');
       heroSection.dataset.mod = mod;
     } else {
-        element.classList.add('visually-hidden');
+      element.classList.add('visually-hidden');
     }
   });
 }
@@ -37,7 +37,7 @@ function setActivePagination(paginationNumber) {
 // функція для автоматичної зміни слайдів кожні 4 секунди
 
 function autoChangeSlide() {
-  nextSlide()
+  nextSlide();
   setActiveSlide(activeSlide);
   setActivePagination(activeSlide);
 }

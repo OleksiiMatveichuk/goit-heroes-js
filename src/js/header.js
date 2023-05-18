@@ -117,14 +117,14 @@ import { galleryItem, renderGallery } from './get-gallery-list';
 import { errorGallery, errorAPI } from './error-gallery';
 async function createGallery(searchQuery) {
   try {
-    console.log('itemsOnPage=', itemsOnPage);
+    // console.log('itemsOnPage=', itemsOnPage);
     const data = await api.getAllCharacters({
       nameStartsWith: searchQuery,
       limit: itemsOnPage,
     });
     const results = data.results;
-    console.log(data);
-    console.log(results);
+    // console.log(data);
+    // console.log(results);
     const galleryList = document.querySelector('.gallery');
     galleryList.setAttribute('data-total', data.total);
     galleryList.setAttribute('data-offset', data.offset);
