@@ -111,7 +111,7 @@
             />
           </li>`}).join("")}function C(E){if(E.target.className==="bacground-modal"||E.target.className==="close-modal-btn"||E.target.className==="icon-close"||E.target.className==="close-modal"){const S=document.querySelector(".bacground-modal");document.body.style.overflow="",S==null||S.remove()}else(E.target.className==="img-list-item-card"||E.target.className==="black-widow-card-text"||E.target.className==="black-widow-card-description"||E.target.className==="black-widow-card-footer")&&Ir(Number(E.target.closest("li").dataset.id))}async function $(E){return E.map(S=>{var Oe;const{id:N,title:P}=S[0],{path:ie,extension:ft}=S[0].thumbnail;return`
         <li class="black-widow-list-item" data-id=${N}>
-         <a href="#" class="black-widow-handle">
+         <a class="black-widow-handle">
             <div class="black-widow-card">
               <img  width ='263'height= '263'
                 class="img-list-item-card"
