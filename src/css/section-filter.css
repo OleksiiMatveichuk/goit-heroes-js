@@ -1,4 +1,177 @@
-.lable {
+
+input,
+select,
+textarea {
+    outline: none;
+    border: none;
+    border: solid 1px #f2f2f2;
+
+}
+.visually-hidden {
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+    position: absolute !important;
+    border: 0 !important;
+    padding: 0 !important;
+}
+
+.defolt-options {
+    display: none;
+}
+
+.filter-form-wrap {
+    margin-top: 20px;
+    display: grid;
+    gap: 12px 8px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "comics comics" "name name" "order date";
+    margin-bottom: 40px;
+}
+.filter-form-wrap > div {
+    position: relative;
+    display: flex;
+    max-width: 100%;
+}
+.filter-form-wrap > div:nth-child(1) {
+    grid-area: comics;
+}
+.filter-form-wrap > div:nth-child(2) {
+    grid-area: order;
+}
+.filter-form-wrap > div:nth-child(3) {
+    grid-area: name;
+}
+.filter-form-wrap > div:nth-child(4) {
+    grid-area: date;
+}
+
+.input-select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.input-boxil {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.filter-form-lable {
+    color: rgba(250, 250, 250, 0.3);
+    display: block;
+    margin-bottom: 8px;
+}
+
+.input-txt {
+    border-radius: 100px;
+    padding: 12px 48px 12px 24px;
+    background-color: #171717;
+    color: #FAFAFA;
+    border: 2px solid #34387F;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.input-txt::placeholder {
+    color: #FAFAFA;
+}
+
+.input-txt:focus {
+    background-color: #34387F;
+    border-color: #34387F;
+}
+
+.icon-arrow-down {
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    pointer-events: none;
+}
+
+.listbox {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: start;
+    background-color: #171717;
+    padding: 16px 24px;
+    border-radius: 16px;
+    top: 100%;
+}
+
+.listbox-item {
+    background-color: #171717;
+    color: rgba(250, 250, 250, 0.3);
+    border: none;
+    margin-bottom: 8px;
+    text-align: start;
+}
+.listbox-item:last-child {
+    margin-bottom: 0;
+}
+
+.listbox-item:hover {
+    color: #FAFAFA;
+}
+
+.search-svg {
+    position: absolute;
+    bottom: 14px;
+    right: 24px;
+}
+
+.input-date::-webkit-inner-spin-button, .input-date::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+/*==============MEDIA REQUEST TABLET===================*/
+@media screen and (min-width: 768px) {
+
+    .filter-form-wrap {
+        margin-top: 64px;
+        display: grid;
+        gap: 12px 8px;
+        grid-template-columns: auto;
+        grid-template-areas: "comics order name date";
+        margin-bottom: 64px;
+    }
+
+    .filter-form-wrap div {
+        width: 170px;
+    }
+
+    .input-txt {
+        font-size: 16px;
+        line-height: 18px;
+        padding: 16px 48px 16px 24px;
+        height: 50px;
+    }
+
+    .input-select {
+        padding: 0 24px;
+    }
+}
+/*==============MEDIA REQUEST TABLET===================*/
+/*==============MEDIA REQUEST DESKTOP===================*/
+@media screen and (min-width: 1440px) {
+   .filter-form-wrap {
+    display: flex;
+    justify-content: center;
+    } 
+}
+/*==============MEDIA REQUEST DESKTOP===================*/
+
+/* .lable {
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
@@ -140,4 +313,5 @@ input[type='date'] {
     width: 170px;
     height: 50px;
   }
-}
+} */
+

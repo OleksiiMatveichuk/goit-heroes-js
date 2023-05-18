@@ -42,9 +42,6 @@ function autoChangeSlide() {
   setActivePagination(activeSlide);
 }
 
-setInterval(autoChangeSlide, 5000);
-
-
 // присвоєння event на click
 
 paginationItemsArr.forEach(element => {
@@ -102,3 +99,5 @@ function prevSlide() {
     activeSlide--;
   }
 }
+
+setInterval(autoChangeSlide, 5000);

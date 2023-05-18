@@ -46,12 +46,13 @@ let windowWidth = window.getComputedStyle(container).width;
 let itemsOnPage = null;
 // ВИЗНАЧАЄМО ШИРИНУ ВЬЮПОРТУ
 // debugger
+if (parseInt(windowWidth, 10) < 375) windowWidth = '100'
 switch (windowWidth) {
   case '375px':
-    itemsOnPage = 5;
+    itemsOnPage = 4;
     break;
-  case '100%':
-    itemsOnPage = 5;
+  case '100':
+    itemsOnPage = 4;
     break;
   case '1440px':
     itemsOnPage = 16;
@@ -63,12 +64,18 @@ switch (windowWidth) {
 }
 
 window.addEventListener('load', async () => {
+  const savedValue = localStorage.getItem('searchValue');
+  if (savedValue) {
+    // Если значение сохранено, вставляем его в инпут
+    const searchInput = document.querySelector('.header-input');
+    searchInput.value = savedValue;
+  }
   if (window.location.pathname.includes('page-2.html')) {
-    const savedValue = localStorage.getItem('searchValue');
+    // const savedValue = localStorage.getItem('searchValue');
     if (savedValue) {
       // Если значение сохранено, вставляем его в инпут
-      const searchInput = document.querySelector('.header-input');
-      searchInput.value = savedValue;
+      // const searchInput = document.querySelector('.header-input');
+      // searchInput.value = savedValue;
       const formStartWith = document.querySelector('#name');
       formStartWith.value = savedValue;
     }
@@ -107,6 +114,7 @@ form.addEventListener('submit', async event => {
 });
 
 import { galleryItem, renderGallery } from './get-gallery-list';
+import { errorGallery, errorAPI } from './error-gallery';
 async function createGallery(searchQuery) {
   try {
     console.log('itemsOnPage=', itemsOnPage);
@@ -122,12 +130,13 @@ async function createGallery(searchQuery) {
     galleryList.setAttribute('data-offset', data.offset);
 
     if (results.length === 0) {
-      console.log('NOT FOUND!!!!');
-      errorGallery();
-      return;
+      console.log('NOT FOUND!!!! script header');
+      return errorGallery();
+
     }
     return renderGallery(results);
   } catch (e) {
-    console.log(e);
+    console.log("Bad request. Try do it later...", e);
+    return errorAPI("Too Many Requests...")
   }
 }
