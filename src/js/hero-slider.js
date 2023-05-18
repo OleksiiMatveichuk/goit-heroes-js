@@ -4,6 +4,35 @@ const heroSlides = document.querySelectorAll('.hero-slide');
 const paginationItems = document.querySelectorAll('.hero-pagination-item');
 const heroSection = document.querySelector('.hero-section');
 
+const link = document.querySelectorAll('.image-card-link')
+link.forEach((link) => {
+  link.addEventListener('click', function (event) {
+    event.preventDefault();
+    const slide = link.closest('.hero-slide');
+    const dataModValue = slide.getAttribute('data-mod');
+    const url = `./page-2.html`;
+    switch (dataModValue) {
+      case 'blue':
+
+        localStorage.setItem('searchValue', "Black Panther");
+        window.location.href = url;
+        break;
+      case 'green':
+        localStorage.setItem('searchValue', "Hulk");
+        window.location.href = url;
+        break;
+      case 'bordo':
+        localStorage.setItem('searchValue', "Spider-Man");
+        window.location.href = url;
+        break;
+      default:
+        itemsOnPage = 8;
+        break;
+    }
+  });
+});
+
+
 const heroSlideArr = Array.from(heroSlides);
 const paginationItemsArr = Array.from(paginationItems);
 let activeSlide = 0;
@@ -14,10 +43,10 @@ function setActiveSlide(slideNumber) {
   heroSlideArr.forEach((element, index) => {
     if (index === slideNumber) {
       const mod = element.dataset.mod;
-        element.classList.remove('visually-hidden');
+      element.classList.remove('visually-hidden');
       heroSection.dataset.mod = mod;
     } else {
-        element.classList.add('visually-hidden');
+      element.classList.add('visually-hidden');
     }
   });
 }
