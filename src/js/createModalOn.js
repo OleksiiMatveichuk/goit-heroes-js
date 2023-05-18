@@ -121,7 +121,7 @@ export async function createModalOn(id, value) {
 
         return `
         <li class="black-widow-list-item" data-id=${id}>
-         <a href="#" class="black-widow-handle">
+         <a class="black-widow-handle">
             <div class="black-widow-card">
               <img  width ='263'height= '263'
                 class="img-list-item-card"
