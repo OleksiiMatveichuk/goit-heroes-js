@@ -2,14 +2,48 @@ import { startSlider } from './random-list';
 import { api } from './low-level/api';
 import { createModalTwo } from './modal-two';
 
-export async function createModal1(data) {
+export async function createModal1(d, value) {
+  let data;
+  if (value === 2) {
+    // console.log('galari');
+    // result = await api.getCharactersById({ characterId: d });
+    // console.log('DATA+++++++++++', result);
+    // data = result;
+    // const tempData = await api.getCharactersById({ characterId: d });
+    // console.log('tempData', tempData);
+    // const comicsArray = await getComicsArray(tempData);
+    // const marKup = await Promise.all(comicsArray).then(async data => {
+    //   const marcup = await createNewMarcup(data);
+    //   return marcup;
+    // });
+    // const { path, extension, name, description, modified } = tempData;
+    // const markup = reternCharacterInfo(name, description, modified);
+    // console.log(markup);
+    // const body = document.body;
+    // document.body.style.overflow = 'hidden';
+    // const modalForm = modal1(path, extension);
+    // body.insertAdjacentHTML('afterbegin', modalForm);
+    // const black_widow = document.querySelector('.black-widow');
+    // black_widow.insertAdjacentHTML('afterbegin', markup);
+    // const closeModalForm = document.querySelector('.bacground-modal');
+    // closeModalForm.addEventListener('click', closeModal);
+    // const close_btn = document.querySelector('.close-modal-btn');
+    // close_btn.addEventListener('click', closeModal);
+    // const black_widow_list = document.querySelector('.black-widow-list');
+    // black_widow_list.insertAdjacentHTML('afterbegin', marKup);
+    // const modal_window = document.querySelector('.modal-window');
+    // modal_window.addEventListener('click', clickModalImg);
+    // return;
+  } else {
+    data = d;
+  }
   const body = document.body;
   document.body.style.overflow = 'hidden';
-  console.log(data);
-  const { id, name, description, modified } = data;
 
-  // const new_data = new Date(modified);
-  // console.log('DATE ', new_data);
+  const { id, name, description, modified } = data;
+  const { path, extension } = data.thumbnail;
+
+  console.log('path=', `${path}.${extension}`);
 
   //=========================================
   const tempData = await getCharacterDataId(id);
@@ -22,7 +56,8 @@ export async function createModal1(data) {
     return marcup;
   });
 
-  const modalForm = modal1(data);
+  const modalForm = modal1(path, extension);
+
   body.insertAdjacentHTML('afterbegin', modalForm);
 
   const markup = reternCharacterInfo(name, description, modified);
@@ -66,6 +101,33 @@ function getFormatDate(data) {
   return `${mo} ${da}, ${ye}`;
 }
 
+// async function createNewMarcup(data) {
+//   const markup = await data
+//     .map(item => {
+//       const { id, thumbnail, title, creators } = item;
+//       const name = creators.items[0]?.name
+//         ? creators.items[0].name
+//         : 'Wiktor Djoba';
+//       return `
+//    <li class="black-widow-list-item" data-id=${id}>
+//    <a href="#" class="black-widow-handle">
+//       <div class="black-widow-card">
+//         <img  width ='263'height= '263'
+//           class="img-list-item-card"
+//           src="${thumbnail.path}.${thumbnail.extension}"
+//         />
+//         <div class="black-widow-card-footer">
+//           <h4 class="black-widow-card-text">${title}</h4>
+//           <p class="black-widow-card-description">${name}</p>
+//         </div>
+//       </div></a>
+//     </li>
+//   `;
+//     })
+//     .join('');
+//   return markup;
+// }
+//==================================
 function createNewMarcup(data) {
   const markup = data
     .map(item => {
@@ -122,25 +184,8 @@ async function getComicsArray(data) {
   return dat;
 }
 
-// function getDat(data) {
-//   return data;
-// }
-
-// async function createMarcup(data) {
-//   const { items } = data[0].comics;
-//   const markup = [];
-//   items.forEach(async (item, i) => {
-//     if (i < 3) {
-//       let mar = await createComics(item);
-
-//       markup.push(mar);
-//     }
-//   });
-
-//   return markup;
-// }
-
 function reternCharacterInfo(name, description, modified) {
+  console.log('modified', modified);
   const date = getFormatDate(modified);
   return `
   <div class="black-widow-info">
@@ -179,7 +224,8 @@ async function createComics(data) {
 }
 // ;
 
-function modal1(data) {
+function modal1(path, extension) {
+  console.log('path', path, ' ', extension);
   return `
    <div class="bacground-modal">
   <section class="modal-window">
@@ -191,7 +237,7 @@ function modal1(data) {
       <div class="img-info">
         <img
           class="img-modal"
-          src="${data.thumbnail.path}.${data.thumbnail.extension}"
+          src="${path}.${extension}"
           alt="amg"
           width="295"
            height= "387";

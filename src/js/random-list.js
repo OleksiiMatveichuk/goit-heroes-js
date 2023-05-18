@@ -1,4 +1,5 @@
 import { createModal1 } from './createModal1';
+import { createModalOn } from './createModalOn';
 import { api } from './low-level/api';
 
 const listCharacters = [];
@@ -12,7 +13,7 @@ const random_bacground = document.querySelector('.random-bacground');
 img.style.visible = false;
 
 img.addEventListener('click', () => {
-  createModal1(character.data);
+  createModalOn(character.data.id);
   removeSetInterval();
 });
 let setIntervalId = null;
