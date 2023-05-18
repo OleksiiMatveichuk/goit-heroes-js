@@ -23,7 +23,7 @@
   margin-bottom: 65px;
 }
 .back-home-link {
-  width: 115px;
+  width: 111px;
   display: flex;
   margin-left: auto;
   font-size: 12px;
@@ -86,6 +86,7 @@
     border-radius: 1000px;
   }
   .back-home-link:hover {
+    font-weight: 500;
     color: var(--dark-btn);
     background-color: var(--main-color);
   }
@@ -140,7 +141,6 @@
   .hero-secondary {
     height: 780px;
     padding-bottom: 0;
-    /* padding-bottom: 76px; */
     background-image: url(../images/desktop/background-hero-desktop-min.jpg);
   }
 
