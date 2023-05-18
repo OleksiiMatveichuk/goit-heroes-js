@@ -160,9 +160,11 @@
 .modal-two-characters {
   display: flex;
   align-items: center;
+  flex: 1;
 }
 .modal-two-characters:not(:last-child) {
   margin-bottom: 16px;
+  
 }
 
 @media screen and (min-width: 767.98px) {
@@ -234,6 +236,7 @@
     margin-right: 14px;
     width: 60px;
     height: 60px;
+    object-fit: cover;
   }
 
   .mod-two-charaters-header {
@@ -242,14 +245,18 @@
 
   .mod-two-charaters-gallery {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     flex-wrap: wrap;
+    gap: 16px;
+    /* flex: 1; */
   }
 
   .mod-two-charaters-img {
     margin-right: 16px;
     width: 60px;
     height: 60px;
+    flex-direction: row;
+    object-fit: cover;
   }
 }
 
