@@ -41,13 +41,18 @@
   border: none;
   top: 14px;
   right: 14px;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: none;
-  background: inherit;
-  color: #fafafa;
+
+  transition: background-color 250ms var(--cubic);
 }
+
+.close-modal-btn:hover {
+  background-color: #242020;
+}
+
 .img-modal {
   /* margin: 0 auto; */
   border-radius: 8px;
@@ -149,6 +154,10 @@
     height: 28px;
     top: 16px;
     right: 16px;
+  }
+  .close-modal {
+    width: 14px;
+    height: 14px;
   }
   .img-info {
     display: flex;

@@ -63,7 +63,9 @@ export async function createModalOn(id) {
   function handleClickModal(e) {
     if (
       e.target.className === 'bacground-modal' ||
-      e.target.className === 'close-modal-btn'
+      e.target.className === 'close-modal-btn' ||
+      e.target.className === 'icon-close' ||
+      e.target.className === 'close-modal'
     ) {
       const modal1 = document.querySelector('.bacground-modal');
       document.body.style.overflow = '';
@@ -111,17 +113,39 @@ export async function createModalOn(id) {
     let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
     return `${mo} ${da}, ${ye}`;
   }
+  // <img src='./images/symbol-defs.svg#icon-close' class="close-modal-btn" width="20" height="20"  ></img>
+  {
+    /* <svg class=class="close-modal-btn" width="20" height="20">
+        <use href='./images/symbol-defs.svg#icon-menu-close'></use>
+          </svg> */
+  }
+  // <a class="close " >
 
+  //        <img src='./images/close-btn.svg' class="close-modal-btn" width="20" height="20"  ></img>
+
+  //   </a>
+  // rel="noopener noreferer"
+  //   target = "_blank"
+  //   aria - label="Open instagram"
+
+  {
+    /* <a
+    class="close-modal-btn"
+       href="#"
+      ></a> */
+  }
   async function createModal(path, extension) {
     return `
    <div class="bacground-modal">
   <section class="modal-window">
     <div class="container-modal">
-    <a class="close">
-
-    <img src='./images/symbol-defs.svg#icon-close' class="close-modal-btn" width="20" height="20"  >
-    
-    </a>
+     
+    <div class='close-modal-btn'>
+    <img src='./images/close.svg' class="close-modal" width="10" height="10"  ></img>
+    </div>
+     
+  
+ 
       
 <div class="modal1-content">
       <div class="img-info">

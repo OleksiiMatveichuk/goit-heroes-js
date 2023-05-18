@@ -91,6 +91,10 @@ function closeModal_Window(e) {
     e.target.tagName === 'svg'
   ) {
     const modal = document.querySelector('.bacground-mod-two');
+
+    document.body.style.overflow = '';
+    //startSlider(0);
+
     modal?.remove();
   }
 }

@@ -202,7 +202,7 @@ function modal1(path, extension) {
   <section class="modal-window">
     <div class="container-modal">
       <svg class="close-modal-btn" width="20" height="20">
-        <use href="./images/symbol-defs.svg#icon-close"></use>
+        <use href="./images/close.svg"></use>
       </svg>
 <div class="modal1-content">
       <div class="img-info">
