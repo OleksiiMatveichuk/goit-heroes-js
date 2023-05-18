@@ -3,7 +3,7 @@ import { api } from './low-level/api';
 
 export async function createModalTwo(value) {
   document.body.style.overflow = 'hidden';
-  console.log(value);
+  //console.log(value);
   const id = 37421;
   //const id = value;
   const API = await api.getComicById({ comicId: id });
@@ -138,7 +138,7 @@ function modalTwo(arr) {
 }
 
 function closeModal_Window(e) {
-  console.log(e.target);
+  // console.log(e.target);
   if (
     e.target.classList.value === 'bacground-mod-two' ||
     e.target.classList.value === 'mod-two-buttom' ||

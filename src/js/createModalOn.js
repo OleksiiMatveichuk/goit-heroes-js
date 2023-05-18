@@ -7,31 +7,24 @@ export async function createModalOn(id) {
   const data = await api.getCharactersById({ characterId: id });
 
   const { name, description, modified } = data[0];
-  console.log('name', name, 'description', description, 'modified', modified);
 
   const { path, extension } = data[0].thumbnail;
-
-  console.log('path', path, 'extension', extension);
 
   const modal = await createModal(path, extension);
 
   body.insertAdjacentHTML('afterbegin', modal);
-
-  console.log('MODAL', modal);
 
   const comicsArray = data[0].comics.items.filter((item, index, array) => {
     if (index < 3) {
       return item;
     }
   });
-  console.log(comicsArray);
 
   const comic_array = await comicsArray.map(async item => {
     const b = item.resourceURI.split('/');
     const idComic = Number(b[b.length - 1]);
     const comic = await api.getComicById({ comicId: idComic });
 
-    console.log(comic[0]);
     return comic;
     //const data
   });
@@ -47,7 +40,6 @@ export async function createModalOn(id) {
 
   const black_widow_list = document.querySelector('.black-widow-list');
 
-  console.log('black_widow_list', black_widow_list);
   black_widow_list.insertAdjacentHTML('beforebegin', markupHeader);
   black_widow_list.insertAdjacentHTML('afterbegin', innetHtml);
 
@@ -69,7 +61,6 @@ export async function createModalOn(id) {
   }
 
   function handleClickModal(e) {
-    console.log(e.target);
     if (
       e.target.className === 'bacground-modal' ||
       e.target.className === 'close-modal-btn'
@@ -83,7 +74,6 @@ export async function createModalOn(id) {
       e.target.className === 'black-widow-card-description' ||
       e.target.className === 'black-widow-card-footer'
     ) {
-      // console.log('open modal 2', e.target.closest('li').dataset.id);
       createModalTwo(Number(e.target.closest('li').dataset.id));
     }
   }
@@ -129,7 +119,7 @@ export async function createModalOn(id) {
     <div class="container-modal">
     <a class="close">
 
-    <img src='./images/symbol-defs.svg#icon-close'class="close-modal-btn" width="20" height="20"  >
+    <img src='./images/symbol-defs.svg#icon-close' class="close-modal-btn" width="20" height="20"  >
     
     </a>
       

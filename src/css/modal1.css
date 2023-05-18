@@ -1,7 +1,6 @@
 /* //===================modal1================== */
 
 .bacground-modal {
-  /* // display: none; */
   background: rgba(0, 0, 0, 0.6);
   position: fixed;
 
@@ -12,7 +11,7 @@
   /* cursor: pointer; */
   overflow: scroll;
 
-  z-index: 1;
+  z-index: 2;
 }
 
 .modal-window {
@@ -38,6 +37,7 @@
   width: 20px;
   height: 20px;
   position: absolute;
+  border: none;
   top: 14px;
   right: 14px;
   display: flex;
@@ -45,7 +45,7 @@
   align-items: center;
   border: none;
   background: inherit;
-  fill: #fafafa;
+  color: #fafafa;
 }
 .img-modal {
   /* margin: 0 auto; */
