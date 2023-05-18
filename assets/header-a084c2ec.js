@@ -66,7 +66,7 @@
               src="./images/desktop/incognito.jpg"
               alt=""
             />
-            <p>Hero 1</p>
+            <p>Hero</p>
           </li>
           <li class="modal-two-characters">
             <img
@@ -74,7 +74,7 @@
               src="./images/desktop/incognito.jpg"
               alt=""
             />
-            <p>Hero 2</p>
+            <p>Antagonist</p>
           </li>`}async function Pr(e,t){return e.length?await(await e.map((n,o)=>`<li class="mod-two-creator">
             <img class="mod-two-img-creator" src="${n.thumbnail.path}.${n.thumbnail.extension}" alt="" />
             <div>
