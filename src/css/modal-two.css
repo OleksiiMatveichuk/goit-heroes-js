@@ -4,11 +4,13 @@
   position: fixed;
   width: 100%;
   height: 100vh;
-  max-height: 100vh;
+  /* max-height: 100vh; */
   /* cursor: pointer; */
   overflow: scroll;
+  top: 0;
+  left: 0;
 
-  z-index: 10;
+  z-index: 4;
 }
 
 
@@ -24,13 +26,14 @@
   /* height: 584px; */
   /* max-height: 100vh; */
   position: absolute;
-  top: 50%;
+  top: 20px;
   left: 50%;
+  bottom: 20px;
   /* bottom: 50%; */
-  transform: translate(-50%, -15%);
-  margin: 0 auto;
+  transform: translateX(-50%);
+  /* margin: 0 auto; */
   overflow-y: auto;
-  z-index: 2;
+  z-index: 4;
 
 }
 .modal-two h3 {

@@ -3,7 +3,7 @@ export const galleryItem = item => {
   const { path, extension } = item.thumbnail;
 
   return `<li class="gallery-item" data-id = ${id} >
-   <a class="gallery-link" href="#">
+   <a class="gallery-link">
       <img class="gallery-image" src="${path}.${extension}" alt="${description}" />
       <p class="hero-name">${name}</p>
    </a>
