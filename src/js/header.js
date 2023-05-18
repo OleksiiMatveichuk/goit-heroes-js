@@ -114,6 +114,7 @@ form.addEventListener('submit', async event => {
 });
 
 import { galleryItem, renderGallery } from './get-gallery-list';
+import { errorGallery, errorAPI } from './error-gallery';
 async function createGallery(searchQuery) {
   try {
     console.log('itemsOnPage=', itemsOnPage);
@@ -129,12 +130,13 @@ async function createGallery(searchQuery) {
     galleryList.setAttribute('data-offset', data.offset);
 
     if (results.length === 0) {
-      console.log('NOT FOUND!!!!');
-      errorGallery();
-      return;
+      console.log('NOT FOUND!!!! script header');
+      return errorGallery();
+
     }
     return renderGallery(results);
   } catch (e) {
-    console.log(e);
+    console.log("Bad request. Try do it later...", e);
+    return errorAPI("Too Many Requests...")
   }
 }
