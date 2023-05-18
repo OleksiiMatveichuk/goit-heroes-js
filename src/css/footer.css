@@ -90,6 +90,14 @@ policy-link {
   .footer-top {
     margin-bottom: 40px;
   }
+  .footer-list {
+    width: 303px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 20px;
+  }
 }
 @media screen and (min-width: 767.98px) {
   .footer {
@@ -97,6 +105,9 @@ policy-link {
   }
   .footer-top {
     margin-bottom: 68px;
+  }
+  .footer-list {
+    width: 100%;
   }
 }
 
