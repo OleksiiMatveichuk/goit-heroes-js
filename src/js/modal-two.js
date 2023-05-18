@@ -9,6 +9,7 @@ export async function createModalTwo(value) {
   const itemComics = await createLiComics(API);
 
   const arrCreators = await api.getCreatorsByComicsId({ comicId: id });
+
   const itemCreators = await createLiCreators(arrCreators, API);
 
   const arrCharacters = await api.getCharactersByComicsId({ comicId: id });

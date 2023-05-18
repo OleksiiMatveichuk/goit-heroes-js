@@ -1,10 +1,22 @@
 import { api } from './low-level/api';
 import { createModalTwo } from './modal-two';
 
-export async function createModalOn(id) {
+export async function createModalOn(id, value) {
   const body = document.body;
   document.body.style.overflow = 'hidden';
+
   const data = await api.getCharactersById({ characterId: id });
+
+  // Mary Jane Watson
+  //хочемо отримати різні фото нашого героя
+
+  const fotoHeroy = await api.getAllCharacters({
+    nameStartsWith: value,
+    limit: 3,
+  });
+  const resultsFoto = fotoHeroy.results;
+
+  const markupFotos = await createMarcupFotoHeroy(resultsFoto);
 
   const { name, description, modified } = data[0];
 
@@ -30,6 +42,7 @@ export async function createModalOn(id) {
   });
 
   const resultComics = await Promise.all(comic_array).then(data => data);
+  //============================
 
   const markup = await createMarkupComics(resultComics);
 
@@ -42,6 +55,9 @@ export async function createModalOn(id) {
 
   black_widow_list.insertAdjacentHTML('beforebegin', markupHeader);
   black_widow_list.insertAdjacentHTML('afterbegin', innetHtml);
+
+  const fotosArray = document.querySelector('.img-list');
+  fotosArray.insertAdjacentHTML('afterbegin', markupFotos);
 
   body.addEventListener('click', handleClickModal);
 
@@ -58,6 +74,22 @@ export async function createModalOn(id) {
            <h4 class="black-widow-list-text">List of comics</h4>
           
           `;
+  }
+  async function createMarcupFotoHeroy(fotos) {
+    return fotos
+      .map(foto => {
+        const { path, extension } = foto.thumbnail;
+        return `<li>
+            <img
+              class="img-list-item"
+              src="${path}.${extension}"
+              alt="img"
+              width="80"
+              height="80"
+            />
+          </li>`;
+      })
+      .join('');
   }
 
   function handleClickModal(e) {
@@ -97,7 +129,7 @@ export async function createModalOn(id) {
               />
               <div class="black-widow-card-footer">
                 <h4 class="black-widow-card-text">${title}</h4>
-                <p class="black-widow-card-description">${comic[0].creators.items[0].name}</p>
+                <p class="black-widow-card-description">${comic[0].creators.items[0]?.name}</p>
               </div>
             </div></a>
           </li>
@@ -157,8 +189,29 @@ export async function createModalOn(id) {
            height= "387";
         />
 
-        <ul class="img-list">
-          <li>
+        <ul class="img-list list">
+          
+        </ul>
+      </div>
+
+     <div class="black-widow">
+
+  <ul class="black-widow-list"></ul>
+  
+</div> 
+
+</div>
+    </div>
+  </section>
+</div>
+    
+    `;
+  }
+}
+
+/////////////////////////////////
+{
+  /* <li>
             <img
               class="img-list-item"
               src="./images/remove_img/modal1.jpg"
@@ -181,21 +234,5 @@ export async function createModalOn(id) {
               alt="img"
               width="80"
             />
-          </li>
-        </ul>
-      </div>
-
-     <div class="black-widow">
-
-  <ul class="black-widow-list"></ul>
-  
-</div> 
-
-</div>
-    </div>
-  </section>
-</div>
-    
-    `;
-  }
+          </li> */
 }
