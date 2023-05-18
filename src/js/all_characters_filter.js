@@ -15,8 +15,8 @@ let dateVal = null;
 
 let yearsToSelect = '';
 yearsToSelect += `<option>All Years</option>
-<option class="defolt-options">-----------</option>`
-console.log("select date", date)
+<option class="defolt-options">-----------</option>`;
+console.log('select date', date);
 for (let i = 1939; i <= 2023; i++) {
   yearsToSelect += `<option>${i}</option>`;
 }
@@ -31,26 +31,28 @@ async function onDateSelect(e) {
     dateVal = e.target.value;
   }
 }
+
 // Validation comics ID
-comic.addEventListener('input', function (event) {
-  const input = event.target;
-  const value = input.value;
-  const onlyDigits = /^\d*$/.test(value); // Regular expression to match only digits
+// comic.addEventListener('input', function (event) {
+//   const input = event.target;
+//   const value = input.value;
+//   const onlyDigits = /^\d*$/.test(value); // Regular expression to match only digits
 
-  if (!onlyDigits) {
-    input.value = value.replace(/\D/g, ''); // Remove non-digit characters from the value
-  }
-});
-// Validation Name
-name.addEventListener('input', function (event) {
-  const input = event.target;
-  const value = input.value;
-  const validCharacters = /^[a-zA-Z0-9\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]*$/;
+//   if (!onlyDigits) {
+//     input.value = value.replace(/\D/g, ''); // Remove non-digit characters from the value
+//   }
+// });
+// // Validation Name
+// name.addEventListener('input', function (event) {
+//   const input = event.target;
+//   const value = input.value;
+//   const validCharacters = /^[a-zA-Z0-9\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]*$/;
 
-  if (!validCharacters.test(value)) {
-    input.value = value.replace(/[^a-zA-Z0-9\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g, '');
-  }
-});
+//   if (!validCharacters.test(value)) {
+//     input.value = value.replace(/[^a-zA-Z0-9\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g, '');
+//   }
+// });
+
 
 const searchInput = document.querySelector('.header-input');
 searchInput.addEventListener('input', debounce(inputHandler, 500));
@@ -91,7 +93,7 @@ let itemsOnPage = null;
 let paginationTotal = null;
 // ВИЗНАЧАЄМО ШИРИНУ ВЬЮПОРТУ
 // debugger
-if (parseInt(windowWidth, 10) < 375) windowWidth = '100'
+if (parseInt(windowWidth, 10) < 375) windowWidth = '100';
 
 // console.log("ВИЗНАЧАЄМО ШИРИНУ ВЬЮПОРТУ = ", windowWidth)
 switch (windowWidth) {
@@ -129,9 +131,9 @@ async function createFilterGallery() {
       offset: offsetValue,
       comics: comic.value,
       orderBy: orderText,
-      modifiedSince: "01/01/" + dateVal,
+      modifiedSince: '01/01/' + dateVal,
     });
-    console.log("Data after request", data)
+    console.log('Data after request', data);
     const results = data.results;
     galleryList.setAttribute('data-total', data.total);
     galleryList.setAttribute('data-offset', data.offset);
@@ -148,7 +150,7 @@ async function createFilterGallery() {
 form.addEventListener('change', async event => {
   event.preventDefault();
   localStorage.setItem('searchValue', name.value);
-  searchInput.value = name.value
+  searchInput.value = name.value;
   galleryList.innerHTML = '';
   galleryList.innerHTML = await createFilterGallery();
 });
@@ -171,6 +173,6 @@ function clickCard(e) {
   if (e.target.classList.value === 'gallery-image') {
     const id = Number(e.target.closest('li').dataset.id);
 
-    createModalOn(id);
+    createModalOn(id, '');
   }
 }

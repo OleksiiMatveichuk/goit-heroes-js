@@ -1,4 +1,4 @@
-import { createModal1 } from './createModal1';
+//import { createModal1 } from './createModal1';
 import { createModalOn } from './createModalOn';
 import { api } from './low-level/api';
 
@@ -13,8 +13,8 @@ const random_bacground = document.querySelector('.random-bacground');
 img.style.visible = false;
 
 img.addEventListener('click', () => {
-  createModalOn(character.data.id);
-  removeSetInterval();
+  createModalOn(character.data.id, character.data.name);
+  //removeSetInterval();
 });
 let setIntervalId = null;
 let timeId = null;
@@ -32,17 +32,18 @@ function removeSetInterval() {
 import { errorAPI } from './error-gallery';
 async function getRandomData(params) {
   try {
-    console.log("random data")
+    console.log('random data');
     const data = await api.getAllCharacters(params);
     if (!data) {
-      console.log("bad data");
+      console.log('bad data');
 
-      ulList.innerHTML = errorAPI("Too Many Requests...")
+      ulList.innerHTML = errorAPI('Too Many Requests...');
     }
     listCharacters.push(data.results);
     return data;
+  } catch (er) {
+    console.log('random list', er);
   }
-  catch (er) { console.log("random list", er) }
 }
 
 function newImg(value) {

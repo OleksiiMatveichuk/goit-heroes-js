@@ -1,7 +1,7 @@
 /* //===================modal1================== */
 
 .bacground-modal {
-  background: rgba(255, 255, 255, 0.096);
+  background: rgba(255, 255, 255, 0.6);
   position: fixed;
 
   width: 100%;
@@ -66,6 +66,7 @@
 }
 .img-list-item {
   border-radius: 8px;
+  object-fit: cover;
 }
 .img-list-item-card {
   width: 263px;
