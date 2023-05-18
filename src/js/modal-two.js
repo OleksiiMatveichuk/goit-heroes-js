@@ -2,12 +2,11 @@
 import { api } from './low-level/api';
 
 export async function createModalTwo(value) {
-  document.body.style.overflow = 'hidden';
+  // document.body.style.overflow = 'hidden';
   console.log(value);
-  const id = 37421;
-  //const id = value;
+  // const id = 37421;
+  const id = value;
   const API = await api.getComicById({ comicId: id });
-  console.log('API :>> ', API);
 
   const itemComics = await createLiComics(API);
 
@@ -95,7 +94,7 @@ function closeModal_Window(e) {
     e.target.tagName === 'svg'
   ) {
     const modal = document.querySelector('.bacground-mod-two');
-    document.body.style.overflow = '';
+    // document.body.style.overflow = '';
     modal?.remove();
   }
 }
@@ -174,19 +173,5 @@ async function createLiComics(arr) {
           </li>
     `
   );
-  console.log('lishka comics :>> ', lishka);
   return await lishka.join('');
 }
-
-// const reserv = `<li class="mod-two-gallery-item">
-//             <img class="mod-two-gallery-img" src="${arr[0].images[1].path}.${arr[0].images[1].extension}" alt="" />
-//           </li>
-//           <li class="mod-two-gallery-item">
-//             <img class="mod-two-gallery-img" src="${arr[0].images[2].path}.${arr[0].images[2].extension}" alt="" />
-//           </li>
-//           <li class="mod-two-gallery-item">
-//             <img class="mod-two-gallery-img" src="${arr[0].images[3].path}.${arr[0].images[3].extension}" alt="" />
-//           </li>
-//           <li class="mod-two-gallery-item">
-//             <img class="mod-two-gallery-img" src="${arr[0].images[4].path}.${arr[0].images[4].extension}" alt="" />
-//           </li>`;
