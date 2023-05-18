@@ -3,13 +3,35 @@ import debounce from 'lodash.debounce';
 import { createModalOn } from './createModalOn';
 //import { createModalTwo } from './modal-two';
 
-const form = document.querySelector('.form');
+const form = document.querySelector('.filter-form');
 let comic = document.querySelector(`[name="comic"]`);
 let name = document.querySelector(`[name="name"]`);
 let order = document.querySelector(`[name="order"]`);
 let date = document.querySelector(`[name="date"]`);
 const galleryList = document.querySelector('.gallery');
 galleryList.addEventListener('click', clickCard);
+
+let dateVal = null;
+
+let yearsToSelect = '';
+yearsToSelect += `<option>All Years</option>
+<option class="defolt-options">-----------</option>`
+console.log("select date", date)
+for (let i = 1939; i <= 2023; i++) {
+  yearsToSelect += `<option>${i}</option>`;
+}
+date.insertAdjacentHTML('beforeend', yearsToSelect);
+
+date.addEventListener('change', onDateSelect);
+async function onDateSelect(e) {
+  e.preventDefault;
+  if (e.target.value === 'All Years') {
+    dateVal = null;
+  } else {
+    dateVal = e.target.value;
+  }
+}
+
 
 const searchInput = document.querySelector('.header-input');
 searchInput.addEventListener('input', debounce(inputHandler, 500));
@@ -77,6 +99,10 @@ console.log('Run all_charaster');
 async function createFilterGallery() {
   try {
     const orderText = order.value.toLowerCase();
+    // console.log("comics", comic.value)
+    // console.log("order", orderText)
+    // console.log("name", name.value)
+    // console.log("year", dateVal)
     const offsetValue = galleryList.dataset.offset;
     const data = await api.getAllCharacters({
       nameStartsWith: name.value,
@@ -84,8 +110,9 @@ async function createFilterGallery() {
       offset: offsetValue,
       comics: comic.value,
       orderBy: orderText,
-      modifiedSince: date.value,
+      modifiedSince: "01/01/" + dateVal,
     });
+    console.log("Data after request", data)
     const results = data.results;
     galleryList.setAttribute('data-total', data.total);
     galleryList.setAttribute('data-offset', data.offset);

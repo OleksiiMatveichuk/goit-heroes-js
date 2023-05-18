@@ -49,12 +49,24 @@
 
         <div class="input-box">
           <label class="filter-form-lable" for="date">Date</label>
-          <input
+          <select
+            class="input-choose input-txt input-select"
+            type="select"
+            name="date"
+            id="date"
+            placeholder="Select year..."
+            autocomplete="off"
+          >
+            <option class="defolt-options">All Years</option>
+            <option class="defolt-options">-----------</option>
+          </select>
+
+          <!-- <input
             class="input-choose input-txt input-date"
             type="date"
             id="date"
             name="date"
-          />
+          /> -->
           <svg class="icon-arrow-down" width="18" height="18" fill="white">
             <use href="./images/symbol-defs.svg#icon-arrow-down"></use>
           </svg>
