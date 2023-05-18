@@ -53,7 +53,7 @@
       </div>
     </div>
     </div>
-    `}function ke(e){if(e.target.classList.value==="bacground-mod-two"||e.target.classList.value==="mod-two-buttom"||e.target.tagName==="svg"){const t=document.querySelector(".bacground-mod-two");t==null||t.remove()}}async function Fr(e){return e.length?await(await e.map(r=>`<li class="modal-two-characters">
+    `}function ke(e){if(e.target.classList.value==="bacground-mod-two"||e.target.classList.value==="mod-two-buttom"||e.target.tagName==="svg"){const t=document.querySelector(".bacground-mod-two");document.body.style.overflow="",t==null||t.remove()}}async function Fr(e){return e.length?await(await e.map(r=>`<li class="modal-two-characters">
             <img
               class="mod-two-charaters-img"
               src="${r.thumbnail.path}.${r.thumbnail.extension}"
@@ -101,7 +101,7 @@
           <p class="black-widow-content"> ${w}</p>
            <h4 class="black-widow-list-text">List of comics</h4>
           
-          `}function g(S){if(S.target.className==="bacground-modal"||S.target.className==="close-modal-btn"){const w=document.querySelector(".bacground-modal");document.body.style.overflow="",w==null||w.remove()}else(S.target.className==="img-list-item-card"||S.target.className==="black-widow-card-text"||S.target.className==="black-widow-card-description"||S.target.className==="black-widow-card-footer")&&Nr(Number(S.target.closest("li").dataset.id))}async function A(S){return S.map(w=>{const{id:O,title:R}=w[0],{path:_,extension:st}=w[0].thumbnail;return`
+          `}function g(S){if(S.target.className==="bacground-modal"||S.target.className==="close-modal-btn"||S.target.className==="icon-close"||S.target.className==="close-modal"){const w=document.querySelector(".bacground-modal");document.body.style.overflow="",w==null||w.remove()}else(S.target.className==="img-list-item-card"||S.target.className==="black-widow-card-text"||S.target.className==="black-widow-card-description"||S.target.className==="black-widow-card-footer")&&Nr(Number(S.target.closest("li").dataset.id))}async function A(S){return S.map(w=>{const{id:O,title:R}=w[0],{path:_,extension:st}=w[0].thumbnail;return`
         <li class="black-widow-list-item" data-id=${O}>
          <a href="#" class="black-widow-handle">
             <div class="black-widow-card">
@@ -119,11 +119,13 @@
    <div class="bacground-modal">
   <section class="modal-window">
     <div class="container-modal">
-    <a class="close">
-
-    <img src='./images/symbol-defs.svg#icon-close' class="close-modal-btn" width="20" height="20"  >
-    
-    </a>
+     
+    <div class='close-modal-btn'>
+    <img src='./images/close.svg' class="close-modal" width="10" height="10"  ></img>
+    </div>
+     
+  
+ 
       
 <div class="modal1-content">
       <div class="img-info">
