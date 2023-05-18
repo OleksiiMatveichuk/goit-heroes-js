@@ -100,7 +100,7 @@ async function createLiCharacters(arr) {
     return `<li class="modal-two-characters">
             <img
               class="mod-two-charaters-img"
-              src="./images/remove_img/malenkoe.png"
+              src="./images/desktop/incognito.jpg"
               alt=""
             />
             <p>Hero 1</p>
@@ -108,7 +108,7 @@ async function createLiCharacters(arr) {
           <li class="modal-two-characters">
             <img
               class="mod-two-charaters-img"
-              src="./images/remove_img/malenkoe.png"
+              src="./images/desktop/incognito.jpg"
               alt=""
             />
             <p>Hero 2</p>
@@ -132,7 +132,7 @@ async function createLiCharacters(arr) {
 async function createLiCreators(arr, comics) {
   if (!arr.length) {
     return `<li class="mod-two-creator">
-            <img class="mod-two-img-creator" src="./images/remove_img/malenkoe.png" alt="" />
+            <img class="mod-two-img-creator" src="./images/desktop/incognito.jpg" alt="" />
             <div>
               <h3 class="mod-two-creator-job-title">Writer</h3>
               <p>Creator name</p>
