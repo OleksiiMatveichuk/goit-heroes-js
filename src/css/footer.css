@@ -17,7 +17,7 @@
 }
 
 .logo-img {
-  width: 100px;
+  width: 98px;
   height: 15px;
 }
 
@@ -82,10 +82,21 @@ policy-link {
 .policy-link:focus {
   color: var(--dark-btn-hover);
 }
-
+@media screen and (min-width: 375px) {
+  .logo-img {
+    width: 98px;
+    height: 15px;
+  }
+  .footer-top {
+    margin-bottom: 40px;
+  }
+}
 @media screen and (min-width: 767.98px) {
   .footer {
     padding-top: 68px;
+  }
+  .footer-top {
+    margin-bottom: 68px;
   }
 }
 
@@ -98,10 +109,9 @@ policy-link {
   height: 30px;
 }
 
-.footer-top {
-  margin-bottom: 68px;
-}
-
 .footer-bottom {
   padding: 18px 0;
+}
+.footer-top {
+  margin-bottom: 40px;
 }
