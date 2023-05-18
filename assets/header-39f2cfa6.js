@@ -53,7 +53,7 @@
       </div>
     </div>
     </div>
-    `}function De(e){if(e.target.classList.value==="bacground-mod-two"||e.target.classList.value==="mod-two-buttom"||e.target.tagName==="svg"){const t=document.querySelector(".bacground-mod-two");document.body.style.overflow="",t==null||t.remove()}}async function $r(e){return e.length?await(await e.map(r=>`<li class="modal-two-characters">
+    `}function De(e){(e.target.classList.value==="bacground-mod-two"||e.target.classList.value==="mod-two-buttom"||e.target.tagName==="svg")&&document.querySelectorAll(".bacground-mod-two").forEach(r=>r.remove())}async function $r(e){return e.length?await(await e.map(r=>`<li class="modal-two-characters">
             <img
               class="mod-two-charaters-img"
               src="${r.thumbnail.path}.${r.thumbnail.extension}"
