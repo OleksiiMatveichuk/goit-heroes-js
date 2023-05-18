@@ -6,7 +6,7 @@
   margin: -20px;
   top: 20px;
   left: 0px;
-  z-index: 1000;
+  z-index: 3;
 }
 .logo-svg {
   width: 98px;
@@ -67,7 +67,7 @@
     margin: -20px;
     top: 20px;
     left: 0px;
-    z-index: 1000;
+    z-index: 3;
   }
 
   .header-items {

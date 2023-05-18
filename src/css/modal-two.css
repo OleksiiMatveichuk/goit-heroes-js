@@ -10,7 +10,7 @@
   top: 0;
   left: 0;
 
-  z-index: 4;
+  z-index: 5;
 }
 
 
@@ -33,7 +33,7 @@
   transform: translateX(-50%);
   /* margin: 0 auto; */
   overflow-y: auto;
-  z-index: 4;
+  z-index: 5;
 
 }
 .modal-two h3 {
