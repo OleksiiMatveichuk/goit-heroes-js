@@ -42,6 +42,7 @@
     background-image: url(../images/tablet/try-looking-min.png);
   }
   .error-message {
+    width: 190px;
     font-weight: 500;
     font-size: 24px;
     line-height: 1.16;
@@ -63,6 +64,7 @@
     background-image: url(../images/desktop/try-looking-min.png);
   }
   .error-message {
+    width: 190px;
     font-weight: 500;
     font-size: 24px;
     line-height: 1.16;

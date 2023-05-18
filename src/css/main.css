@@ -24,6 +24,7 @@ body {
   letter-spacing: 0.02em;
   color: var(--main-color);
   background-color: var(--main-bg-color);
+  overflow-x: unset;
 }
 section {
   background-color: var(--main-bg-color);

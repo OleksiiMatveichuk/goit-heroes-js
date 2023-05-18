@@ -1,10 +1,3 @@
-// keys for api
-
-// export const key = {
-//   publickey: '6098703cb93535806af01869e44e21c4',
-//   privatekey: 'fc32c1d6f8408c5efa07ea334cecc41e18ba0403',
-// };
-
 // const keys = [
 //   {
 //     publickey: '6098703cb93535806af01869e44e21c4',
@@ -30,7 +23,12 @@
 //   privatekey: 'fc32c1d6f8408c5efa07ea334cecc41e18ba0403',
 // };
 
+// export const key = {
+//   publickey: '3e8547eb41b42a9a2a1ebdd17f3eee37',
+//   privatekey: '1eb0a59387ba717430ceb4d1fa44d25acc6fdeb0',
+// };
+
 export const key = {
-  publickey: '3e8547eb41b42a9a2a1ebdd17f3eee37',
-  privatekey: '1eb0a59387ba717430ceb4d1fa44d25acc6fdeb0',
+  publickey: 'b2ba5cf7f393b75848da1f17ffee17c0',
+  privatekey: '5989cbe1424cbcf47b54f696074d761708739dd1',
 };

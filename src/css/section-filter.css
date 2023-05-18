@@ -1,3 +1,4 @@
+
 input,
 select,
 textarea {
@@ -169,3 +170,148 @@ textarea {
     } 
 }
 /*==============MEDIA REQUEST DESKTOP===================*/
+
+/* .lable {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: rgba(250, 250, 250, 0.3);
+}
+
+.input-txt::placeholder {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+  color: #fafafa;
+}
+
+.input-txt {
+  padding: 14px 24px;
+  gap: 204px;
+  margin-top: 4px;
+  width: 335px;
+  height: 46px;
+
+  background: #171717;
+  border: 2px solid #34387f;
+  border-radius: 100px;
+  margin-bottom: 12px;
+  color: #fafafa;
+}
+
+.input-txt:focus {
+  background: #34387f;
+  outline: none;
+}
+
+.input-choose {
+  display: flex;
+  margin-top: 4px;
+  padding: 14px 24px;
+  gap: 42px;
+
+  max-width: 163.5px;
+  height: 46px;
+  color: #fafafa;
+  background: #171717;
+  border: 2px solid #34387f;
+  border-radius: 100px;
+}
+
+.input-box {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+input[type='date'] {
+  font-family: 'Poppins';
+  font-style: normal;
+  padding: 0 auto;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #fafafa;
+  width: 100px;
+}
+
+.input-choose:focus {
+  outline: none;
+}
+
+.input-boxil {
+  position: relative;
+}
+.search-svg {
+  position: absolute;
+  top: 40px;
+  fill: #fafafa;
+  right: 20px;
+  width: 18px;
+  height: 18px;
+}
+.small-input-box {
+  position: relative;
+}
+
+@media screen and (min-width: 768px) {
+  .input-choose {
+    width: 180px;
+    height: 50px;
+    margin-top: 8px;
+  }
+
+  .input-txt {
+    width: 180px;
+    height: 50px;
+    margin-top: 8px;
+  }
+
+  .form {
+    display: flex;
+    gap: 8px;
+  }
+
+  .search-svg {
+    top: -22px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .input-txt {
+    display: flex;
+  }
+
+  input[name='comic'] {
+    width: 268px;
+    height: 50px;
+  }
+
+  .form {
+    gap: 16px;
+  }
+
+  .filtrer-container {
+    margin: 0 auto;
+  }
+
+  input[name='name'] {
+    width: 190px;
+    height: 50px;
+  }
+
+  input[name='order'] {
+    width: 185px;
+    height: 50px;
+  }
+
+  input[name='date'] {
+    width: 170px;
+    height: 50px;
+  }
+} */
+
