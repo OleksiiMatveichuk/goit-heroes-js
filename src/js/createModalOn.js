@@ -3,7 +3,7 @@ import { createModalTwo } from './modal-two';
 
 export async function createModalOn(id) {
   const body = document.body;
-
+  document.body.style.overflow = 'hidden';
   const data = await api.getCharactersById({ characterId: id });
 
   const { name, description, modified } = data[0];

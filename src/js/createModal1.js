@@ -5,35 +5,6 @@ import { createModalTwo } from './modal-two';
 export async function createModal1(d, value) {
   let data;
   if (value === 2) {
-    // console.log('galari');
-    // result = await api.getCharactersById({ characterId: d });
-    // console.log('DATA+++++++++++', result);
-    // data = result;
-    // const tempData = await api.getCharactersById({ characterId: d });
-    // console.log('tempData', tempData);
-    // const comicsArray = await getComicsArray(tempData);
-    // const marKup = await Promise.all(comicsArray).then(async data => {
-    //   const marcup = await createNewMarcup(data);
-    //   return marcup;
-    // });
-    // const { path, extension, name, description, modified } = tempData;
-    // const markup = reternCharacterInfo(name, description, modified);
-    // console.log(markup);
-    // const body = document.body;
-    // document.body.style.overflow = 'hidden';
-    // const modalForm = modal1(path, extension);
-    // body.insertAdjacentHTML('afterbegin', modalForm);
-    // const black_widow = document.querySelector('.black-widow');
-    // black_widow.insertAdjacentHTML('afterbegin', markup);
-    // const closeModalForm = document.querySelector('.bacground-modal');
-    // closeModalForm.addEventListener('click', closeModal);
-    // const close_btn = document.querySelector('.close-modal-btn');
-    // close_btn.addEventListener('click', closeModal);
-    // const black_widow_list = document.querySelector('.black-widow-list');
-    // black_widow_list.insertAdjacentHTML('afterbegin', marKup);
-    // const modal_window = document.querySelector('.modal-window');
-    // modal_window.addEventListener('click', clickModalImg);
-    // return;
   } else {
     data = d;
   }
