@@ -7,7 +7,7 @@
   box-shadow: 3px 4px 20px rgba(52, 56, 127, 0.4),
     3px 4px 20px rgba(52, 56, 127, 0.8), 3px 4px 20px rgba(52, 56, 127, 0.8);
 }
-/* 3px 10px 24px 5px rgba(52, 56, 127, 1)*/
+
 .gallery-item {
   border-radius: 8px;
   overflow: hidden;
