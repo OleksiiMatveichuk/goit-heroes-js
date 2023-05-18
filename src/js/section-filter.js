@@ -1,3 +1,4 @@
+const form = document.querySelector('.filter-form');
 const orderInput = document.querySelector('[name="order"]');
 const orderListBox = document.querySelector('.listbox');
 let isVisible = false;
@@ -33,6 +34,7 @@ function createButton(value, text) {
     btn.type = 'button';
     btn.addEventListener('click', () => {
         orderInput.value = value;
+        form.dispatchEvent(new Event('change'));
         closeDropDown();
     }); 
     orderListBox.append(btn);
