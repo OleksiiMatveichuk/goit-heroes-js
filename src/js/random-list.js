@@ -28,12 +28,20 @@ function removeSetInterval() {
   clearInterval(setIntervalId);
   setIntervalId = null;
 }
-
+import { errorAPI } from './error-gallery';
 async function getRandomData(params) {
-  const data = await api.getAllCharacters(params);
+  try {
+    console.log("random data")
+    const data = await api.getAllCharacters(params);
+    if (!data) {
+      console.log("bad data");
 
-  listCharacters.push(data.results);
-  return data;
+      ulList.innerHTML = errorAPI("Too Many Requests...")
+    }
+    listCharacters.push(data.results);
+    return data;
+  }
+  catch (er) { console.log("random list", er) }
 }
 
 function newImg(value) {

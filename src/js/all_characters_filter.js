@@ -86,7 +86,7 @@ async function createFilterGallery() {
     galleryList.setAttribute('data-total', data.total);
     galleryList.setAttribute('data-offset', data.offset);
     if (results.length === 0) {
-      console.log('NOT FOUND!!!!');
+      console.log('NOT FOUND!!!! script all_caharasters_filter');
       return errorGallery();
     }
     return renderGallery(results);
