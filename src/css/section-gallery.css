@@ -2,15 +2,22 @@
   display: block;
 }
 
+.gallery-item:hover,
+.gallery-item:focus {
+  box-shadow: 3px 4px 20px rgba(52, 56, 127, 0.4),
+    3px 4px 20px rgba(52, 56, 127, 0.8), 3px 4px 20px rgba(52, 56, 127, 0.8);
+}
+
 .gallery-item {
   border-radius: 8px;
   overflow: hidden;
-  margin-bottom: 40px;
+  margin-bottom: 36px;
   width: 335px;
   padding-bottom: 4px;
 }
 
 .gallery-image {
+  object-fit: cover;
   margin-bottom: 16px;
   border-radius: 8px;
   width: 100%;
@@ -23,6 +30,7 @@
   font-size: 18px;
   line-height: calc(24 / 18);
   letter-spacing: -0.02em;
+  padding-left: 2px;
 }
 
 @media screen and (min-width: 768px) {
