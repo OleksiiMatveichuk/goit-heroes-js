@@ -23,7 +23,7 @@
   margin-bottom: 65px;
 }
 .back-home-link {
-  width: 111px;
+  width: 115px;
   display: flex;
   margin-left: auto;
   font-size: 12px;
@@ -166,5 +166,6 @@
     margin-bottom: 145px;
   }
   .back-home-link {
+    width: 115px;
   }
 }
