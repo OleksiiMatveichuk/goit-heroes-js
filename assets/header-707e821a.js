@@ -87,7 +87,7 @@
               <h3 class="mod-two-creator-job-title">Writer</h3>
               <p>Creator name</p>
             </div>
-          </li>`}async function kr(e){const t=e[0].images;return console.log("comics :>> ",t),t.length?await t.map(n=>`<li class="mod-two-gallery-item">
+          </li>`}async function kr(e){const t=e[0].images;return t.length?await t.map(n=>`<li class="mod-two-gallery-item">
             <img class="mod-two-gallery-img" src="${n.path}.${n.extension}" alt="" />
           </li>
     `).join(""):`<li class="mod-two-gallery-item">
