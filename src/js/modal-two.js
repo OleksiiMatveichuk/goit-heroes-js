@@ -144,10 +144,14 @@ function closeModal_Window(e) {
     e.target.classList.value === 'mod-two-buttom' ||
     e.target.tagName === 'svg'
   ) {
-    const modal = document.querySelector('.bacground-mod-two');
-    document.body.style.overflow = '';
+    const modal = document.querySelectorAll('.bacground-mod-two');
+    // document.body.style.overflow = '';
     //startSlider(0);
-    modal?.remove();
+
+    modal.forEach(item => {
+      item.remove();
+    });
+    //modal?.remove();
   }
 }
 
