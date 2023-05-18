@@ -172,8 +172,10 @@ export async function createModalOn(id, value) {
   <section class="modal-window">
     <div class="container-modal">
      
-    <div class='close-modal-btn'>
-    <img src='./images/close.svg' class="close-modal" width="10" height="10"  ></img>
+   <div class='close-modal-btn'>
+     <svg class="close-modal" width="10" height="10" fill="white">
+            <use href="./images/symbol-defs.svg#icon-close"></use>
+          </svg>
     </div>
      
   
