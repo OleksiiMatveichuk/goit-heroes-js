@@ -44,6 +44,12 @@ window.addEventListener('reset', updateKey())
 //   publickey: '3e8547eb41b42a9a2a1ebdd17f3eee37',
 //   privatekey: '1eb0a59387ba717430ceb4d1fa44d25acc6fdeb0',
 // };
+
+// export const key = {
+//   publickey: '3e8547eb41b42a9a2a1ebdd17f3eee37',
+//   privatekey: '1eb0a59387ba717430ceb4d1fa44d25acc6fdeb0',
+// };
+
 // export const key = {
 //   publickey: 'b2ba5cf7f393b75848da1f17ffee17c0',
 //   privatekey: '5989cbe1424cbcf47b54f696074d761708739dd1',
