@@ -87,8 +87,8 @@
               <h3 class="mod-two-creator-job-title">Writer</h3>
               <p>Creator name</p>
             </div>
-          </li>`}async function Un(t){const e=t[0].images;return e.length?await e.map(r=>`<li class="mod-two-gallery-item"><a href="${r.path}.${r.extension}">
-            <img class="mod-two-gallery-img" src="${r.path}.${r.extension}" alt="" /></a>
+          </li>`}async function Un(t){const e=t[0].images;return e.length?await e.map(r=>`<li class="mod-two-gallery-item">
+            <img class="mod-two-gallery-img" src="${r.path}.${r.extension}" alt="" />
           </li>
     `).join(""):`<li class="mod-two-gallery-item">
             <img class="mod-two-gallery-img" src="${t[0].thumbnail.path}.${t[0].thumbnail.extension}" alt="" />
