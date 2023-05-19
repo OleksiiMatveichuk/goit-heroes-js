@@ -153,6 +153,7 @@ form.addEventListener('change', async event => {
   searchInput.value = name.value;
   galleryList.innerHTML = '';
   galleryList.innerHTML = await createFilterGallery();
+  await createPaginator();
 });
 
 {
@@ -189,9 +190,9 @@ async function createPaginator() {
   galleryList.insertAdjacentHTML('afterend', markup);
 }
 
-//setTimeout(async () => {
-//await createPaginator();
-//}, 3500);
+// setTimeout(async () => {
+//   await createPaginator();
+// }, 3500);
 
 // const paginationNumbers = document.getElementById('pagination-numbers');
 // paginationNumbers.addEventListener('click', handleActivePageNumber);
