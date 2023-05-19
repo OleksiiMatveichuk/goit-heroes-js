@@ -121,7 +121,7 @@ galleryList.setAttribute('data-limits', itemsOnPage);
 import { galleryItem, renderGallery } from './get-gallery-list';
 import { api } from './low-level/api';
 import { errorGallery } from './error-gallery';
-console.log('Run all_charaster');
+// console.log('Run all_charaster');
 async function createFilterGallery() {
   try {
     const orderText = order.value.toLowerCase();
@@ -143,7 +143,7 @@ async function createFilterGallery() {
     galleryList.setAttribute('data-total', data.total);
     galleryList.setAttribute('data-offset', data.offset);
     if (results.length === 0) {
-      console.log('NOT FOUND!!!! script all_caharasters_filter');
+      // console.log('NOT FOUND!!!! script all_caharasters_filter');
       return errorGallery();
     }
     return renderGallery(results);
