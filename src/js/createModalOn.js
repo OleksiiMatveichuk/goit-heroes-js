@@ -127,7 +127,7 @@ export async function createModalOn(id, value) {
 
         return `
         <li class="black-widow-list-item" data-id=${id}>
-         <a href="#" class="black-widow-handle">
+         <a class="black-widow-handle">
             <div class="black-widow-card">
               <img  width ='263'height= '263'
                 class="img-list-item-card"
@@ -160,12 +160,12 @@ export async function createModalOn(id, value) {
   <section class="modal-window">
     <div class="container-modal">
      
-    <div class='close-modal-btn'>
-<svg class="close-modal" width="10" height="10">
-  <use href="./images/symbol-defs.svg#icon-close"></use>
-</svg>
 
-    
+   <div class='close-modal-btn'>
+     <svg class="close-modal" width="10" height="10" fill="white">
+            <use href="./images/symbol-defs.svg#icon-close-mod"></use>
+          </svg>
+
     </div>
      
   
