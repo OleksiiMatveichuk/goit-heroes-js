@@ -3,7 +3,7 @@ import debounce from 'lodash.debounce';
 
 const searchInput = document.querySelector('.header-input');
 
-console.log('Run header.js');
+// console.log('Run header.js');
 
 searchInput.addEventListener('click', () => {
   // Устанавливаем пустое значение в поле ввода
@@ -108,7 +108,7 @@ form.addEventListener('submit', async event => {
     const galleryList = document.querySelector('.gallery');
 
     galleryList.innerHTML = '';
-    console.log('input', searchQuery);
+    // console.log('input', searchQuery);
     galleryList.innerHTML = await createGallery(searchQuery);
     localStorage.removeItem('searchValue');
   }
@@ -132,13 +132,14 @@ async function createGallery(searchQuery) {
     galleryList.setAttribute('data-offset', data.offset);
 
     if (results.length === 0) {
-      console.log('NOT FOUND!!!! script header');
+      // console.log('NOT FOUND!!!! script header');
       return errorGallery();
     }
     return renderGallery(results);
   } catch (e) {
-    console.log('Bad request. Try do it later...', e);
+
     return errorAPI('Too Many Requests...');
+
   }
 }
 
