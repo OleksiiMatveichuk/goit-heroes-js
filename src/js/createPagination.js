@@ -101,31 +101,6 @@ export async function createPagonation(paginationLimit, array) {
 
   // const listItems = paginatedList.querySelectorAll('li');
 
-  // window.addEventListener('load', async () => {
-  //   console.log('WINDOW');
-  //   const buttons = await getPaginationNumbers(pageCount);
-  //   const markup = await createNext_Previous(buttons.join(''));
-  //   getPaginationNumbers();
-  //   setCurrentPage(1);
-
-  //   prevButton.addEventListener('click', () => {
-  //     setCurrentPage(currentPage - 1);
-  //   });
-
-  //   nextButton.addEventListener('click', () => {
-  //     setCurrentPage(currentPage + 1);
-  //   });
-
-  //   document.querySelectorAll('.pagination-number').forEach(button => {
-  //     const pageIndex = Number(button.getAttribute('page-index'));
-
-  //     if (pageIndex) {
-  //       button.addEventListener('click', () => {
-  //         setCurrentPage(pageIndex);
-  //       });
-  //     }
-  //   });
-
   //   return markup;
   // });
 

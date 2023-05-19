@@ -4,6 +4,14 @@ import { createPagonation } from './createPagination';
 import { createModalOn } from './createModalOn';
 //import { createModalTwo } from './modal-two';
 
+let currentPage = 1; //=====active page по замовченню 1 сторінка===================
+
+let pageCount; //=====кількість карток в галереї всього =====
+
+let paginationLimit; //=====кількісь сарток які ми дозволяємо відмалювати
+let nextButton; //кнопки в пагінації >
+let prevButton; //кнопки в пагінації  <
+
 const form = document.querySelector('.filter-form');
 let comic = document.querySelector(`[name="comic"]`);
 let name = document.querySelector(`[name="name"]`);
@@ -152,6 +160,10 @@ async function createFilterGallery() {
 
 form.addEventListener('change', async event => {
   event.preventDefault();
+  const yesPagination = document.querySelector('.pagination-container');
+  if (yesPagination) {
+    yesPagination.remove();
+  }
   localStorage.setItem('searchValue', name.value);
   searchInput.value = name.value;
   galleryList.innerHTML = '';
@@ -161,21 +173,15 @@ form.addEventListener('change', async event => {
 
   const paginationNumbers = document.getElementById('pagination-numbers');
   paginationNumbers.addEventListener('click', handleActivePageNumber);
+  nextButton = document.getElementById('next-button');
+  prevButton = document.getElementById('prev-button');
+  // nextButton.addEventListener('click', setCurrentPage);
+  // prevButton.addEventListener('click', setCurrentPage);
+  handlePageButtonsStatus();
+  setCurrentPage(1);
+  nextButton.addEventListener('click');
+  prevButton.addEventListener('click');
 });
-
-{
-  /* <button class="get">GET</button>
-const btn = document.querySelector(".get")
-btn.addEventListener("click", async (event) => {
-
-    // event.preventDefault();
-    const galleryList = document.querySelector('.gallery');
-    galleryList.innerHTML = ''
-    galleryList.innerHTML = await createFilterGallery()
-    // localStorage.removeItem('searchValue');
-    // createFilterGallery()
-}) */
-}
 
 function clickCard(e) {
   if (e.target.classList.value === 'gallery-image') {
@@ -186,77 +192,76 @@ function clickCard(e) {
 }
 
 async function createPaginator() {
-  // console.log(galleryList);
-  const limit = 6;
-  // galleryList.dataset.limits;
-  const total = 78;
-
-  // galleryList.dataset.total;
-
-  // console.log(limit, ' ', total);
-  const markup = await createPagonation(limit, total);
-  console.log(markup);
+  const paginationLimit = galleryList.dataset.limits;
+  pageCount = 26;
+  //galleryList.dataset.total;
+  const markup = await createPagonation(paginationLimit, pageCount);
 
   galleryList.insertAdjacentHTML('afterend', markup);
 }
 
-// setTimeout(async () => {
-//   await createPaginator();
-// }, 3500);
-
-// const paginationNumbers = document.getElementById('pagination-numbers');
-// paginationNumbers.addEventListener('click', handleActivePageNumber);
-// const paginatedList = document.getElementById('paginated-list');
-
-// const listItems = paginatedList.querySelectorAll('li');
-
-// const nextButton = document.getElementById('next-button');
-// const prevButton = document.getElementById('prev-button');
-
-// function disableButton(button) {
-//   button.classList.add('disabled');
-//   button.setAttribute('disabled', true);
-// }
-
-// function enableButton(button) {
-//   button.classList.remove('disabled');
-//   button.removeAttribute('disabled');
-// }
-
-// function handlePageButtonsStatus() {
-//   if (currentPage === 1) {
-//     disableButton(prevButton);
-//   } else {
-//     enableButton(prevButton);
-//   }
-
-//   if (pageCount === currentPage) {
-//     disableButton(nextButton);
-//   } else {
-//     enableButton(nextButton);
-//   }
-// }
-
-function handleActivePageNumber(e) {
-  const button = e.target;
-  const currentPage = Number(button.getAttribute('page-index'));
-  document.querySelectorAll('.pagination-number').forEach(button => {
-    button.classList.remove('active');
-    const pageIndex = Number(button.getAttribute('page-index'));
-    if (pageIndex == currentPage) {
-      button.classList.add('active');
-    }
-  });
+function disableButton(button) {
+  button.classList.add('disabled');
+  button.setAttribute('disabled', true);
 }
 
-// function setCurrentPage(pageNum) {
-//   currentPage = pageNum;
+function enableButton(button) {
+  button.classList.remove('disabled');
+  button.removeAttribute('disabled');
+}
 
-//   const prevRange = (pageNum - 1) * paginationLimit;
-//   const currRange = pageNum * paginationLimit;
-//   listItems.forEach((item, index) => {
-//     item.classList.add('hidden');
-//     if (index >= prevRange && index < currRange) {
-//       item.classList.remove('hidden');
-//     }
-//   });
+function handlePageButtonsStatus() {
+  if (currentPage === 1) {
+    console.log('prevButton', prevButton);
+    disableButton(prevButton);
+  } else {
+    enableButton(prevButton);
+  }
+
+  if (pageCount === currentPage) {
+    disableButton(nextButton);
+  } else {
+    enableButton(nextButton);
+  }
+}
+
+function handleActivePageNumber(e) {
+  if (e) {
+    const button = e.target;
+    currentPage = Number(button.getAttribute('page-index'));
+    document.querySelectorAll('.pagination-number').forEach(button => {
+      button.classList.remove('active');
+      const pageIndex = Number(button.getAttribute('page-index'));
+      if (pageIndex == currentPage) {
+        button.classList.add('active');
+      }
+    });
+  } else {
+    document.querySelectorAll('.pagination-number').forEach(button => {
+      button.classList.remove('active');
+      const pageIndex = Number(button.getAttribute('page-index'));
+      if (pageIndex === currentPage) {
+        button.classList.add('active');
+      }
+    });
+  }
+
+  handlePageButtonsStatus();
+}
+
+const setCurrentPage = pageNum => {
+  currentPage = pageNum;
+
+  handleActivePageNumber();
+  handlePageButtonsStatus();
+
+  const prevRange = (pageNum - 1) * paginationLimit;
+  const currRange = pageNum * paginationLimit;
+  const listItems = document.querySelectorAll('.pagination-number');
+  listItems.forEach((item, index) => {
+    item.classList.add('hidden');
+    if (index >= prevRange && index < currRange) {
+      item.classList.remove('hidden');
+    }
+  });
+};
