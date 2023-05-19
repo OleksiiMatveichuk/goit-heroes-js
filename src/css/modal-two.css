@@ -28,7 +28,7 @@
   position: absolute;
   top: 20px;
   left: 50%;
-  bottom: 20px;
+  /* bottom: 20px; */
   /* bottom: 50%; */
   transform: translateX(-50%);
   /* margin: 0 auto; */

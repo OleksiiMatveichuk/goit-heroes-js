@@ -1,5 +1,5 @@
 import { api } from './low-level/api';
-const gallery = new SimpleLightbox('.mod-two-gallery a');
+// const gallery = new SimpleLightbox('.mod-two-gallery a');
 
 export async function createModalTwo(value) {
   // const id = 37421;
