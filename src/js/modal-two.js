@@ -91,14 +91,24 @@ async function modalTwo(arr, characters, creators, comics, date) {
     `;
 }
 
+const closeModal = () => {
+  const modal = document.querySelectorAll('.bacground-mod-two');
+
+  modal.forEach(item => item.remove());
+};
+
 function closeModal_Window(e) {
   if (
     e.target.classList.value === 'bacground-mod-two' ||
     e.target.classList.value === 'mod-two-buttom' ||
     e.target.tagName === 'svg'
   ) {
-    const modal = document.querySelectorAll('.bacground-mod-two');
-    modal.forEach(item => item.remove());
+
+    closeModal();
+
+//     const modal = document.querySelectorAll('.bacground-mod-two');
+//     modal.forEach(item => item.remove());
+
   }
 }
 
@@ -179,6 +189,15 @@ async function createLiComics(arr) {
   return await lishka.join('');
 }
 
+
+document.addEventListener('keydown', event => {
+  if (event.code === 'Escape') {
+//     const modal = document.querySelector('.bacground-mod-two');
+//     modal.remove();
+    closeModal();
+  }
+});
+
 async function getFormatDate(arr) {
   const dat = arr[0].dates[0].date;
   const d = new Date(dat);
@@ -187,3 +206,4 @@ async function getFormatDate(arr) {
   const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
   return `${mo} ${da}, ${ye}`;
 }
+

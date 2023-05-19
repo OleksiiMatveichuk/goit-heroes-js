@@ -55,9 +55,11 @@
 .close-modal-btn:hover {
   background-color: #242020;
 }
+.close-modal {
+  fill: #fff;
+}
 
 .img-modal {
-  /* margin: 0 auto; */
   border-radius: 8px;
   margin-bottom: 8px;
   cursor: pointer;
