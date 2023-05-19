@@ -33,26 +33,28 @@ async function onDateSelect(e) {
 }
 
 // Validation comics ID
-// comic.addEventListener('input', function (event) {
-//   const input = event.target;
-//   const value = input.value;
-//   const onlyDigits = /^\d*$/.test(value); // Regular expression to match only digits
+comic.addEventListener('input', function (event) {
+  const input = event.target;
+  const value = input.value;
+  const onlyDigits = /^\d*$/.test(value); // Regular expression to match only digits
 
-//   if (!onlyDigits) {
-//     input.value = value.replace(/\D/g, ''); // Remove non-digit characters from the value
-//   }
-// });
-// // Validation Name
-// name.addEventListener('input', function (event) {
-//   const input = event.target;
-//   const value = input.value;
-//   const validCharacters = /^[a-zA-Z0-9\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]*$/;
+  if (!onlyDigits) {
+    input.value = value.replace(/\D/g, ''); // Remove non-digit characters from the value
+  }
+});
+// Validation Name
+name.addEventListener('input', function (event) {
+  const input = event.target;
+  const value = input.value;
+  const validCharacters = /^[a-zA-Z0-9\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]*$/;
 
-//   if (!validCharacters.test(value)) {
-//     input.value = value.replace(/[^a-zA-Z0-9\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g, '');
-//   }
-// });
-
+  if (!validCharacters.test(value)) {
+    input.value = value.replace(
+      /[^a-zA-Z0-9\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g,
+      ''
+    );
+  }
+});
 
 const searchInput = document.querySelector('.header-input');
 searchInput.addEventListener('input', debounce(inputHandler, 500));
