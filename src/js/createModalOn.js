@@ -93,7 +93,7 @@ export async function createModalOn(id, value) {
   }
 
   function handleClickModal(e) {
-    console.log(e.target);
+    //console.log(e.target);
     // const modalremobve = document.querySelectorAll('.bacground-modal');
 
     // console.log(modalremobve.find());
@@ -199,6 +199,17 @@ export async function createModalOn(id, value) {
     
     `;
   }
+
+  document.addEventListener('keydown', event => {
+    if (event.code === 'Escape') {
+      const modal1 = document.querySelectorAll('.bacground-modal');
+
+      modal1.forEach(item => {
+        // console.log('item', item);
+        item.remove();
+      });
+    }
+  });
 }
 
 /////////////////////////////////
