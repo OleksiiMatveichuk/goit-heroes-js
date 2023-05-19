@@ -1,8 +1,6 @@
 import { api } from './low-level/api';
-// const gallery = new SimpleLightbox('.mod-two-gallery a');
 
 export async function createModalTwo(value) {
-  // const id = 37421;
   const id = value;
 
   const API = await api.getComicById({ comicId: id });
@@ -173,8 +171,8 @@ async function createLiComics(arr) {
 
   const lishka = comics.map(
     el =>
-      `<li class="mod-two-gallery-item"><a href="${el.path}.${el.extension}">
-            <img class="mod-two-gallery-img" src="${el.path}.${el.extension}" alt="" /></a>
+      `<li class="mod-two-gallery-item">
+            <img class="mod-two-gallery-img" src="${el.path}.${el.extension}" alt="" />
           </li>
     `
   );

@@ -4,8 +4,6 @@
   position: fixed;
   width: 100%;
   height: 100vh;
-  /* max-height: 100vh; */
-  /* cursor: pointer; */
   overflow: scroll;
   top: 0;
   left: 0;
@@ -16,22 +14,16 @@
 
 .modal-two {
   position: absolute;
-  /* box-sizing: border-box; */
+
   max-width: 335px;
   max-width: 335px;
-  /* max-width: 100%; */
   background-color: #070000;
   border-radius: 8px;
   padding: 40px 20px 64px;
-  /* height: 584px; */
-  /* max-height: 100vh; */
   position: absolute;
   top: 20px;
   left: 50%;
-  /* bottom: 20px; */
-  /* bottom: 50%; */
   transform: translateX(-50%);
-  /* margin: 0 auto; */
   overflow-y: auto;
   z-index: 5;
 
@@ -47,7 +39,6 @@
   width: 19px;
   height: 19px;
   border-radius: 50%;
-    /* border: 1px solid rgba(0, 0, 0, 0.1); */
   background-color: inherit;
   border: none;
   cursor: pointer;
@@ -67,11 +58,7 @@
   width: 14px;
   height: 14px;
 }
-/* .mod-two-close {
-  fill: #f10a0a;
-  transition: fill 250ms var(--cubic);
 
-} */
 .mod-two-first-img {
   width: 295px;
   margin-bottom: 8px;
@@ -83,9 +70,7 @@
   gap: 8px;
   margin-bottom: 16px;
 }
-/* .mod-two-gallery-item:not(:last-child) {
-    margin-right: 8px;
-} */
+
 .mod-two-gallery-img {
   width: 80px;
   height: 80px;
@@ -118,13 +103,9 @@
   width: 1px;
 
   position: absolute;
-  /* left: 0px; */
   right: -8px;
-  /* top: 20px; */
   top: 50%;
   transform: translateY(-50%);
-
-  /* margin-top: 50px; */
 }
 .mod-two-text {
   margin-bottom: 16px;
@@ -175,10 +156,6 @@
   flex-direction: column;
   gap: 16px;
 }
-/* .modal-two-characters:not(:last-child) {
-  margin-bottom: 16px;
-  
-} */
 
 @media screen and (min-width: 767.98px) {
   .modal-two h3 {
@@ -196,7 +173,6 @@
     width: 332px;
     margin-bottom: 0;
     margin-right: 8px;
-    /* border-radius: 8px; */
   }
 
   .mod-two-first-gallery {
@@ -212,11 +188,6 @@
     margin-bottom: 0px;
   }
 
-  /* .mod-two-gallery-item:not(:last-child) {
-        margin-right: 0px;
-        margin-bottom: 8px
-    } */
-
   .mod-two-date-blok {
     display: flex;
     justify-content: space-between;
@@ -231,11 +202,8 @@
     flex-direction: 1;
     gap: 32px;
     justify-content: flex-start;
-    /* margin-bottom: 32px; */
 }
-/* .mod-two-info-item{
-    flex-basis: calc((100% - 3 * 32px) / 4);
-} */
+
   .modal-two-info-header {
     margin-bottom: 8px;
     font-size: 12px;
@@ -258,11 +226,8 @@
   }
 
   .mod-two-charaters-gallery {
-    /* display: flex; */
     flex-direction: row;
     flex-wrap: wrap;
-    /* gap: 16px; */
-    /* flex: 1; */
   }
 
   .mod-two-charaters-img {
@@ -301,6 +266,5 @@
     flex-direction: row;
     flex-wrap: wrap;
     margin-bottom: 0px;
-    /* gap: 8px; */
   }
 }
