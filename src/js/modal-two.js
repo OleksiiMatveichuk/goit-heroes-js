@@ -1,4 +1,5 @@
 import { api } from './low-level/api';
+const gallery = new SimpleLightbox('.mod-two-gallery a');
 
 export async function createModalTwo(value) {
   // const id = 37421;
@@ -8,14 +9,21 @@ export async function createModalTwo(value) {
 
   const itemComics = await createLiComics(API);
 
-  const arrCreators = await api.getCreatorsByComicsId({ comicId: id });
+  const date = await getFormatDate(API);
 
+  const arrCreators = await api.getCreatorsByComicsId({ comicId: id });
   const itemCreators = await createLiCreators(arrCreators, API);
 
   const arrCharacters = await api.getCharactersByComicsId({ comicId: id });
   const itemCharacters = await createLiCharacters(arrCharacters);
 
-  const modal = await modalTwo(API, itemCharacters, itemCreators, itemComics);
+  const modal = await modalTwo(
+    API,
+    itemCharacters,
+    itemCreators,
+    itemComics,
+    date
+  );
   const body = document.body;
 
   body.insertAdjacentHTML('afterbegin', modal);
@@ -26,14 +34,14 @@ export async function createModalTwo(value) {
   closeBtn.addEventListener('click', closeModal_Window);
 }
 
-async function modalTwo(arr, characters, creators, comics) {
+async function modalTwo(arr, characters, creators, comics, date) {
   return `
   <div class="bacground-mod-two">
     <div class="modal-two">
       <button class="mod-two-buttom" type="button" data-modal-close>
-        <svg class='mod-two-swg-close' width="14" height="14">
+        <svg class='mod-two-swg-close' width="14" height="14" fill="white">
           <use class="mod-two-close" href="./images/symbol-defs.svg#icon-close"></use>
-        </svg>
+        </svg>   
       </button>
       <div class="mod-two-first-gallery">
         <img class="mod-two-first-img" src="${arr[0].thumbnail.path}.${
@@ -47,9 +55,9 @@ async function modalTwo(arr, characters, creators, comics) {
         <div class="mod-two-date-blok">
           <h2 class="mod-two-primary-header">${arr[0].title}</h2>
           <div class="mod-two-date">
-            <h3 class="mod-two-avtor">Chip Zdarsky</h3>
+            <h3 class="mod-two-avtor">${arr[0].creators.items[0].name}</h3>
 
-            <h3>December 07, 2022</h3>
+            <h3>${date}</h3>
           </div>
         </div>
         <p class="mod-two-text">${arr[0].description}</p>
@@ -165,10 +173,19 @@ async function createLiComics(arr) {
 
   const lishka = comics.map(
     el =>
-      `<li class="mod-two-gallery-item">
-            <img class="mod-two-gallery-img" src="${el.path}.${el.extension}" alt="" />
+      `<li class="mod-two-gallery-item"><a href="${el.path}.${el.extension}">
+            <img class="mod-two-gallery-img" src="${el.path}.${el.extension}" alt="" /></a>
           </li>
     `
   );
   return await lishka.join('');
+}
+
+async function getFormatDate(arr) {
+  const dat = arr[0].dates[0].date;
+  const d = new Date(dat);
+  const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+  const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+  const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+  return `${mo} ${da}, ${ye}`;
 }

@@ -46,9 +46,10 @@
 
   width: 19px;
   height: 19px;
-  /* border-radius: 50%;
-    border: 1px solid rgba(0, 0, 0, 0.1); */
+  border-radius: 50%;
+    /* border: 1px solid rgba(0, 0, 0, 0.1); */
   background-color: inherit;
+  border: none;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -60,13 +61,17 @@
 }
 .mod-two-buttom:hover,
 .mod-two-buttom:focus {
-  background-color: #05f13c;
+  background-color: #242020;
 }
-.mod-two-close {
+.mod-two-swg-close{
+  width: 14px;
+  height: 14px;
+}
+/* .mod-two-close {
   fill: #f10a0a;
   transition: fill 250ms var(--cubic);
 
-}
+} */
 .mod-two-first-img {
   width: 295px;
   margin-bottom: 8px;
