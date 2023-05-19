@@ -257,7 +257,8 @@ const setCurrentPage = pageNum => {
 
   const prevRange = (pageNum - 1) * paginationLimit;
   const currRange = pageNum * paginationLimit;
-  const listItems = document.querySelectorAll('.pagination-number');
+  //тут якщо треба можно скривати частково галерею======================================
+  const listItemsGallary = document.querySelectorAll('.gallery-item');
   listItems.forEach((item, index) => {
     item.classList.add('hidden');
     if (index >= prevRange && index < currRange) {
