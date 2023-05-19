@@ -227,6 +227,7 @@ function handlePageButtonsStatus() {
 
 function handleActivePageNumber(e) {
   if (e) {
+    console.log(e.target.getAttribute('page-index'));
     const button = e.target;
     currentPage = Number(button.getAttribute('page-index'));
     document.querySelectorAll('.pagination-number').forEach(button => {
@@ -259,7 +260,8 @@ const setCurrentPage = pageNum => {
   const currRange = pageNum * paginationLimit;
   //тут якщо треба можно скривати частково галерею======================================
   const listItemsGallary = document.querySelectorAll('.gallery-item');
-  listItems.forEach((item, index) => {
+
+  listItemsGallary.forEach((item, index) => {
     item.classList.add('hidden');
     if (index >= prevRange && index < currRange) {
       item.classList.remove('hidden');
