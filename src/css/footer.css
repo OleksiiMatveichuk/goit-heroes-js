@@ -54,6 +54,9 @@
 .footer-icon {
   fill: var(--main-color);
   transition: fill 250ms var(--cubic);
+
+  width: 14px;
+  height: 14px;
 }
 
 .character-link {
@@ -68,7 +71,6 @@
 .character-link:hover,
 .character-link:focus {
   color: var(--main-hover);
-
 }
 
 .footer-icon-item-link:hover > .footer-icon,
@@ -111,13 +113,13 @@ policy-link {
   .footer-list {
     width: 100%;
   }
-    .footer-icon{
-      width: 18px;
-      height: 18px;
-    }
-  .character-link{
+  .footer-icon {
+    width: 18px;
+    height: 18px;
+  }
+  .character-link {
     font-size: 16px;
-    line-height: calc(18/16);
+    line-height: calc(18 / 16);
   }
 }
 
@@ -137,9 +139,7 @@ policy-link {
   margin-bottom: 40px;
 }
 
-
 .footer-icon-item-link {
-
   width: 40px;
   height: 40px;
 }
