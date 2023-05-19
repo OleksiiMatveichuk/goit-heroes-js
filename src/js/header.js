@@ -46,7 +46,7 @@ let windowWidth = window.getComputedStyle(container).width;
 let itemsOnPage = null;
 // ВИЗНАЧАЄМО ШИРИНУ ВЬЮПОРТУ
 // debugger
-if (parseInt(windowWidth, 10) < 375) windowWidth = '100'
+if (parseInt(windowWidth, 10) < 375) windowWidth = '100';
 switch (windowWidth) {
   case '375px':
     itemsOnPage = 4;
@@ -83,6 +83,7 @@ window.addEventListener('load', async () => {
     galleryList.setAttribute('data-limits', itemsOnPage);
     galleryList.innerHTML = '';
     galleryList.innerHTML = await createGallery(savedValue || '');
+    await createPaginator(galleryList);
   }
 });
 
@@ -115,6 +116,7 @@ form.addEventListener('submit', async event => {
 
 import { galleryItem, renderGallery } from './get-gallery-list';
 import { errorGallery, errorAPI } from './error-gallery';
+import { createPagonation } from './createPagination';
 async function createGallery(searchQuery) {
   try {
     // console.log('itemsOnPage=', itemsOnPage);
@@ -132,11 +134,23 @@ async function createGallery(searchQuery) {
     if (results.length === 0) {
       // console.log('NOT FOUND!!!! script header');
       return errorGallery();
-
     }
     return renderGallery(results);
   } catch (e) {
-    // console.log("Bad request. Try do it later...", e);
-    return errorAPI("Too Many Requests...")
+
+    return errorAPI('Too Many Requests...');
+
   }
+}
+
+async function createPaginator(gallary) {
+  // console.log(galleryList);
+  const limit = gallary.dataset.limits;
+  const total = gallary.dataset.total;
+
+  // console.log(limit, ' ', total);
+  //const markup = await createPagonation(limit, total);
+  // console.log(markup);
+
+  gallary.insertAdjacentHTML('afterend', markup);
 }
