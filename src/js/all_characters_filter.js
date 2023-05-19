@@ -238,14 +238,15 @@ async function createPaginator() {
 // }
 
 function handleActivePageNumber(e) {
-  console.log(e.target);
-  // document.querySelectorAll('.pagination-number').forEach(button => {
-  //   button.classList.remove('active');
-  //   const pageIndex = Number(button.getAttribute('page-index'));
-  //   if (pageIndex == currentPage) {
-  //     button.classList.add('active');
-  //   }
-  // });
+  const button = e.target;
+  const currentPage = Number(button.getAttribute('page-index'));
+  document.querySelectorAll('.pagination-number').forEach(button => {
+    button.classList.remove('active');
+    const pageIndex = Number(button.getAttribute('page-index'));
+    if (pageIndex == currentPage) {
+      button.classList.add('active');
+    }
+  });
 }
 
 // function setCurrentPage(pageNum) {
