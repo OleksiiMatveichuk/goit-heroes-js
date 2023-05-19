@@ -40,95 +40,94 @@ export async function createPagonation(paginationLimit, array) {
      </button>
    </nav>`;
   }
-  const nextButton = document.getElementById('next-button');
-  const prevButton = document.getElementById('prev-button');
+  // const nextButton = document.getElementById('next-button');
+  // const prevButton = document.getElementById('prev-button');
 
-  // console.log('prevButton', prevButton);
-  function disableButton(button) {
-    button.classList.add('disabled');
-    button.setAttribute('disabled', true);
-  }
+  // // console.log('prevButton', prevButton);
+  // function disableButton(button) {
+  //   button.classList.add('disabled');
+  //   button.setAttribute('disabled', true);
+  // }
 
-  function enableButton(button) {
-    button.classList.remove('disabled');
-    button.removeAttribute('disabled');
-  }
+  // function enableButton(button) {
+  //   button.classList.remove('disabled');
+  //   button.removeAttribute('disabled');
+  // }
 
-  function handlePageButtonsStatus() {
-    if (currentPage === 1) {
-      disableButton(prevButton);
-    } else {
-      enableButton(prevButton);
-    }
+  // function handlePageButtonsStatus() {
+  //   if (currentPage === 1) {
+  //     disableButton(prevButton);
+  //   } else {
+  //     enableButton(prevButton);
+  //   }
 
-    if (pageCount === currentPage) {
-      disableButton(nextButton);
-    } else {
-      enableButton(nextButton);
-    }
-  }
+  //   if (pageCount === currentPage) {
+  //     disableButton(nextButton);
+  //   } else {
+  //     enableButton(nextButton);
+  //   }
+  // }
 
-  function handleActivePageNumber() {
-    document.querySelectorAll('.pagination-number').forEach(button => {
-      button.classList.remove('active');
-      const pageIndex = Number(button.getAttribute('page-index'));
-      if (pageIndex == currentPage) {
-        button.classList.add('active');
-      }
-    });
-  }
+  // function handleActivePageNumber() {
+  //   document.querySelectorAll('.pagination-number').forEach(button => {
+  //     button.classList.remove('active');
+  //     const pageIndex = Number(button.getAttribute('page-index'));
+  //     if (pageIndex == currentPage) {
+  //       button.classList.add('active');
+  //     }
+  //   });
+  // }
 
-  function setCurrentPage(pageNum) {
-    currentPage = pageNum;
+  // function setCurrentPage(pageNum) {
+  //   currentPage = pageNum;
 
-    const prevRange = (pageNum - 1) * paginationLimit;
-    const currRange = pageNum * paginationLimit;
-    listItems.forEach((item, index) => {
-      item.classList.add('hidden');
-      if (index >= prevRange && index < currRange) {
-        item.classList.remove('hidden');
-      }
-    });
-  }
+  //   const prevRange = (pageNum - 1) * paginationLimit;
+  //   const currRange = pageNum * paginationLimit;
+  //   listItems.forEach((item, index) => {
+  //     item.classList.add('hidden');
+  //     if (index >= prevRange && index < currRange) {
+  //       item.classList.remove('hidden');
+  //     }
+  //   });
+  // }
 
-  console.log('MARKAP', markup);
+  // console.log('MARKAP', markup);
 
-  const paginationNumbers = document.getElementById('pagination-numbers');
+  // const paginationNumbers = document.getElementById('pagination-numbers');
 
-  paginationNumbers.addEventListener('click', handleActivePageNumber);
+  // paginationNumbers.addEventListener('click', handleActivePageNumber);
 
-  const paginatedList = document.getElementById('paginated-list');
+  // const paginatedList = document.getElementById('paginated-list');
 
-  const listItems = paginatedList.querySelectorAll('li');
+  // const listItems = paginatedList.querySelectorAll('li');
 
-  window.addEventListener('load', async () => {
-    console.log('WINDOW');
-    const buttons = await getPaginationNumbers(pageCount);
-    const markup = await createNext_Previous(buttons.join(''));
-    getPaginationNumbers();
-    setCurrentPage(1);
+  // window.addEventListener('load', async () => {
+  //   console.log('WINDOW');
+  //   const buttons = await getPaginationNumbers(pageCount);
+  //   const markup = await createNext_Previous(buttons.join(''));
+  //   getPaginationNumbers();
+  //   setCurrentPage(1);
 
-    prevButton.addEventListener('click', () => {
-      setCurrentPage(currentPage - 1);
-    });
+  //   prevButton.addEventListener('click', () => {
+  //     setCurrentPage(currentPage - 1);
+  //   });
 
-    nextButton.addEventListener('click', () => {
-      setCurrentPage(currentPage + 1);
-    });
+  //   nextButton.addEventListener('click', () => {
+  //     setCurrentPage(currentPage + 1);
+  //   });
 
-    document.querySelectorAll('.pagination-number').forEach(button => {
-      const pageIndex = Number(button.getAttribute('page-index'));
+  //   document.querySelectorAll('.pagination-number').forEach(button => {
+  //     const pageIndex = Number(button.getAttribute('page-index'));
 
-      if (pageIndex) {
-        button.addEventListener('click', () => {
-          setCurrentPage(pageIndex);
-        });
-      }
-    });
+  //     if (pageIndex) {
+  //       button.addEventListener('click', () => {
+  //         setCurrentPage(pageIndex);
+  //       });
+  //     }
+  //   });
 
-    return markup;
-    console.log('aaaaaaaaaaaaaa', paginatorMacup);
-  });
+  //   return markup;
+  // });
 
   return markup;
 }

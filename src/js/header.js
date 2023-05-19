@@ -148,7 +148,7 @@ async function createPaginator(gallary) {
   const total = gallary.dataset.total;
 
   // console.log(limit, ' ', total);
-  const markup = await createPagonation(limit, total);
+  //const markup = await createPagonation(limit, total);
   // console.log(markup);
 
   gallary.insertAdjacentHTML('afterend', markup);

@@ -39,7 +39,6 @@ comic.addEventListener('input', function (event) {
   const value = input.value;
   const onlyDigits = /^\d*$/.test(value); // Regular expression to match only digits
 
-
   if (!onlyDigits) {
     input.value = value.replace(/\D/g, ''); // Remove non-digit characters from the value
   }
@@ -57,7 +56,6 @@ name.addEventListener('input', function (event) {
     );
   }
 });
-
 
 const searchInput = document.querySelector('.header-input');
 searchInput.addEventListener('input', debounce(inputHandler, 500));
@@ -158,7 +156,11 @@ form.addEventListener('change', async event => {
   searchInput.value = name.value;
   galleryList.innerHTML = '';
   galleryList.innerHTML = await createFilterGallery();
+  //=====Pagination==================================================
   await createPaginator();
+
+  const paginationNumbers = document.getElementById('pagination-numbers');
+  paginationNumbers.addEventListener('click', handleActivePageNumber);
 });
 
 {
@@ -185,12 +187,15 @@ function clickCard(e) {
 
 async function createPaginator() {
   // console.log(galleryList);
-  const limit = galleryList.dataset.limits;
-  const total = galleryList.dataset.total;
+  const limit = 6;
+  // galleryList.dataset.limits;
+  const total = 78;
+
+  // galleryList.dataset.total;
 
   // console.log(limit, ' ', total);
   const markup = await createPagonation(limit, total);
-  // console.log(markup);
+  console.log(markup);
 
   galleryList.insertAdjacentHTML('afterend', markup);
 }
@@ -232,15 +237,16 @@ async function createPaginator() {
 //   }
 // }
 
-// function handleActivePageNumber() {
-//   document.querySelectorAll('.pagination-number').forEach(button => {
-//     button.classList.remove('active');
-//     const pageIndex = Number(button.getAttribute('page-index'));
-//     if (pageIndex == currentPage) {
-//       button.classList.add('active');
-//     }
-//   });
-// }
+function handleActivePageNumber(e) {
+  console.log(e.target);
+  // document.querySelectorAll('.pagination-number').forEach(button => {
+  //   button.classList.remove('active');
+  //   const pageIndex = Number(button.getAttribute('page-index'));
+  //   if (pageIndex == currentPage) {
+  //     button.classList.add('active');
+  //   }
+  // });
+}
 
 // function setCurrentPage(pageNum) {
 //   currentPage = pageNum;
