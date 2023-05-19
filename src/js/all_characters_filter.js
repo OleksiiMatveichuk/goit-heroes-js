@@ -4,7 +4,7 @@ import { createPagonation } from './createPagination';
 import { createModalOn } from './createModalOn';
 //import { createModalTwo } from './modal-two';
 
-let currentPage = 1; //=====active page по замовченню 1 сторінка===================
+let currentPage = 1; //=====активна page по замовченню 1 сторінка===================
 
 let pageCount; //=====кількість карток в галереї всього =====
 
@@ -178,10 +178,30 @@ form.addEventListener('change', async event => {
   // nextButton.addEventListener('click', setCurrentPage);
   // prevButton.addEventListener('click', setCurrentPage);
   handlePageButtonsStatus();
-  setCurrentPage(1);
-  nextButton.addEventListener('click');
-  prevButton.addEventListener('click');
+  setCurrentPage(currentPage);
+  nextButton.addEventListener('click', nextClick);
+  prevButton.addEventListener('click', prevClick);
 });
+
+function nextClick() {
+  //первіряємо кількість дозволених сторінок
+
+  if (currentPage === Math.ceil(pageCount / paginationLimit)) {
+    handlePageButtonsStatus();
+    return;
+  }
+  currentPage += 1;
+
+  setCurrentPage(currentPage);
+}
+function prevClick() {
+  if (currentPage === 1) {
+    return;
+  }
+  currentPage -= 1;
+
+  setCurrentPage(currentPage);
+}
 
 function clickCard(e) {
   if (e.target.classList.value === 'gallery-image') {
@@ -192,7 +212,7 @@ function clickCard(e) {
 }
 
 async function createPaginator() {
-  const paginationLimit = galleryList.dataset.limits;
+  paginationLimit = galleryList.dataset.limits;
   pageCount = 26;
   //galleryList.dataset.total;
   const markup = await createPagonation(paginationLimit, pageCount);
@@ -212,13 +232,16 @@ function enableButton(button) {
 
 function handlePageButtonsStatus() {
   if (currentPage === 1) {
-    console.log('prevButton', prevButton);
+    //console.log('prevButton', prevButton);
     disableButton(prevButton);
   } else {
     enableButton(prevButton);
   }
 
-  if (pageCount === currentPage) {
+  console.log(Math.ceil(pageCount / paginationLimit), '===', currentPage);
+  if (Math.ceil(pageCount / paginationLimit) === currentPage) {
+    console.log('desebl');
+
     disableButton(nextButton);
   } else {
     enableButton(nextButton);
@@ -241,6 +264,7 @@ function handleActivePageNumber(e) {
     document.querySelectorAll('.pagination-number').forEach(button => {
       button.classList.remove('active');
       const pageIndex = Number(button.getAttribute('page-index'));
+
       if (pageIndex === currentPage) {
         button.classList.add('active');
       }
