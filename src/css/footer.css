@@ -62,11 +62,13 @@
   font-weight: 400;
   font-size: 14px;
   line-height: calc(18 / 14);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .character-link:hover,
 .character-link:focus {
   color: var(--main-hover);
+
 }
 
 .footer-icon-item-link:hover > .footer-icon,
@@ -108,6 +110,14 @@ policy-link {
   }
   .footer-list {
     width: 100%;
+  }
+    .footer-icon{
+      width: 18px;
+      height: 18px;
+    }
+  .character-link{
+    font-size: 16px;
+    line-height: calc(18/16);
   }
 }
 
