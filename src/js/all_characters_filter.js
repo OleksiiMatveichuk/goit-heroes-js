@@ -1,6 +1,6 @@
 import debounce from 'lodash.debounce';
 
-import { createPagonation } from './createPagination';
+import { createPagination } from './createPagination';
 import { createModalOn } from './createModalOn';
 //import { createModalTwo } from './modal-two';
 
@@ -11,6 +11,7 @@ let pageCount; //=====кількість карток в галереї всьо
 let paginationLimit; //=====кількісь сарток які ми дозволяємо відмалювати
 let nextButton; //кнопки в пагінації >
 let prevButton; //кнопки в пагінації  <
+let limitButton = 10; //max кількість кнопок які ми хоче бачити в нашій пагінації  по замовченню 10
 
 const form = document.querySelector('.filter-form');
 let comic = document.querySelector(`[name="comic"]`);
@@ -185,16 +186,48 @@ form.addEventListener('change', async event => {
   paginationNumbers.addEventListener('click', handleActivePageNumber);
   nextButton = document.getElementById('next-button');
   prevButton = document.getElementById('prev-button');
-  // nextButton.addEventListener('click', setCurrentPage);
-  // prevButton.addEventListener('click', setCurrentPage);
+
   handlePageButtonsStatus();
   setCurrentPage(currentPage);
   nextButton.addEventListener('click', nextClick);
   prevButton.addEventListener('click', prevClick);
 });
 
+function canWeMove(simbol) {
+  console.log(currentPage);
+  const button = document.querySelectorAll('.pagination-number');
+  if (simbol === '>') {
+    if (button[currentPage].getAttribute('page-index') === '...') {
+      //це масив тому перевіряємо currentPage це наступний button а не currentPage-1
+      console.log('перемальовуємо paginator');
+      return false;
+    }
+  } else {
+    console.log(
+      button[button.length - 1].previousSibling.getAttribute('page-index')
+    );
+
+    if (
+      Number(button[button.length - 1].getAttribute('page-index')) ===
+      currentPage
+    )
+      if (
+        button[button.length - 1].previousSibling.getAttribute('page-index') === // якщо останній button то дивимось на сусіда зліва
+        '...'
+      ) {
+        console.log('перемальовуємо paginator');
+        return false;
+      }
+  }
+  return true;
+}
+
 function nextClick() {
   //первіряємо кількість дозволених сторінок
+  //треба перевірити чи не буде наступнти баттоном "..." якщо так то перерисовуємо paginator canWeMove
+  if (!canWeMove('>')) {
+    return;
+  }
 
   if (currentPage === Math.ceil(pageCount / paginationLimit)) {
     handlePageButtonsStatus();
@@ -204,6 +237,9 @@ function nextClick() {
   setCurrentPage(currentPage);
 }
 function prevClick() {
+  if (!canWeMove('<')) {
+    return;
+  }
   if (currentPage === 1) {
     return;
   }
@@ -220,11 +256,19 @@ function clickCard(e) {
   }
 }
 
+//=============================================================================================
+
 async function createPaginator() {
   paginationLimit = galleryList.dataset.limits;
-  pageCount = 26;
-  //galleryList.dataset.total;
-  const markup = await createPagonation(paginationLimit, pageCount);
+  pageCount = galleryList.dataset.total;
+
+  console.log('paginationLimit', paginationLimit, '< >pageCount', pageCount);
+
+  const markup = await createPagination(
+    paginationLimit,
+    pageCount,
+    limitButton
+  );
 
   galleryList.insertAdjacentHTML('afterend', markup);
 }
@@ -248,10 +292,9 @@ function handlePageButtonsStatus() {
   }
   // debugger
 
-  console.log(Math.ceil(pageCount / paginationLimit), '===', currentPage);
-  if (Math.ceil(pageCount / paginationLimit) === currentPage) {
-    console.log('desebl');
+  // console.log(Math.ceil(pageCount / paginationLimit), '===', currentPage);
 
+  if (Math.ceil(pageCount / paginationLimit) === currentPage) {
     disableButton(nextButton);
   } else {
     enableButton(nextButton);
@@ -262,18 +305,24 @@ async function handleActivePageNumber(e) {
   if (e) {
     console.log(e.target.getAttribute('page-index'));
     const button = e.target;
-    currentPage = Number(button.getAttribute('page-index'));
-    document.querySelectorAll('.pagination-number').forEach(button => {
-      button.classList.remove('active');
-      const pageIndex = Number(button.getAttribute('page-index'));
-      if (pageIndex == currentPage) {
-        button.classList.add('active');
-      }
-    });
-    // !!!
-    galleryList.innerHTML = '';
-    console.log(`click pagination button with ${currentPage} NUmber`);
-    galleryList.innerHTML = await createFilterGallery(currentPage);
+    console.log('PAGE NUMBER=', button.getAttribute('page-index'));
+    if (button.getAttribute('page-index') !== '...') {
+      currentPage = Number(button.getAttribute('page-index'));
+      document.querySelectorAll('.pagination-number').forEach(button => {
+        button.classList.remove('active');
+        const pageIndex = Number(button.getAttribute('page-index'));
+        if (pageIndex == currentPage) {
+          button.classList.add('active');
+        }
+      });
+      // !!!
+      galleryList.innerHTML = '';
+      console.log(`click pagination button with ${currentPage} NUmber`);
+      galleryList.innerHTML = await createFilterGallery(currentPage);
+    } else {
+      console.log('перемалювати---- пагінатор');
+    }
+
     // !!!
   } else {
     document.querySelectorAll('.pagination-number').forEach(button => {
@@ -285,7 +334,6 @@ async function handleActivePageNumber(e) {
       }
     });
   }
-
   handlePageButtonsStatus();
 }
 

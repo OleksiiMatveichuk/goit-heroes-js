@@ -117,7 +117,7 @@ form.addEventListener('submit', async event => {
 
 import { galleryItem, renderGallery } from './get-gallery-list';
 import { errorGallery, errorAPI } from './error-gallery';
-import { createPagonation } from './createPagination';
+import { createPagination } from './createPagination';
 async function createGallery(searchQuery) {
   try {
     // console.log('itemsOnPage=', itemsOnPage);
@@ -138,9 +138,7 @@ async function createGallery(searchQuery) {
     }
     return renderGallery(results);
   } catch (e) {
-
     return errorAPI('Too Many Requests...');
-
   }
 }
 
@@ -150,7 +148,7 @@ async function createPaginator(gallary) {
   const total = gallary.dataset.total;
 
   // console.log(limit, ' ', total);
-  //const markup = await createPagonation(limit, total);
+  //const markup = await createPagination(limit, total,limitButton);
   // console.log(markup);
 
   gallary.insertAdjacentHTML('afterend', markup);
