@@ -238,7 +238,6 @@ function handlePageButtonsStatus() {
     enableButton(prevButton);
   }
 
-  console.log(Math.ceil(pageCount / paginationLimit), '===', currentPage);
   if (Math.ceil(pageCount / paginationLimit) === currentPage) {
     console.log('desebl');
 
