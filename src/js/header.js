@@ -80,6 +80,7 @@ window.addEventListener('load', async () => {
       formStartWith.value = savedValue;
     }
     const galleryList = document.querySelector('.gallery');
+    galleryList.scrollIntoView({ behavior: 'smooth' });
     galleryList.setAttribute('data-limits', itemsOnPage);
     galleryList.innerHTML = '';
     galleryList.innerHTML = await createGallery(savedValue || '');

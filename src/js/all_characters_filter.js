@@ -128,14 +128,23 @@ import { galleryItem, renderGallery } from './get-gallery-list';
 import { api } from './low-level/api';
 import { errorGallery } from './error-gallery';
 // console.log('Run all_charaster');
-async function createFilterGallery() {
+async function createFilterGallery(curPage = 0) {
   try {
     const orderText = order.value.toLowerCase();
     // console.log("comics", comic.value)
     // console.log("order", orderText)
     // console.log("name", name.value)
     // console.log("year", dateVal)
-    const offsetValue = galleryList.dataset.offset;
+    // const offsetValue = galleryList.dataset.offset;
+    let offsetValue = 0;
+    if (curPage != 1) {
+      offsetValue = (curPage - 1) * itemsOnPage;
+    }
+    if (!curPage) {
+      offsetValue = 0
+    }
+    console.log("offset value", offsetValue)
+
     const data = await api.getAllCharacters({
       nameStartsWith: name.value,
       limit: itemsOnPage,
@@ -166,6 +175,7 @@ form.addEventListener('change', async event => {
   }
   localStorage.setItem('searchValue', name.value);
   searchInput.value = name.value;
+  console.log("REBUILD LIST - change on FORM")
   galleryList.innerHTML = '';
   galleryList.innerHTML = await createFilterGallery();
   //=====Pagination==================================================
@@ -191,7 +201,6 @@ function nextClick() {
     return;
   }
   currentPage += 1;
-
   setCurrentPage(currentPage);
 }
 function prevClick() {
@@ -237,8 +246,10 @@ function handlePageButtonsStatus() {
   } else {
     enableButton(prevButton);
   }
+  // debugger
 
   console.log(Math.ceil(pageCount / paginationLimit), '===', currentPage);
+
   if (Math.ceil(pageCount / paginationLimit) === currentPage) {
     console.log('desebl');
 
@@ -246,9 +257,12 @@ function handlePageButtonsStatus() {
   } else {
     enableButton(nextButton);
   }
+
+
+
 }
 
-function handleActivePageNumber(e) {
+async function handleActivePageNumber(e) {
   if (e) {
     console.log(e.target.getAttribute('page-index'));
     const button = e.target;
@@ -260,6 +274,11 @@ function handleActivePageNumber(e) {
         button.classList.add('active');
       }
     });
+    // !!!
+    galleryList.innerHTML = '';
+    console.log(`click pagination button with ${currentPage} NUmber`)
+    galleryList.innerHTML = await createFilterGallery(currentPage);
+    // !!!
   } else {
     document.querySelectorAll('.pagination-number').forEach(button => {
       button.classList.remove('active');
@@ -282,6 +301,7 @@ const setCurrentPage = pageNum => {
 
   const prevRange = (pageNum - 1) * paginationLimit;
   const currRange = pageNum * paginationLimit;
+  // console.log("current offset is = ", currentPage)
   //тут якщо треба можно скривати частково галерею======================================
   const listItemsGallary = document.querySelectorAll('.gallery-item');
 
