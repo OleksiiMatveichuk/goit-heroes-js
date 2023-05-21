@@ -1,4 +1,4 @@
-import { createPagonation } from './createPagination';
+//import { createPagonation } from './createPagination';
 import { createModalOn } from './createModalOn';
 import { api } from './low-level/api';
 

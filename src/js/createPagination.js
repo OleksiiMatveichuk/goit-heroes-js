@@ -1,7 +1,8 @@
-export async function createPagonation(paginationLimit, array) {
+export async function createPagination(paginationLimit, array, limitButton) {
   let pageCount = Math.ceil(array / paginationLimit);
   let currentPage = 1;
   let paginatorMacup;
+  //limitButton це кількість кнопок які ми хочемо бачити на єкрані
 
   const myPagination = document.createElement('div');
   myPagination.classList.add('my-pagination');
@@ -14,14 +15,30 @@ export async function createPagonation(paginationLimit, array) {
   }
 
   async function getPaginationNumbers(namber) {
-    let battonArray = [];
-    for (let i = 1; i <= pageCount; i++) {
-      // battonArray.push(appendPageNumber(i));
-      battonArray.push(createArrayBtn(i));
-    }
-    return battonArray;
+    //let battonArray = [];
+
+    const numberButton = reternNumberButton(namber); // вираховуємо масив наших баттонів
+
+    return numberButton.map(button => createArrayBtn(button));
   }
 
+  function reternNumberButton(namber) {
+    const buttonArray = [];
+
+    for (let i = 1; i <= pageCount; i++) {
+      buttonArray.push(i);
+    }
+    console.log(pageCount, '<= ', limitButton);
+    if (pageCount <= limitButton) {
+      return buttonArray;
+    } else {
+      buttonArray.splice(limitButton - 2, 0, '...', pageCount);
+      console.log('1arr===', buttonArray);
+      buttonArray.splice(limitButton, buttonArray.length - 1);
+      console.log('1arrbutt', buttonArray);
+      return buttonArray;
+    }
+  }
   async function createNext_Previous(arr) {
     return `
         <nav class="pagination-container">
@@ -40,69 +57,6 @@ export async function createPagonation(paginationLimit, array) {
      </button>
    </nav>`;
   }
-  // const nextButton = document.getElementById('next-button');
-  // const prevButton = document.getElementById('prev-button');
-
-  // // console.log('prevButton', prevButton);
-  // function disableButton(button) {
-  //   button.classList.add('disabled');
-  //   button.setAttribute('disabled', true);
-  // }
-
-  // function enableButton(button) {
-  //   button.classList.remove('disabled');
-  //   button.removeAttribute('disabled');
-  // }
-
-  // function handlePageButtonsStatus() {
-  //   if (currentPage === 1) {
-  //     disableButton(prevButton);
-  //   } else {
-  //     enableButton(prevButton);
-  //   }
-
-  //   if (pageCount === currentPage) {
-  //     disableButton(nextButton);
-  //   } else {
-  //     enableButton(nextButton);
-  //   }
-  // }
-
-  // function handleActivePageNumber() {
-  //   document.querySelectorAll('.pagination-number').forEach(button => {
-  //     button.classList.remove('active');
-  //     const pageIndex = Number(button.getAttribute('page-index'));
-  //     if (pageIndex == currentPage) {
-  //       button.classList.add('active');
-  //     }
-  //   });
-  // }
-
-  // function setCurrentPage(pageNum) {
-  //   currentPage = pageNum;
-
-  //   const prevRange = (pageNum - 1) * paginationLimit;
-  //   const currRange = pageNum * paginationLimit;
-  //   listItems.forEach((item, index) => {
-  //     item.classList.add('hidden');
-  //     if (index >= prevRange && index < currRange) {
-  //       item.classList.remove('hidden');
-  //     }
-  //   });
-  // }
-
-  // console.log('MARKAP', markup);
-
-  // const paginationNumbers = document.getElementById('pagination-numbers');
-
-  // paginationNumbers.addEventListener('click', handleActivePageNumber);
-
-  // const paginatedList = document.getElementById('paginated-list');
-
-  // const listItems = paginatedList.querySelectorAll('li');
-
-  //   return markup;
-  // });
 
   return markup;
 }
