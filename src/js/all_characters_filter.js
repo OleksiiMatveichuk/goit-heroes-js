@@ -203,9 +203,9 @@ function canWeMove(simbol) {
       return false;
     }
   } else {
-    console.log(
-      button[button.length - 1].previousSibling.getAttribute('page-index')
-    );
+    // console.log(
+    //   button[button.length - 1].previousSibling.getAttribute('page-index')
+    // );
 
     if (
       Number(button[button.length - 1].getAttribute('page-index')) ===
