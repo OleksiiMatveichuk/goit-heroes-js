@@ -1,5 +1,6 @@
 import debounce from 'lodash.debounce';
 
+import { createPagonation } from './createPagination';
 import { createModalOn } from './createModalOn';
 //import { createModalTwo } from './modal-two';
 
@@ -16,7 +17,7 @@ let dateVal = null;
 let yearsToSelect = '';
 yearsToSelect += `<option>All Years</option>
 <option class="defolt-options">-----------</option>`;
-console.log('select date', date);
+//console.log('select date', date);
 for (let i = 1939; i <= 2023; i++) {
   yearsToSelect += `<option>${i}</option>`;
 }
@@ -33,25 +34,29 @@ async function onDateSelect(e) {
 }
 
 // Validation comics ID
-// comic.addEventListener('input', function (event) {
-//   const input = event.target;
-//   const value = input.value;
-//   const onlyDigits = /^\d*$/.test(value); // Regular expression to match only digits
+comic.addEventListener('input', function (event) {
+  const input = event.target;
+  const value = input.value;
+  const onlyDigits = /^\d*$/.test(value); // Regular expression to match only digits
 
-//   if (!onlyDigits) {
-//     input.value = value.replace(/\D/g, ''); // Remove non-digit characters from the value
-//   }
-// });
-// // Validation Name
-// name.addEventListener('input', function (event) {
-//   const input = event.target;
-//   const value = input.value;
-//   const validCharacters = /^[a-zA-Z0-9\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]*$/;
 
-//   if (!validCharacters.test(value)) {
-//     input.value = value.replace(/[^a-zA-Z0-9\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g, '');
-//   }
-// });
+  if (!onlyDigits) {
+    input.value = value.replace(/\D/g, ''); // Remove non-digit characters from the value
+  }
+});
+// Validation Name
+name.addEventListener('input', function (event) {
+  const input = event.target;
+  const value = input.value;
+  const validCharacters = /^[a-zA-Z0-9\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]*$/;
+
+  if (!validCharacters.test(value)) {
+    input.value = value.replace(
+      /[^a-zA-Z0-9\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g,
+      ''
+    );
+  }
+});
 
 
 const searchInput = document.querySelector('.header-input');
@@ -176,3 +181,74 @@ function clickCard(e) {
     createModalOn(id, '');
   }
 }
+
+async function createPaginator() {
+  // console.log(galleryList);
+  const limit = galleryList.dataset.limits;
+  const total = galleryList.dataset.total;
+
+  // console.log(limit, ' ', total);
+  const markup = await createPagonation(limit, total);
+  // console.log(markup);
+
+  galleryList.insertAdjacentHTML('afterend', markup);
+}
+
+//setTimeout(async () => {
+//await createPaginator();
+//}, 3500);
+
+// const paginationNumbers = document.getElementById('pagination-numbers');
+// paginationNumbers.addEventListener('click', handleActivePageNumber);
+// const paginatedList = document.getElementById('paginated-list');
+
+// const listItems = paginatedList.querySelectorAll('li');
+
+// const nextButton = document.getElementById('next-button');
+// const prevButton = document.getElementById('prev-button');
+
+// function disableButton(button) {
+//   button.classList.add('disabled');
+//   button.setAttribute('disabled', true);
+// }
+
+// function enableButton(button) {
+//   button.classList.remove('disabled');
+//   button.removeAttribute('disabled');
+// }
+
+// function handlePageButtonsStatus() {
+//   if (currentPage === 1) {
+//     disableButton(prevButton);
+//   } else {
+//     enableButton(prevButton);
+//   }
+
+//   if (pageCount === currentPage) {
+//     disableButton(nextButton);
+//   } else {
+//     enableButton(nextButton);
+//   }
+// }
+
+// function handleActivePageNumber() {
+//   document.querySelectorAll('.pagination-number').forEach(button => {
+//     button.classList.remove('active');
+//     const pageIndex = Number(button.getAttribute('page-index'));
+//     if (pageIndex == currentPage) {
+//       button.classList.add('active');
+//     }
+//   });
+// }
+
+// function setCurrentPage(pageNum) {
+//   currentPage = pageNum;
+
+//   const prevRange = (pageNum - 1) * paginationLimit;
+//   const currRange = pageNum * paginationLimit;
+//   listItems.forEach((item, index) => {
+//     item.classList.add('hidden');
+//     if (index >= prevRange && index < currRange) {
+//       item.classList.remove('hidden');
+//     }
+//   });

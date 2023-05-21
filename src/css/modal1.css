@@ -23,7 +23,7 @@
   position: absolute;
   top: 20px;
   left: 50%;
-  bottom: 20px;
+  /* bottom: 20px; */
   /* margin-right: -50%; */
   transform: translateX(-50%);
   padding-top: 40px;
@@ -55,9 +55,11 @@
 .close-modal-btn:hover {
   background-color: #242020;
 }
+.close-modal {
+  fill: #fff;
+}
 
 .img-modal {
-  /* margin: 0 auto; */
   border-radius: 8px;
   margin-bottom: 8px;
   cursor: pointer;

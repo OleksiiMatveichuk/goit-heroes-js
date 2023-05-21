@@ -1,4 +1,4 @@
-//import { createModal1 } from './createModal1';
+import { createPagonation } from './createPagination';
 import { createModalOn } from './createModalOn';
 import { api } from './low-level/api';
 
@@ -30,12 +30,13 @@ function removeSetInterval() {
   setIntervalId = null;
 }
 import { errorAPI } from './error-gallery';
+
 async function getRandomData(params) {
   try {
-    console.log('random data');
+    // console.log('random data');
     const data = await api.getAllCharacters(params);
     if (!data) {
-      console.log('bad data');
+      // console.log('bad data');
 
       ulList.innerHTML = errorAPI('Too Many Requests...');
     }
@@ -209,3 +210,10 @@ function createMarkup(data) {
   startSlider(0);
 }
 startMain();
+
+// const form_random = document.querySelector('.form-random');
+// console.log(form_random);
+
+// const markup = await createPagonation(8, 82);
+// console.log(markup);
+// form_random.insertAdjacentHTML('beforeend', markup);
