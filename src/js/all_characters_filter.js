@@ -1,7 +1,9 @@
 import debounce from 'lodash.debounce';
 
 import { infoSys } from './infoMess';
-import { createPagonation } from './createPagination';
+
+import { createPagination } from './createPagination';
+
 
 import { createModalOn } from './createModalOn';
 //import { createModalTwo } from './modal-two';
