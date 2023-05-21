@@ -1,6 +1,22 @@
-export async function createPagination(paginationLimit, array, limitButton) {
+export async function createPagination(
+  paginationLimit,
+  array,
+  limitButton,
+  currentPage
+) {
+  console.log(
+    'запрос ',
+    paginationLimit,
+    ' ',
+    array,
+    ' ',
+    limitButton,
+    ' ',
+    currentPage
+  );
   let pageCount = Math.ceil(array / paginationLimit);
-  let currentPage = 1;
+  //let currentPage = 1;
+  //currentPage активна сторінка
   let paginatorMacup;
   //limitButton це кількість кнопок які ми хочемо бачити на єкрані
 
@@ -10,8 +26,27 @@ export async function createPagination(paginationLimit, array, limitButton) {
   const buttons = await getPaginationNumbers(pageCount);
   const markup = await createNext_Previous(buttons.join(''));
 
+  function reternLibel(i) {
+    if (i === '...') {
+      if (currentPage === 1) {
+        return `prev`;
+      } else if (currentPage > limitButton - 3) {
+        return `prev`;
+      } else {
+        return `next`;
+      }
+    }
+
+    return `Page ${i}`;
+  }
+
   function createArrayBtn(i) {
-    return `<bitton class="pagination-number" page-index=${i} aria-label='Page ${i}'>${i}</bitton>`;
+    if (i === currentPage) {
+      return `<bitton class="pagination-number active" page-index=${i} aria-label='Page ${i}'>${i}</bitton>`;
+    }
+    return `<bitton class="pagination-number" page-index=${i} aria-label=${reternLibel(
+      i
+    )}>${i}</bitton>`;
   }
 
   async function getPaginationNumbers(namber) {
@@ -32,11 +67,24 @@ export async function createPagination(paginationLimit, array, limitButton) {
     if (pageCount <= limitButton) {
       return buttonArray;
     } else {
-      buttonArray.splice(limitButton - 2, 0, '...', pageCount);
-      console.log('1arr===', buttonArray);
-      buttonArray.splice(limitButton, buttonArray.length - 1);
-      console.log('1arrbutt', buttonArray);
-      return buttonArray;
+      console.log(currentPage, ' ', limitButton);
+      if (currentPage !== pageCount) {
+        //если ударили не по Максимальному Page buttton
+
+        buttonArray.splice(limitButton - 2, 0, '...', pageCount);
+        console.log('1arr===', buttonArray);
+        buttonArray.splice(limitButton, buttonArray.length - 1);
+        console.log('1arrbutt', buttonArray);
+        return buttonArray;
+      } else {
+        // buttonArray.splice(limitButton- (limitButton - 1), 0, '...', pageCount);
+        buttonArray.splice(1, 0, '...');
+        console.log('1arr===', buttonArray);
+        buttonArray.splice(2, buttonArray.length - limitButton);
+        return buttonArray;
+        //buttonArray.splice(limitButton, buttonArray.length - 1);
+        // console.log('2arrbutt', buttonArray);
+      }
     }
   }
   async function createNext_Previous(arr) {

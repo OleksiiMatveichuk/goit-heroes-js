@@ -4,7 +4,6 @@ import { infoSys } from './infoMess';
 
 import { createPagination } from './createPagination';
 
-
 import { createModalOn } from './createModalOn';
 //import { createModalTwo } from './modal-two';
 
@@ -192,40 +191,62 @@ form.addEventListener('change', async event => {
   galleryList.innerHTML = '';
   galleryList.innerHTML = await createFilterGallery();
   //=====Pagination==================================================
-  await createPaginator();
+  await newPaginator();
 
+  // await createPaginator();
+
+  // const paginationNumbers = document.getElementById('pagination-numbers');
+  // paginationNumbers.addEventListener('click', handleActivePageNumber);
+  // nextButton = document.getElementById('next-button');
+  // prevButton = document.getElementById('prev-button');
+
+  // handlePageButtonsStatus();
+  // //setCurrentPage(currentPage);
+  // nextButton.addEventListener('click', nextClick);
+  // prevButton.addEventListener('click', prevClick);
+});
+
+async function newPaginator() {
+  await createPaginator();
+  //після побудови пагінатора ми на ного робимо всі посилання
   const paginationNumbers = document.getElementById('pagination-numbers');
   paginationNumbers.addEventListener('click', handleActivePageNumber);
   nextButton = document.getElementById('next-button');
   prevButton = document.getElementById('prev-button');
 
   handlePageButtonsStatus();
-  setCurrentPage(currentPage);
+
   nextButton.addEventListener('click', nextClick);
   prevButton.addEventListener('click', prevClick);
-});
+}
 
 function canWeMove(simbol) {
-  console.log(currentPage);
-  const button = document.querySelectorAll('.pagination-number');
+  //console.log(currentPage);
+  const buttons = document.querySelectorAll('.pagination-number');
+  let activIn = 0;
+  let poiskIn = 0;
+  buttons.forEach((button, i) => {
+    if (button.getAttribute('page-index') === '...') {
+      poiskIn = i;
+    }
+
+    if (button.classList.contains('active')) {
+      activIn = i;
+    }
+  });
+
   if (simbol === '>') {
-    if (button[currentPage].getAttribute('page-index') === '...') {
-      //це масив тому перевіряємо currentPage це наступний button а не currentPage-1
-      console.log('перемальовуємо paginator');
+    if (poiskIn - activIn === 1) {
+      // гаступна кнопка '...' забороняємо ходити
+      console.log('перемальовуємо >>>>> paginator');
       return false;
     }
   } else {
-    if (
-      Number(button[button.length - 1].getAttribute('page-index')) ===
-      currentPage
-    )
-      if (
-        button[button.length - 1].previousSibling.getAttribute('page-index') === // якщо останній button то дивимось на сусіда зліва
-        '...'
-      ) {
-        console.log('перемальовуємо paginator');
-        return false;
-      }
+    if (activIn - poiskIn === 1) {
+      // гаступна кнопка '...' забороняємо ходити
+      console.log('перемальовуємо <<<<<<< paginator');
+      return false;
+    }
   }
   return true;
 }
@@ -234,15 +255,18 @@ function nextClick() {
   //первіряємо кількість дозволених сторінок
   //треба перевірити чи не буде наступнти баттоном "..." якщо так то перерисовуємо paginator canWeMove
   if (!canWeMove('>')) {
+    console.log('OOOOOOOOOOOOOOOOOOOOOO');
     return;
   }
 
   if (currentPage === Math.ceil(pageCount / paginationLimit)) {
+    //вдарили по останній макс кнопці сторінці
     handlePageButtonsStatus();
     return;
   }
   currentPage += 1;
   setCurrentPage(currentPage);
+  console.log(currentPage);
 }
 function prevClick() {
   if (!canWeMove('<')) {
@@ -254,6 +278,7 @@ function prevClick() {
   currentPage -= 1;
 
   setCurrentPage(currentPage);
+  console.log(currentPage);
 }
 
 function clickCard(e) {
@@ -275,7 +300,8 @@ async function createPaginator() {
   const markup = await createPagination(
     paginationLimit,
     pageCount,
-    limitButton
+    limitButton,
+    currentPage
   );
 
   galleryList.insertAdjacentHTML('afterend', markup);
@@ -311,26 +337,41 @@ function handlePageButtonsStatus() {
 
 async function handleActivePageNumber(e) {
   if (e) {
-    console.log(e.target.getAttribute('page-index'));
     const button = e.target;
-    console.log('PAGE NUMBER=', button.getAttribute('page-index'));
-    if (button.getAttribute('page-index') !== '...') {
-      currentPage = Number(button.getAttribute('page-index'));
-      document.querySelectorAll('.pagination-number').forEach(button => {
-        button.classList.remove('active');
-        const pageIndex = Number(button.getAttribute('page-index'));
-        if (pageIndex == currentPage) {
-          button.classList.add('active');
-        }
-      });
-      // !!!
-      galleryList.innerHTML = '';
-      console.log(`click pagination button with ${currentPage} NUmber`);
-      galleryList.innerHTML = await createFilterGallery(currentPage);
-    } else {
-      console.log('перемалювати---- пагінатор');
-    }
+    if (currentPage !== Number(button.getAttribute('page-index'))) {
+      //забороняємо щось робити якщо вдарили по активному button
+      console.log(e.target.getAttribute('page-index'));
 
+      if (button.getAttribute('page-index') !== '...') {
+        currentPage = Number(button.getAttribute('page-index'));
+        document.querySelectorAll('.pagination-number').forEach(button => {
+          button.classList.remove('active');
+          const pageIndex = Number(button.getAttribute('page-index'));
+          if (pageIndex == currentPage) {
+            button.classList.add('active');
+          }
+        });
+        // !!!
+
+        if (currentPage === Math.ceil(pageCount / paginationLimit)) {
+          //вдарили по максимальній чторінці
+          console.log('перемалювати пагінатор currentPage === pageCount ');
+
+          const yesPagination = document.querySelector('.pagination-container');
+          if (yesPagination) {
+            yesPagination.remove();
+          }
+          await newPaginator();
+        }
+
+        //перемальовуємо пагінацію
+        galleryList.innerHTML = '';
+        console.log(`click pagination button with ${currentPage} NUmber`);
+        galleryList.innerHTML = await createFilterGallery(currentPage);
+      } else {
+        console.log('перемалювати---- пагінатор');
+      }
+    }
     // !!!
   } else {
     document.querySelectorAll('.pagination-number').forEach(button => {
@@ -355,12 +396,12 @@ const setCurrentPage = pageNum => {
   const currRange = pageNum * paginationLimit;
   // console.log("current offset is = ", currentPage)
   //тут якщо треба можно скривати частково галерею======================================
-  const listItemsGallary = document.querySelectorAll('.gallery-item');
+  // const listItemsGallary = document.querySelectorAll('.gallery-item');
 
-  listItemsGallary.forEach((item, index) => {
-    item.classList.add('hidden');
-    if (index >= prevRange && index < currRange) {
-      item.classList.remove('hidden');
-    }
-  });
+  // listItemsGallary.forEach((item, index) => {
+  //   item.classList.add('hidden');
+  //   if (index >= prevRange && index < currRange) {
+  //     item.classList.remove('hidden');
+  //   }
+  // });
 };
