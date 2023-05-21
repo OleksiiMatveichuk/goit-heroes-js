@@ -1,6 +1,8 @@
 import debounce from 'lodash.debounce';
 
-import { createPagination } from './createPagination';
+import { infoSys } from './infoMess'
+import { createPagonation } from './createPagination';
+
 import { createModalOn } from './createModalOn';
 //import { createModalTwo } from './modal-two';
 
@@ -43,17 +45,18 @@ async function onDateSelect(e) {
 }
 
 // Validation comics ID
-comic.addEventListener('input', function (event) {
+comic.addEventListener('input', debounce(function (event) {
   const input = event.target;
   const value = input.value;
   const onlyDigits = /^\d*$/.test(value); // Regular expression to match only digits
 
   if (!onlyDigits) {
-    input.value = value.replace(/\D/g, ''); // Remove non-digit characters from the value
+    input.value = value.replace(/\D/g, ''); // Remove non-digit characters from the value 
+    infoSys("warn", "Only Numbers can be entered...")
   }
-});
+}, 500));
 // Validation Name
-name.addEventListener('input', function (event) {
+name.addEventListener('input', debounce(function (event) {
   const input = event.target;
   const value = input.value;
   const validCharacters = /^[a-zA-Z0-9\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]*$/;
@@ -63,8 +66,9 @@ name.addEventListener('input', function (event) {
       /[^a-zA-Z0-9\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g,
       ''
     );
+    infoSys("warn", "Please, use English keyboard layout only.")
   }
-});
+}, 500));
 
 const searchInput = document.querySelector('.header-input');
 searchInput.addEventListener('input', debounce(inputHandler, 500));
