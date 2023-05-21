@@ -1,7 +1,9 @@
 import debounce from 'lodash.debounce';
 
 import { infoSys } from './infoMess';
+
 import { createPagination } from './createPagination';
+
 
 import { createModalOn } from './createModalOn';
 //import { createModalTwo } from './modal-two';
@@ -213,10 +215,6 @@ function canWeMove(simbol) {
       return false;
     }
   } else {
-    // console.log(
-    //   button[button.length - 1].previousSibling.getAttribute('page-index')
-    // );
-
     if (
       Number(button[button.length - 1].getAttribute('page-index')) ===
       currentPage
