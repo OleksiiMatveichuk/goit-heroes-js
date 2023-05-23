@@ -292,7 +292,6 @@ function nextClick() {
   setCurrentPage(currentPage);
 }
 function prevClick() {
-  //console.log('');
   if (!canWeMove('<')) {
     return;
   }
@@ -385,24 +384,29 @@ async function handleActivePageNumber(e) {
         }
 
         //перемальовуємо пагінацію
-        galleryList.innerHTML = '';
-        console.log(`click pagination button with ${currentPage} NUmber`);
-        galleryList.innerHTML = await createFilterGallery(currentPage);
+        // galleryList.innerHTML = '';
+        // console.log(`click pagination button with ${currentPage} NUmber`);
+        // galleryList.innerHTML = await createFilterGallery(currentPage);
       } else {
         console.log('перемалювати---- пагінатор');
       }
     }
     // !!!
   } else {
+    // console.log('nomer-', currentPage);
     document.querySelectorAll('.pagination-number').forEach(button => {
       button.classList.remove('active');
       const pageIndex = Number(button.getAttribute('page-index'));
       //console.log('pageIndex  ===', pageIndex, 'currentPage', currentPage);
+
       if (pageIndex === currentPage) {
         button.classList.add('active');
       }
     });
   }
+  galleryList.innerHTML = '';
+  console.log(`click pagination button with ${currentPage} NUmber`);
+  galleryList.innerHTML = await createFilterGallery(currentPage);
   handlePageButtonsStatus();
 }
 

@@ -1,9 +1,23 @@
 import { api } from './low-level/api';
 import debounce from 'lodash.debounce';
 import { infoSys } from './infoMess';
+
 const searchInput = document.querySelector('.header-input');
 
 // console.log('Run header.js');
+//==========================================================================
+let currentPage = 1; //=====активна page по замовченню 1 сторінка===================
+
+let pageCount; //=====кількість карток в галереї всього =====
+
+let paginationLimit; //=====кількісь сарток які ми дозволяємо відмалювати
+let nextButton; //кнопки в пагінації >
+let prevButton; //кнопки в пагінації  <
+let limitButton = 10; //max кількість кнопок які ми хоче бачити в нашій пагінації  по замовченню 10
+let galleryList;
+
+//================================================
+let redrawDirection; //направленіе перерісовкі
 
 searchInput.addEventListener('click', () => {
   // Устанавливаем пустое значение в поле ввода
@@ -97,12 +111,13 @@ window.addEventListener('load', async () => {
       const formStartWith = document.querySelector('#name');
       formStartWith.value = savedValue;
     }
-    const galleryList = document.querySelector('.gallery');
+    galleryList = document.querySelector('.gallery'); //const
     galleryList.scrollIntoView({ behavior: 'smooth' });
     galleryList.setAttribute('data-limits', itemsOnPage);
     galleryList.innerHTML = '';
     galleryList.innerHTML = await createGallery(savedValue || '');
-    await createPaginator(galleryList);
+    //await createPaginator(galleryList);
+    await newPaginator();
   }
 });
 
@@ -124,18 +139,20 @@ form.addEventListener('submit', async event => {
     searchQuery = searchInput.value;
     let name = document.querySelector(`[name="name"]`);
     name.value = searchInput.value;
-    const galleryList = document.querySelector('.gallery');
+    galleryList = document.querySelector('.gallery'); // const
 
     galleryList.innerHTML = '';
     // console.log('input', searchQuery);
     galleryList.innerHTML = await createGallery(searchQuery);
     localStorage.removeItem('searchValue');
+    await newPaginator();
   }
 });
 
 import { galleryItem, renderGallery } from './get-gallery-list';
 import { errorGallery, errorAPI } from './error-gallery';
 import { createPagination } from './createPagination';
+
 async function createGallery(searchQuery) {
   try {
     // console.log('itemsOnPage=', itemsOnPage);
@@ -159,15 +176,214 @@ async function createGallery(searchQuery) {
     return errorAPI('Too Many Requests...');
   }
 }
+//===================================================
+async function newPaginator() {
+  const yesPagination = document.querySelector('.pagination-container'); //перевіряємо може у нас е пагінатор і ми його видаляємо
+  if (yesPagination) {
+    yesPagination.remove();
+  }
+  await createPaginator();
+  //після побудови пагінатора ми на ного робимо всі посилання
+  const paginationNumbers = document.getElementById('pagination-numbers');
+  paginationNumbers.addEventListener('click', handleActivePageNumber);
+  nextButton = document.getElementById('next-button');
+  prevButton = document.getElementById('prev-button');
 
-async function createPaginator(gallary) {
-  // console.log(galleryList);
-  const limit = gallary.dataset.limits;
-  const total = gallary.dataset.total;
+  handlePageButtonsStatus();
 
-  // console.log(limit, ' ', total);
-  //const markup = await createPagination(limit, total,limitButton);
-  // console.log(markup);
-
-  gallary.insertAdjacentHTML('afterend', markup);
+  nextButton.addEventListener('click', nextClick);
+  prevButton.addEventListener('click', prevClick);
 }
+
+async function canWeMove(simbol) {
+  //console.log(currentPage);
+  const buttons = document.querySelectorAll('.pagination-number');
+  let activIn = 0;
+  let poiskIn = 0;
+  buttons.forEach((button, i) => {
+    // if (button.getAttribute('page-index') === '...') {
+    //   poiskIn = i;
+    //   console.log(simbol, 'poiskIn ', poiskIn);
+    // }
+
+    if (simbol === '>') {
+      poiskIn = limitButton - 2;
+    } else {
+      poiskIn = 1;
+    }
+    if (button.classList.contains('active')) {
+      activIn = i;
+    }
+  });
+
+  if (simbol === '>') {
+    if (poiskIn - activIn === 1) {
+      // гаступна кнопка '...' забороняємо ходити
+      redrawDirection = {
+        direction: '>',
+        button: currentPage,
+      };
+      // const yesPagination = document.querySelector('.pagination-container');
+      // if (yesPagination) {
+      //   yesPagination.remove();
+      // }
+      await newPaginator();
+
+      return false;
+    }
+  } else {
+    if (activIn - poiskIn === 1) {
+      // гаступна кнопка '...' забороняємо ходити
+      redrawDirection = {
+        direction: '<',
+        button: currentPage,
+      };
+
+      await newPaginator();
+
+      return false;
+    }
+  }
+  return true;
+}
+
+function nextClick() {
+  //первіряємо кількість дозволених сторінок
+  //треба перевірити чи не буде наступнти баттоном "..." якщо так то перерисовуємо paginator canWeMove
+  if (!canWeMove('>')) {
+    return;
+  }
+
+  if (currentPage === Math.ceil(pageCount / paginationLimit)) {
+    //вдарили по останній макс кнопці сторінці
+    handlePageButtonsStatus();
+    return;
+  }
+  currentPage += 1;
+  setCurrentPage(currentPage);
+}
+function prevClick() {
+  //console.log('');
+  if (!canWeMove('<')) {
+    return;
+  }
+  if (currentPage === 1) {
+    return;
+  }
+  currentPage -= 1;
+
+  setCurrentPage(currentPage);
+}
+
+function clickCard(e) {
+  if (e.target.classList.value === 'gallery-image') {
+    const id = Number(e.target.closest('li').dataset.id);
+
+    createModalOn(id, '');
+  }
+}
+
+//=============================================================================================
+
+async function createPaginator() {
+  paginationLimit = galleryList.dataset.limits;
+  pageCount = galleryList.dataset.total;
+
+  const markup = await createPagination(
+    paginationLimit,
+    pageCount,
+    limitButton,
+    currentPage,
+    redrawDirection
+  );
+
+  galleryList.insertAdjacentHTML('afterend', markup);
+}
+
+function disableButton(button) {
+  button.classList.add('disabled');
+  button.setAttribute('disabled', true);
+}
+
+function enableButton(button) {
+  button.classList.remove('disabled');
+  button.removeAttribute('disabled');
+}
+
+function handlePageButtonsStatus() {
+  if (currentPage === 1) {
+    //console.log('prevButton', prevButton);
+    disableButton(prevButton);
+  } else {
+    enableButton(prevButton);
+  }
+  // debugger
+
+  // console.log(Math.ceil(pageCount / paginationLimit), '===', currentPage);
+
+  if (Math.ceil(pageCount / paginationLimit) === currentPage) {
+    disableButton(nextButton);
+  } else {
+    enableButton(nextButton);
+  }
+}
+
+async function handleActivePageNumber(e) {
+  if (e) {
+    const button = e.target;
+    console.log('  НОМЕр', Number(button.getAttribute('page-index')));
+    if (currentPage !== Number(button.getAttribute('page-index'))) {
+      //забороняємо щось робити якщо вдарили по активному button
+
+      if (button.getAttribute('page-index') !== '...') {
+        currentPage = Number(button.getAttribute('page-index'));
+        document.querySelectorAll('.pagination-number').forEach(button => {
+          button.classList.remove('active');
+          const pageIndex = Number(button.getAttribute('page-index'));
+          if (pageIndex == currentPage) {
+            button.classList.add('active');
+          }
+        });
+        // !!!
+
+        if (currentPage === Math.ceil(pageCount / paginationLimit)) {
+          //вдарили по максимальній чторінці
+
+          const yesPagination = document.querySelector('.pagination-container');
+          if (yesPagination) {
+            yesPagination.remove();
+          }
+          await newPaginator();
+        }
+
+        //перемальовуємо пагінацію
+        galleryList.innerHTML = '';
+        console.log(`click pagination button with ${currentPage} NUmber`);
+        galleryList.innerHTML = await createGallery(); //currentPage;
+      } else {
+        console.log('перемалювати---- пагінатор');
+      }
+    }
+    // !!!
+  } else {
+    document.querySelectorAll('.pagination-number').forEach(button => {
+      button.classList.remove('active');
+      const pageIndex = Number(button.getAttribute('page-index'));
+      //console.log('pageIndex  ===', pageIndex, 'currentPage', currentPage);
+      if (pageIndex === currentPage) {
+        button.classList.add('active');
+      }
+    });
+  }
+  handlePageButtonsStatus();
+}
+
+const setCurrentPage = pageNum => {
+  currentPage = pageNum;
+  console.log('PAGE', pageNum);
+  handleActivePageNumber();
+  handlePageButtonsStatus();
+
+  const prevRange = (pageNum - 1) * paginationLimit;
+  const currRange = pageNum * paginationLimit;
+};
