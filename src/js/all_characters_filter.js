@@ -15,6 +15,7 @@ let paginationLimit; //=====кількісь сарток які ми дозво
 let nextButton; //кнопки в пагінації >
 let prevButton; //кнопки в пагінації  <
 let limitButton = 10; //max кількість кнопок які ми хоче бачити в нашій пагінації  по замовченню 10
+let redrawDirection; //направленіе перерісовкі
 
 const form = document.querySelector('.filter-form');
 let comic = document.querySelector(`[name="comic"]`);
@@ -29,7 +30,7 @@ let dateVal = null;
 let yearsToSelect = '';
 yearsToSelect += `<option>All Years</option>
 <option class="defolt-options">-----------</option>`;
-//console.log('select date', date);
+
 for (let i = 1939; i <= 2023; i++) {
   yearsToSelect += `<option>${i}</option>`;
 }
@@ -155,7 +156,6 @@ async function createFilterGallery(curPage = 0) {
     if (!curPage) {
       offsetValue = 0;
     }
-    console.log('offset value', offsetValue);
 
     const data = await api.getAllCharacters({
       nameStartsWith: name.value,
@@ -165,7 +165,7 @@ async function createFilterGallery(curPage = 0) {
       orderBy: orderText,
       modifiedSince: '01/01/' + dateVal,
     });
-    console.log('Data after request', data);
+
     const results = data.results;
     galleryList.setAttribute('data-total', data.total);
     galleryList.setAttribute('data-offset', data.offset);
@@ -207,6 +207,10 @@ form.addEventListener('change', async event => {
 });
 
 async function newPaginator() {
+  const yesPagination = document.querySelector('.pagination-container'); //перевіряємо може у нас е пагінатор і ми його видаляємо
+  if (yesPagination) {
+    yesPagination.remove();
+  }
   await createPaginator();
   //після побудови пагінатора ми на ного робимо всі посилання
   const paginationNumbers = document.getElementById('pagination-numbers');
@@ -220,16 +224,22 @@ async function newPaginator() {
   prevButton.addEventListener('click', prevClick);
 }
 
-function canWeMove(simbol) {
+async function canWeMove(simbol) {
   //console.log(currentPage);
   const buttons = document.querySelectorAll('.pagination-number');
   let activIn = 0;
   let poiskIn = 0;
   buttons.forEach((button, i) => {
-    if (button.getAttribute('page-index') === '...') {
-      poiskIn = i;
-    }
+    // if (button.getAttribute('page-index') === '...') {
+    //   poiskIn = i;
+    //   console.log(simbol, 'poiskIn ', poiskIn);
+    // }
 
+    if (simbol === '>') {
+      poiskIn = limitButton - 2;
+    } else {
+      poiskIn = 1;
+    }
     if (button.classList.contains('active')) {
       activIn = i;
     }
@@ -238,13 +248,28 @@ function canWeMove(simbol) {
   if (simbol === '>') {
     if (poiskIn - activIn === 1) {
       // гаступна кнопка '...' забороняємо ходити
-      console.log('перемальовуємо >>>>> paginator');
+      redrawDirection = {
+        direction: '>',
+        button: currentPage,
+      };
+      // const yesPagination = document.querySelector('.pagination-container');
+      // if (yesPagination) {
+      //   yesPagination.remove();
+      // }
+      await newPaginator();
+
       return false;
     }
   } else {
     if (activIn - poiskIn === 1) {
       // гаступна кнопка '...' забороняємо ходити
-      console.log('перемальовуємо <<<<<<< paginator');
+      redrawDirection = {
+        direction: '<',
+        button: currentPage,
+      };
+
+      await newPaginator();
+
       return false;
     }
   }
@@ -255,7 +280,6 @@ function nextClick() {
   //первіряємо кількість дозволених сторінок
   //треба перевірити чи не буде наступнти баттоном "..." якщо так то перерисовуємо paginator canWeMove
   if (!canWeMove('>')) {
-    console.log('OOOOOOOOOOOOOOOOOOOOOO');
     return;
   }
 
@@ -266,9 +290,9 @@ function nextClick() {
   }
   currentPage += 1;
   setCurrentPage(currentPage);
-  console.log(currentPage);
 }
 function prevClick() {
+  //console.log('');
   if (!canWeMove('<')) {
     return;
   }
@@ -278,7 +302,6 @@ function prevClick() {
   currentPage -= 1;
 
   setCurrentPage(currentPage);
-  console.log(currentPage);
 }
 
 function clickCard(e) {
@@ -295,13 +318,12 @@ async function createPaginator() {
   paginationLimit = galleryList.dataset.limits;
   pageCount = galleryList.dataset.total;
 
-  console.log('paginationLimit', paginationLimit, '< >pageCount', pageCount);
-
   const markup = await createPagination(
     paginationLimit,
     pageCount,
     limitButton,
-    currentPage
+    currentPage,
+    redrawDirection
   );
 
   galleryList.insertAdjacentHTML('afterend', markup);
@@ -340,7 +362,6 @@ async function handleActivePageNumber(e) {
     const button = e.target;
     if (currentPage !== Number(button.getAttribute('page-index'))) {
       //забороняємо щось робити якщо вдарили по активному button
-      console.log(e.target.getAttribute('page-index'));
 
       if (button.getAttribute('page-index') !== '...') {
         currentPage = Number(button.getAttribute('page-index'));
@@ -355,7 +376,6 @@ async function handleActivePageNumber(e) {
 
         if (currentPage === Math.ceil(pageCount / paginationLimit)) {
           //вдарили по максимальній чторінці
-          console.log('перемалювати пагінатор currentPage === pageCount ');
 
           const yesPagination = document.querySelector('.pagination-container');
           if (yesPagination) {
@@ -377,7 +397,7 @@ async function handleActivePageNumber(e) {
     document.querySelectorAll('.pagination-number').forEach(button => {
       button.classList.remove('active');
       const pageIndex = Number(button.getAttribute('page-index'));
-
+      //console.log('pageIndex  ===', pageIndex, 'currentPage', currentPage);
       if (pageIndex === currentPage) {
         button.classList.add('active');
       }
@@ -388,20 +408,10 @@ async function handleActivePageNumber(e) {
 
 const setCurrentPage = pageNum => {
   currentPage = pageNum;
-
+  console.log('PAGE', pageNum);
   handleActivePageNumber();
   handlePageButtonsStatus();
 
   const prevRange = (pageNum - 1) * paginationLimit;
   const currRange = pageNum * paginationLimit;
-  // console.log("current offset is = ", currentPage)
-  //тут якщо треба можно скривати частково галерею======================================
-  // const listItemsGallary = document.querySelectorAll('.gallery-item');
-
-  // listItemsGallary.forEach((item, index) => {
-  //   item.classList.add('hidden');
-  //   if (index >= prevRange && index < currRange) {
-  //     item.classList.remove('hidden');
-  //   }
-  // });
 };

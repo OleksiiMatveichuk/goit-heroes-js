@@ -1,6 +1,6 @@
 import { api } from './low-level/api';
 import debounce from 'lodash.debounce';
-import { infoSys } from './infoMess'
+import { infoSys } from './infoMess';
 const searchInput = document.querySelector('.header-input');
 
 // console.log('Run header.js');
@@ -11,21 +11,22 @@ searchInput.addEventListener('click', () => {
 });
 
 // Validation Name
-searchInput.addEventListener('input', debounce(function (event) {
-  const input = event.target;
-  const value = input.value;
-  const validCharacters = /^[a-zA-Z0-9\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]*$/;
+searchInput.addEventListener(
+  'input',
+  debounce(function (event) {
+    const input = event.target;
+    const value = input.value;
+    const validCharacters = /^[a-zA-Z0-9\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]*$/;
 
-  if (!validCharacters.test(value)) {
-    input.value = value.replace(
-      /[^a-zA-Z0-9\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g,
-      ''
-    );
-    infoSys("warn", "Please, use English keyboard layout only.")
-  }
-}, 500));
-
-
+    if (!validCharacters.test(value)) {
+      input.value = value.replace(
+        /[^a-zA-Z0-9\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g,
+        ''
+      );
+      infoSys('warn', 'Please, use English keyboard layout only.');
+    }
+  }, 500)
+);
 
 searchInput.addEventListener('input', debounce(inputHandler, 500));
 async function inputHandler() {
