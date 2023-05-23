@@ -2,24 +2,15 @@ export async function createPagination(
   paginationLimit,
   array,
   limitButton,
-  currentPage
+  currentPage,
+  redrawDirection
 ) {
-  console.log(
-    'запрос ',
-    paginationLimit,
-    ' ',
-    array,
-    ' ',
-    limitButton,
-    ' ',
-    currentPage
-  );
   let pageCount = Math.ceil(array / paginationLimit);
   //let currentPage = 1;
   //currentPage активна сторінка
   let paginatorMacup;
   //limitButton це кількість кнопок які ми хочемо бачити на єкрані
-
+  //redrawDirection направленіе перерісовкі
   const myPagination = document.createElement('div');
   myPagination.classList.add('my-pagination');
 
@@ -44,14 +35,13 @@ export async function createPagination(
     if (i === currentPage) {
       return `<bitton class="pagination-number active" page-index=${i} aria-label='Page ${i}'>${i}</bitton>`;
     }
+
     return `<bitton class="pagination-number" page-index=${i} aria-label=${reternLibel(
       i
     )}>${i}</bitton>`;
   }
 
   async function getPaginationNumbers(namber) {
-    //let battonArray = [];
-
     const numberButton = reternNumberButton(namber); // вираховуємо масив наших баттонів
 
     return numberButton.map(button => createArrayBtn(button));
@@ -63,27 +53,65 @@ export async function createPagination(
     for (let i = 1; i <= pageCount; i++) {
       buttonArray.push(i);
     }
-    console.log(pageCount, '<= ', limitButton);
+
     if (pageCount <= limitButton) {
       return buttonArray;
     } else {
-      console.log(currentPage, ' ', limitButton);
       if (currentPage !== pageCount) {
-        //если ударили не по Максимальному Page buttton
+        if (redrawDirection?.direction === '>') {
+          if (pageCount - currentPage >= limitButton) {
+            buttonArray.splice(1, 0, '...');
+            buttonArray.splice(2, currentPage - 1);
+            buttonArray.splice(limitButton - 2, 0, '...', pageCount);
+            buttonArray.splice(limitButton, buttonArray.length - 1);
+
+            return buttonArray;
+          } else {
+            buttonArray.splice(1, 0, '...');
+            buttonArray.splice(2, currentPage - 4);
+
+            return buttonArray;
+          }
+        }
+        if (redrawDirection?.direction === '<') {
+          if (pageCount - currentPage <= limitButton) {
+            buttonArray.splice(1, 0, '...');
+            buttonArray.splice(2, currentPage - limitButton + 2);
+            buttonArray.splice(limitButton - 2, limitButton, '...', pageCount);
+
+            return buttonArray;
+          } else {
+            if (currentPage > limitButton) {
+              buttonArray.splice(1, 0, '...');
+              buttonArray.splice(2, currentPage - limitButton + 1);
+              buttonArray.splice(
+                limitButton - 1,
+                buttonArray.length,
+                '...',
+                pageCount
+              );
+
+              return buttonArray;
+            } else {
+              buttonArray.splice(limitButton - 2, 0, '...', pageCount);
+
+              buttonArray.splice(limitButton, buttonArray.length - 1);
+
+              return buttonArray;
+            }
+          }
+        }
 
         buttonArray.splice(limitButton - 2, 0, '...', pageCount);
-        console.log('1arr===', buttonArray);
+
         buttonArray.splice(limitButton, buttonArray.length - 1);
-        console.log('1arrbutt', buttonArray);
+
         return buttonArray;
       } else {
-        // buttonArray.splice(limitButton- (limitButton - 1), 0, '...', pageCount);
         buttonArray.splice(1, 0, '...');
-        console.log('1arr===', buttonArray);
+
         buttonArray.splice(2, buttonArray.length - limitButton);
         return buttonArray;
-        //buttonArray.splice(limitButton, buttonArray.length - 1);
-        // console.log('2arrbutt', buttonArray);
       }
     }
   }
@@ -107,26 +135,4 @@ export async function createPagination(
   }
 
   return markup;
-}
-
-{
-  /* <ul id="paginated-list" aria-live="polite">
-  <li>Item 1</li>
-  <li>Item 2</li>
-  <li>Item 3</li>
-  <li>Item 4</li>
-  <li>Item 5</li>
-  <li>Item 6</li>
-  <li>Item 7</li>
-  <li>Item 8</li>
-  <li>Item 9</li>
-  <li>Item 10</li>
-  <li>Item 11</li>
-  <li>Item 12</li>
-  <li>Item 13</li>
-  <li>Item 14</li>
-  <li>Item 15</li>
-  <li>Item 16</li>
- 
-</ul>; */
 }
