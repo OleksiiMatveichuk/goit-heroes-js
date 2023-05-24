@@ -192,6 +192,13 @@ form.addEventListener('change', async event => {
   galleryList.innerHTML = await createFilterGallery();
   //=====Pagination==================================================
 
+
+  currentPage = 1
+  await newPaginator();
+
+  // await createPaginator();
+
+
   currentPage = 1;
   await newPaginator();
 });
@@ -395,7 +402,7 @@ async function handleActivePageNumber(e) {
     });
   }
   galleryList.innerHTML = '';
-  console.log(`click pagination button with ${currentPage} NUmber`);
+  // console.log(`click pagination button with ${currentPage} NUmber`);
   galleryList.innerHTML = await createFilterGallery(currentPage);
   handlePageButtonsStatus();
 }

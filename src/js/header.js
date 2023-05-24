@@ -327,6 +327,52 @@ function handlePageButtonsStatus() {
     enableButton(nextButton);
   }
 }
+//*********************** */
+
+// console.log('Run all_charaster');
+let dateVal = null;
+let comic = document.querySelector(`[name="comic"]`);
+let name = document.querySelector(`[name="name"]`);
+let order = document.querySelector(`[name="order"]`);
+let date = document.querySelector(`[name="date"]`);
+async function createFilterGallery(curPage = 0) {
+  try {
+    const orderText = order.value.toLowerCase();
+    // console.log("comics", comic.value)
+    // console.log("order", orderText)
+    // console.log("name", name.value)
+    // console.log("year", dateVal)
+    // const offsetValue = galleryList.dataset.offset;
+    let offsetValue = 0;
+    if (curPage != 1) {
+      offsetValue = (curPage - 1) * itemsOnPage;
+    }
+    if (!curPage) {
+      offsetValue = 0;
+    }
+
+    const data = await api.getAllCharacters({
+      nameStartsWith: name.value,
+      limit: itemsOnPage,
+      offset: offsetValue,
+      comics: comic.value,
+      orderBy: orderText,
+      modifiedSince: '01/01/' + dateVal,
+    });
+
+    const results = data.results;
+    galleryList.setAttribute('data-total', data.total);
+    galleryList.setAttribute('data-offset', data.offset);
+    if (results.length === 0) {
+      // console.log('NOT FOUND!!!! script all_caharasters_filter');
+      return errorGallery();
+    }
+    return renderGallery(results);
+
+  } catch (e) {
+    console.log(e);
+  }
+}
 
 async function handleActivePageNumber(e) {
   if (e) {
@@ -358,10 +404,10 @@ async function handleActivePageNumber(e) {
 
         //перемальовуємо пагінацію
         galleryList.innerHTML = '';
-        console.log(`click pagination button with ${currentPage} NUmber`);
+        // console.log(`click pagination button with ${currentPage} NUmber`);
         galleryList.innerHTML = await createGallery(); //currentPage;
       } else {
-        console.log('перемалювати---- пагінатор');
+        // console.log('перемалювати---- пагінатор');
       }
     }
     // !!!
@@ -375,7 +421,13 @@ async function handleActivePageNumber(e) {
       }
     });
   }
-  handlePageButtonsStatus();
+  //***************** */
+  galleryList.innerHTML = '';
+  // console.log(`click pagination button with ${currentPage} NUmber`);
+  galleryList.innerHTML = await createFilterGallery(currentPage);
+  // currentPage = 1
+  await newPaginator();
+  // handlePageButtonsStatus();
 }
 
 const setCurrentPage = pageNum => {
