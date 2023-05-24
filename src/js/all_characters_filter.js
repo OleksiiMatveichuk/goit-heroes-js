@@ -192,20 +192,15 @@ form.addEventListener('change', async event => {
   galleryList.innerHTML = await createFilterGallery();
   //=====Pagination==================================================
 
+
   currentPage = 1
   await newPaginator();
 
   // await createPaginator();
 
-  // const paginationNumbers = document.getElementById('pagination-numbers');
-  // paginationNumbers.addEventListener('click', handleActivePageNumber);
-  // nextButton = document.getElementById('next-button');
-  // prevButton = document.getElementById('prev-button');
 
-  // handlePageButtonsStatus();
-  // //setCurrentPage(currentPage);
-  // nextButton.addEventListener('click', nextClick);
-  // prevButton.addEventListener('click', prevClick);
+  currentPage = 1;
+  await newPaginator();
 });
 
 async function newPaginator() {
