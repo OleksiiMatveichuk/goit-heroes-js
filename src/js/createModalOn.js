@@ -60,6 +60,8 @@ export async function createModalOn(id, value) {
   fotosArray.insertAdjacentHTML('afterbegin', markupFotos);
 
   body.addEventListener('click', handleClickModal);
+  // closeButtonModal = document.querySelector('close-modal-btn');
+  // closeButtonModal.addEventListener('click', handleClickModal);
 
   async function createHeaderCard(name, description, modified) {
     const date = getFormatDate(modified);
@@ -93,15 +95,15 @@ export async function createModalOn(id, value) {
   }
 
   function handleClickModal(e) {
-    //console.log(e.target);
-    // const modalremobve = document.querySelectorAll('.bacground-modal');
-
-    // console.log(modalremobve.find());
+    console.log('e.target===', e.target);
+    console.log('e.currenttarget===', e.currentTarget);
 
     if (
       e.target.tagName === 'use' ||
       e.target.tagName === 'use' ||
-      e.target.className === 'close-modal-btn'
+      e.target.className === 'close-modal-btn' ||
+      e.target.className === 'close-use' ||
+      e.target.className === 'close-modal'
     ) {
       const modal1 = document.querySelectorAll('.bacground-modal');
 
@@ -163,7 +165,7 @@ export async function createModalOn(id, value) {
 
    <div class='close-modal-btn'>
      <svg class="close-modal" width="10" height="10" fill="white">
-            <use href="./images/symbol-defs.svg#icon-close-mod"></use>
+            <use class='close-use' href="./images/symbol-defs.svg#icon-close-mod"></use>
           </svg>
 
     </div>
@@ -205,37 +207,9 @@ export async function createModalOn(id, value) {
       const modal1 = document.querySelectorAll('.bacground-modal');
 
       modal1.forEach(item => {
-        // console.log('item', item);
         item.remove();
+        document.body.style.overflow = '';
       });
     }
   });
-}
-
-/////////////////////////////////
-{
-  /* <li>
-            <img
-              class="img-list-item"
-              src="./images/remove_img/modal1.jpg"
-              alt="img"
-              width="80"
-            />
-          </li>
-          <li>
-            <img
-              class="img-list-item"
-              src="./images/remove_img/modal2.jpg"
-              alt="img"
-              width="80"
-            />
-          </li>
-          <li>
-            <img
-              class="img-list-item"
-              src="./images/remove_img/modal3.jpg"
-              alt="img"
-              width="80"
-            />
-          </li> */
 }
