@@ -32,13 +32,15 @@ export async function createModalTwo(value) {
   closeBtn.addEventListener('click', closeModal_Window);
 }
 
+// '';./images/symbol-defs.svg#icon-close
+
 async function modalTwo(arr, characters, creators, comics, date) {
   return `
   <div class="bacground-mod-two">
     <div class="modal-two">
       <button class="mod-two-buttom" type="button" data-modal-close>
         <svg class='mod-two-swg-close' width="14" height="14" fill="white">
-          <use class="mod-two-close" href="./images/symbol-defs.svg#icon-close"></use>
+          <use class="mod-two-close" href="./images/symbol-defs.svg#icon-close-mod"></use>
         </svg>   
       </button>
       <div class="mod-two-first-gallery">
@@ -103,12 +105,10 @@ function closeModal_Window(e) {
     e.target.classList.value === 'mod-two-buttom' ||
     e.target.tagName === 'svg'
   ) {
-
     closeModal();
 
-//     const modal = document.querySelectorAll('.bacground-mod-two');
-//     modal.forEach(item => item.remove());
-
+    //     const modal = document.querySelectorAll('.bacground-mod-two');
+    //     modal.forEach(item => item.remove());
   }
 }
 
@@ -189,11 +189,10 @@ async function createLiComics(arr) {
   return await lishka.join('');
 }
 
-
 document.addEventListener('keydown', event => {
   if (event.code === 'Escape') {
-//     const modal = document.querySelector('.bacground-mod-two');
-//     modal.remove();
+    //     const modal = document.querySelector('.bacground-mod-two');
+    //     modal.remove();
     closeModal();
   }
 });
@@ -206,4 +205,3 @@ async function getFormatDate(arr) {
   const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
   return `${mo} ${da}, ${ye}`;
 }
-
