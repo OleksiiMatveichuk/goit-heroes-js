@@ -48,7 +48,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
+  background-color: inherit;
   transition: background-color 250ms var(--cubic);
 }
 

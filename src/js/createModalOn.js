@@ -25,7 +25,8 @@ export async function createModalOn(id, value) {
   const modal = await createModal(path, extension);
 
   body.insertAdjacentHTML('afterbegin', modal);
-
+  const closeBtn = document.querySelector('.close-modal-btn');
+  closeBtn.addEventListener('click', handleClickModal);
   const comicsArray = data[0].comics.items.filter((item, index, array) => {
     if (index < 3) {
       return item;
@@ -100,7 +101,7 @@ export async function createModalOn(id, value) {
 
     if (
       e.target.tagName === 'use' ||
-      e.target.tagName === 'use' ||
+      e.target.tagName === 'svg' ||
       e.target.className === 'close-modal-btn' ||
       e.target.className === 'close-use' ||
       e.target.className === 'close-modal'
@@ -109,7 +110,7 @@ export async function createModalOn(id, value) {
 
       modal1.forEach(item => item.remove());
       document.body.style.overflow = '';
-      // modal1?.remove();
+      //  modal1?.remove();
     } else if (
       e.target.className === 'img-list-item-card' ||
       e.target.className === 'black-widow-card-text' ||
@@ -163,12 +164,12 @@ export async function createModalOn(id, value) {
     <div class="container-modal">
      
 
-   <div class='close-modal-btn'>
+   <button class='close-modal-btn'>
      <svg class="close-modal" width="10" height="10" fill="white">
             <use class='close-use' href="./images/symbol-defs.svg#icon-close-mod"></use>
           </svg>
 
-    </div>
+    </button>
      
   
  
