@@ -104,7 +104,8 @@ export async function createModalOn(id, value) {
       e.target.tagName === 'svg' ||
       e.target.className === 'close-modal-btn' ||
       e.target.className === 'close-use' ||
-      e.target.className === 'close-modal'
+      e.target.className === 'close-modal' ||
+      e.target.className === 'bacground-modal'
     ) {
       const modal1 = document.querySelectorAll('.bacground-modal');
 
